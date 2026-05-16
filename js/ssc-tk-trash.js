@@ -1262,7 +1262,7 @@ const state = {
   raid: localStorage.getItem("raid") || "ALL",
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
-  lang: localStorage.getItem("lang") || "en",
+  lang: "en",
   dangerOnly: localStorage.getItem("dangerOnly") === "true",
   tags: new Set(JSON.parse(localStorage.getItem("tags") || "[]")),
   query: ""
@@ -1292,7 +1292,6 @@ function save() {
   localStorage.setItem("raid", state.raid);
   localStorage.setItem("zone", state.zone);
   localStorage.setItem("mode", state.mode);
-  localStorage.setItem("lang", state.lang);
   localStorage.setItem("dangerOnly", state.dangerOnly);
   localStorage.setItem("tags", JSON.stringify([...state.tags]));
 }
