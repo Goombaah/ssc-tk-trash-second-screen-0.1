@@ -112,6 +112,7 @@ button, input { font: inherit; }
 }
 
 .actions button.danger-toggle.active { border-color: var(--red); background: #3a1618; }
+.actions button#auditOnly.active { border-color: var(--purple); background: #2d1c3d; }
 
 .lang-switch {
   display: inline-flex;
@@ -410,6 +411,30 @@ button, input { font: inherit; }
   flex-wrap: wrap;
   padding: 0 9px 8px;
 }
+
+.audit-panel {
+  margin: 0 9px 8px;
+  padding: 7px 8px;
+  border: 1px solid #35414d;
+  background: #0b1015;
+  color: #cfd8e3;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.audit-line {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.audit-line:first-child { margin-top: 0; }
+.audit-k { color: #8fa0b1; text-transform: uppercase; }
+.audit-v { font-weight: 700; }
+.confidence-source { color: #44d36e; }
+.confidence-inferred { color: #f2d84b; }
+.confidence-to_confirm { color: #ff9d2e; }
 
 .tag {
   border: 1px solid #3c4855;

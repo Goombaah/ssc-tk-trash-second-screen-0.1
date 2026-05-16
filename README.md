@@ -4,6 +4,18 @@ Outil HTML hors ligne pour afficher les priorites trash SSC/TK pendant un raid.
 
 L'outil est bilingue EN/FR. Utilise le bouton `FR` / `EN` dans la barre du haut, ou la touche `L`, pour changer de langue.
 
+V0.2 ajoute une couche d'audit data sur chaque mob:
+
+- `sourceUrl`
+- `sourceNote` ou `sourceQuoteShort`
+- `confidence`: `source`, `inferred`, `to_confirm`
+- `focusRank`
+- `focusReason`
+- `recommendedMarker`
+- `callShort`
+
+Le bouton `Audit ?` ou la touche `A` affiche uniquement les cartes `to_confirm` pour l'audit manuel.
+
 ## Utilisation
 
 Ouvre `index.html` dans un navigateur. La page redirige vers l'outil principal:

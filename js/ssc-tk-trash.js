@@ -103,15 +103,21 @@ const i18n = {
       "searchPlaceholder": "Search mob / spell / danger   /",
       "detailed": "Detailed",
       "dangerOnly": "RED/ORANGE",
+      "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Keys: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset · L language",
+      "keys": "Keys: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L language",
       "allZones": "All pre",
       "empty": "No visible cards. Reset filters or change search.",
       "visibleCards": "visible cards",
       "raidLabel": "Raid",
       "spells": "Spells",
       "copy": "Copy",
-      "unknownSpell": "Effect to confirm."
+      "unknownSpell": "Effect to confirm.",
+      "auditConfidence": "Confidence",
+      "auditRank": "Focus rank",
+      "auditReason": "Reason",
+      "auditMarker": "Marker",
+      "auditSource": "Source"
     }
   },
   "fr": {
@@ -216,15 +222,21 @@ const i18n = {
       "searchPlaceholder": "Chercher mob / sort / danger   /",
       "detailed": "Détaillé",
       "dangerOnly": "ROUGE/ORANGE",
+      "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Touches: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset · L langue",
+      "keys": "Touches: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L langue",
       "allZones": "Toutes zones",
       "empty": "Aucune carte visible. Reset filtres ou change la recherche.",
       "visibleCards": "cartes visibles",
       "raidLabel": "Call",
       "spells": "Sorts",
       "copy": "Copier",
-      "unknownSpell": "Effet à confirmer."
+      "unknownSpell": "Effet à confirmer.",
+      "auditConfidence": "Confiance",
+      "auditRank": "Focus rank",
+      "auditReason": "Raison",
+      "auditMarker": "Marker",
+      "auditSource": "Source"
     }
   }
 };
@@ -1395,12 +1407,303 @@ function localizeFrenchNames(text) {
     .reduce((value, [en, fr]) => value.split(en).join(fr), text);
 }
 
+const sourceUrls = {
+  ssc: "https://www.wowhead.com/tbc/guide/trash-mobs-serpentshrine-cavern-ssc-strategy-burning-crusade-classic",
+  sscFr: "https://www.wowhead.com/tbc/fr/guide/trash-mobs-serpentshrine-cavern-ssc-strategy-burning-crusade-classic",
+  tk: "https://www.wowhead.com/tbc/guide/trash-mobs-the-eye-tempest-keep-strategy-burning-crusade-classic",
+  tkFr: "https://www.wowhead.com/tbc/fr/guide/trash-mobs-the-eye-tempest-keep-strategy-burning-crusade-classic"
+};
+
+const auditData = {
+  "Coilfang Beast-Tamer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Cleave/Bestial Wrath and recommends killing Beast-Tamer quickly; it does not make Hate-Screamer focus 1 absolute for the pack.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Fast kill is sourced because Bestial Wrath boosts Beast-Tamer/Sporebat damage, but exact pack order can vary.",
+    recommendedMarker: "skull",
+    callShort: "Face away; kill quickly during Bestial Wrath."
+  },
+  "Coilfang Hate-Screamer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents AoE Silence and Sonic Scream. Focus priority is raid-lead interpretation when silence is the problem.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Option A: focus/LOS Hate-Screamer if Silence is breaking caster control.",
+    recommendedMarker: "cross",
+    callShort: "Option A: focus/LOS if silence is dangerous."
+  },
+  "Serpentshrine Sporebat": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Charge and Spore Burst, and notes raids can kill Sporebats after Beast-Tamer; earlier focus is situational.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Option B: control/kill Sporebats if charges are causing deaths or healer chaos.",
+    recommendedMarker: "triangle",
+    callShort: "Option B: kill/control if charges are dangerous."
+  },
+  "Underbog Colossus": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead lists multiple possible ability sets and death effects for the Colossus.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Single large trash mob; priority is identifying variant and reacting, not a pack focus order.",
+    recommendedMarker: "skull",
+    callShort: "Identify variant; react to quake/disease/geyser."
+  },
+  "Vashj'ir Honor Guard": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Frightening Shout, Mortal Cleave, and tank knockback.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Danger is positioning/fear control; source does not provide a strict focus rank.",
+    recommendedMarker: "skull",
+    callShort: "Fear protection; face Mortal Cleave away."
+  },
+  "Coilfang Priestess": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Holy Fire and Priestess Spirit/Holy Nova after death.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "CC/kill priority is inferred from dangerous death spirit and caster pressure; no strict source rank.",
+    recommendedMarker: "moon",
+    callShort: "CC or kill; watch Spirit Nova after death."
+  },
+  "Coilfang Shatterer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Shatter Armor. Spell Reflection handling was from comments/secondary notes, not a clean guide priority.",
+    confidence: "to_confirm",
+    focusRank: null,
+    focusReason: "Tank damage is sourced, but extra handling notes need live verification.",
+    recommendedMarker: "cross",
+    callShort: "Watch tank after Shatter Armor."
+  },
+  "Greyheart Tidecaller": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead gives a conditional order: normally Nether-Mage first, but if Nether-Mage is sheeped, kill Tidecaller first and swap to Water Elemental Totems.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Conditional source priority: focus Tidecaller first only when Nether-Mage is controlled; always swap Water Totem.",
+    recommendedMarker: "skull",
+    callShort: "If Nether-Mage is sheeped, kill Tidecaller; swap Water Totem."
+  },
+  "Greyheart Nether-Mage": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead says Nether-Mage is typically killed first, but can be sheeped while Tidecaller dies.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Conditional source priority: kill first if not sheeped; if sheeped, hold it and kill after Tidecaller.",
+    recommendedMarker: "moon",
+    callShort: "Kill first unless sheeped; dispel/spellsteal buffs."
+  },
+  "Greyheart Skulker": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead says once Tidecallers are down, go for Skulker.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Sourced post-Tidecaller target, but exact numeric rank depends on whether Nether-Mage was sheeped.",
+    recommendedMarker: "cross",
+    callShort: "Kill after Tidecaller phase; watch Kick."
+  },
+  "Greyheart Shield-Bearer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Shield Charge and Avenger's Shield. Stack/positioning is the key handling.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Danger is charge prevention and positioning; source does not give a universal focus rank.",
+    recommendedMarker: "square",
+    callShort: "Stack behind; face into wall."
+  },
+  "Serpentshrine Lurker": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead says Warlocks should control Serpentshrine Lurkers and save them for the end.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Sourced control/kill-late target; do not fight it with the rest of the pack active.",
+    recommendedMarker: "moon",
+    callShort: "Banish/control; save for end."
+  },
+  "Coilfang Fathom-Witch": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead says take down Fathom-Witches first, then Serpentguards.",
+    confidence: "source",
+    focusRank: 1,
+    focusReason: "Sourced first kill for this pack because of Domination and Shadow Nova positioning danger.",
+    recommendedMarker: "skull",
+    callShort: "Focus/control MC; position away from water."
+  },
+  "Coilfang Serpentguard": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead says Serpentguards are killed after Fathom-Witches.",
+    confidence: "source",
+    focusRank: 2,
+    focusReason: "Sourced second kill in Fathom-Witch/Serpentguard pack; watch Spell Reflection.",
+    recommendedMarker: "cross",
+    callShort: "Stop casts into reflection; watch armor aura."
+  },
+  "Tidewalker Warrior": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Enrage and Tranquilizing Shot handling.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Handling is Tranq/tank control, not necessarily focus first.",
+    recommendedMarker: "triangle",
+    callShort: "Tranq Enrage; tank stable."
+  },
+  "Tidewalker Hydromancer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents interruptible Frostbolt, Frost Nova, and Frost Shock.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Caster kill/kick is inferred from interruptible damage; source does not rank it globally.",
+    recommendedMarker: "cross",
+    callShort: "Kick Frostbolt; kill caster if needed."
+  },
+  "Tidewalker Depth-Seer": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Healing Touch and Rejuvenation on murloc trash.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Healer focus is raid-lead inference from interruptible healing, not a sourced absolute rank.",
+    recommendedMarker: "skull",
+    callShort: "Focus/kick healer."
+  },
+  "Tidewalker Shaman": {
+    sourceUrl: sourceUrls.ssc,
+    sourceNote: "Wowhead documents Chain Lightning, Lightning Bolt, and Lightning Shield.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Kick/spread priority is inferred from spell pressure; no strict source rank.",
+    recommendedMarker: "moon",
+    callShort: "Kick; spread for Chain Lightning; purge shield."
+  },
+  "Astromancer": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead explicitly says Astromancer and Star Scryer should be the first two to die, with Astromancer first.",
+    confidence: "source",
+    focusRank: 1,
+    focusReason: "Sourced first kill due to Molten Armor, Blast Wave, and Fireball Volley raid damage.",
+    recommendedMarker: "skull",
+    callShort: "Kill first; purge Molten Armor."
+  },
+  "Star Scryer": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead explicitly says Star Scryer is second after Astromancer in these TK packs.",
+    confidence: "source",
+    focusRank: 2,
+    focusReason: "Sourced second kill due to Domination, Arcane Blast, and Starfall.",
+    recommendedMarker: "cross",
+    callShort: "Kill second; CC MC instantly."
+  },
+  "Bloodwarder Marshal": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Whirlwind/Bloodthirst/Uppercut style melee pressure. Squire heal interaction needs direct pack verification.",
+    confidence: "to_confirm",
+    focusRank: null,
+    focusReason: "Tank positioning is clear; focus rank and Squire interrupt call need manual audit.",
+    recommendedMarker: "skull",
+    callShort: "Wall tank; verify Squire heal call."
+  },
+  "Phoenix-Hawk Hatchling": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents AoE Silence and Wing Buffet in Al'ar room trash.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Hallway/corner positioning is raid-lead interpretation from silence/knockback mechanics.",
+    recommendedMarker: "triangle",
+    callShort: "Drag hallway; casters stay back."
+  },
+  "Phoenix-Hawk": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Dive and Mana Burn. Exact stack/pull-count handling is raid-lead interpretation.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Control plan is inferred; source does not give strict focus rank.",
+    recommendedMarker: "square",
+    callShort: "Control Dive; watch Mana Burn."
+  },
+  "Crystalcore Devastator": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Countercharge/Knock Away style tank and silence pressure.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "Tank positioning/taunt timing is inferred handling, not a sourced kill rank.",
+    recommendedMarker: "skull",
+    callShort: "Max range; taunt after Knock Away."
+  },
+  "Crystalcore Sentinel": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Overcharge tank burst and Crystalcore Sentinel danger.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Tank danger is sourced; not necessarily focus immediate. Treat as tank swap/heal call.",
+    recommendedMarker: "skull",
+    callShort: "Tank swap / hard heal Overcharge."
+  },
+  "Crystalcore Mechanic": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead says Warlocks can Banish Mechanics and they should be killed last.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Sourced control/kill-last target, not a focus priority.",
+    recommendedMarker: "moon",
+    callShort: "Banish; kill last."
+  },
+  "Tempest-Smith": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead notes Priest Mind Control can control Tempest-Smith for golem packs. Interrupt handling needs verification.",
+    confidence: "to_confirm",
+    focusRank: null,
+    focusReason: "MC plan is sourced, but non-MC interrupt/stop call should be audited in-game.",
+    recommendedMarker: "moon",
+    callShort: "Priest MC if available; verify backup interrupts."
+  },
+  "Crimson Hand Blood Knight": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Flash of Light, Hammer of Justice, and Renew handling.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "Dispel/purge handling is sourced; no strict focus rank.",
+    recommendedMarker: "cross",
+    callShort: "Dispel HoJ; purge Renew; burn through Flash."
+  },
+  "Crimson Hand Battle Mage": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Blizzard, Frostbolt Volley, Cone of Cold, and CC stops.",
+    confidence: "source",
+    focusRank: null,
+    focusReason: "CC/move handling is sourced; no absolute focus rank.",
+    recommendedMarker: "moon",
+    callShort: "Sheep/Gouge if AoE hurts; move Blizzard."
+  },
+  "Crimson Hand Centurion": {
+    sourceUrl: sourceUrls.tk,
+    sourceNote: "Wowhead documents Arcane Flurry random burst.",
+    confidence: "inferred",
+    focusRank: null,
+    focusReason: "CC/watch call is inferred from random burst; no strict source rank.",
+    recommendedMarker: "skull",
+    callShort: "Watch random burst; CC if needed."
+  }
+};
+
+trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
+  sourceUrl: item.raid === "SSC" ? sourceUrls.ssc : sourceUrls.tk,
+  sourceNote: "Audit metadata missing for this mob.",
+  confidence: "to_confirm",
+  focusRank: null,
+  focusReason: "Needs manual audit.",
+  recommendedMarker: item.markers[0] || null,
+  callShort: item.call
+}));
+
 const state = {
   raid: localStorage.getItem("raid") || "ALL",
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
   lang: "en",
   dangerOnly: localStorage.getItem("dangerOnly") === "true",
+  auditOnly: localStorage.getItem("auditOnly") === "true",
   tags: new Set(JSON.parse(localStorage.getItem("tags") || "[]")),
   query: ""
 };
@@ -1436,6 +1739,7 @@ function save() {
   localStorage.setItem("zone", state.zone);
   localStorage.setItem("mode", state.mode);
   localStorage.setItem("dangerOnly", state.dangerOnly);
+  localStorage.setItem("auditOnly", state.auditOnly);
   localStorage.setItem("tags", JSON.stringify([...state.tags]));
 }
 
@@ -1449,6 +1753,7 @@ function visibleItems() {
     if (state.raid !== "ALL" && item.raid !== state.raid) return false;
     if (state.zone !== "ALL" && item.zone !== state.zone) return false;
     if (state.dangerOnly && !["red", "orange"].includes(item.priority)) return false;
+    if (state.auditOnly && item.confidence !== "to_confirm") return false;
     for (const tag of state.tags) if (!item.tags.includes(tag)) return false;
     if (!q) return true;
     const originalMob = item.originalMob || item.mob;
@@ -1458,7 +1763,9 @@ function visibleItems() {
       item.raid, item.zone, item.mob, originalMob, item.priority, item.danger, item.call, item.tank,
       enItem.danger, enItem.call, enItem.tank, frItem.danger, frItem.call, frItem.tank,
       item.tags.join(" "), item.spells.map(([name]) => name).join(" "),
-      item.spells.map(([name]) => frSpellNames[name] || "").join(" ")
+      item.spells.map(([name]) => frSpellNames[name] || "").join(" "),
+      item.confidence, item.sourceNote, item.sourceQuoteShort, item.focusReason,
+      item.recommendedMarker, item.callShort, String(item.focusRank ?? "")
     ].join(" "));
     return hay.includes(q);
   });
@@ -1483,12 +1790,28 @@ function tagPills(tags) {
   return tags.map((tag) => `<span class="tag ${tag}">${labels[tag] || tag}</span>`).join("");
 }
 
+function auditPanel(item) {
+  const rank = item.focusRank ?? "—";
+  const marker = item.recommendedMarker ? markerImgs([item.recommendedMarker]) : "—";
+  const sourceText = item.sourceQuoteShort || item.sourceNote || "—";
+  return `
+    <div class="audit-panel">
+      <div class="audit-line"><span class="audit-k">${ui("auditConfidence")}</span><span class="audit-v confidence-${escapeHtml(item.confidence)}">${escapeHtml(item.confidence)}</span></div>
+      <div class="audit-line"><span class="audit-k">${ui("auditRank")}</span><span class="audit-v">${escapeHtml(rank)}</span></div>
+      <div class="audit-line"><span class="audit-k">${ui("auditMarker")}</span><span class="audit-v">${marker}</span></div>
+      <div class="audit-line"><span class="audit-k">${ui("auditReason")}</span><span class="audit-v">${escapeHtml(item.focusReason || "—")}</span></div>
+      <div class="audit-line"><span class="audit-k">${ui("auditSource")}</span><span class="audit-v"><a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(sourceText)}</a></span></div>
+    </div>
+  `;
+}
+
 function syncStaticText() {
   document.documentElement.lang = state.lang;
   document.querySelector("[data-i18n='subtitle']").textContent = ui("subtitle");
   searchEl.placeholder = ui("searchPlaceholder");
   document.querySelector("[data-mode='detailed']").textContent = ui("detailed");
   document.querySelector("#dangerOnly").textContent = ui("dangerOnly");
+  document.querySelector("#auditOnly").textContent = ui("auditOnly");
   document.querySelector("#reset").textContent = ui("reset");
   document.querySelectorAll("[data-lang-choice]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.langChoice === state.lang);
@@ -1530,6 +1853,7 @@ function renderCards() {
   document.body.classList.toggle("ultra", state.mode === "ultra");
   document.querySelectorAll("[data-mode]").forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === state.mode));
   document.querySelector(".danger-toggle").classList.toggle("active", state.dangerOnly);
+  document.querySelector("#auditOnly").classList.toggle("active", state.auditOnly);
   document.querySelectorAll("[data-raid]").forEach((btn) => btn.classList.toggle("active", btn.dataset.raid === state.raid));
 
   const items = visibleItems();
@@ -1564,6 +1888,7 @@ function renderCards() {
               <div class="row detail-row"><div class="label">Tank</div><div class="value">${item.tank}</div></div>
               <div class="row spells-row"><div class="label">${ui("spells")}</div><div class="spells">${spellPills(item.spells)}</div></div>
             </div>
+            ${auditPanel(item)}
             <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
           </article>
         `).join("")}
@@ -1615,11 +1940,13 @@ document.addEventListener("click", (event) => {
   if (mode) state.mode = mode.dataset.mode;
   if (langChoice) state.lang = langChoice.dataset.langChoice;
   if (event.target.closest("#dangerOnly")) state.dangerOnly = !state.dangerOnly;
+  if (event.target.closest("#auditOnly")) state.auditOnly = !state.auditOnly;
   if (event.target.closest("#reset")) {
     state.raid = "ALL";
     state.zone = "ALL";
     state.mode = "detailed";
     state.dangerOnly = false;
+    state.auditOnly = false;
     state.tags.clear();
     state.query = "";
     searchEl.value = "";
@@ -1650,10 +1977,12 @@ document.addEventListener("keydown", (event) => {
   if (key === "3") state.raid = "ALL";
   if (key === "c") state.mode = state.mode === "compact" ? "detailed" : "compact";
   if (key === "u") state.mode = state.mode === "ultra" ? "detailed" : "ultra";
+  if (key === "a") state.auditOnly = !state.auditOnly;
   if (key === "l") state.lang = state.lang === "fr" ? "en" : "fr";
   if (key === "r") {
     state.zone = "ALL";
     state.dangerOnly = false;
+    state.auditOnly = false;
     state.tags.clear();
     state.query = "";
     searchEl.value = "";
