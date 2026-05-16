@@ -587,6 +587,7 @@ const i18n = {
       "Arcane Blast": "Arcane damage with knockback on TK trash such as Star Scryer; tank should be near wall.",
       "Arcane Flurry": "Massive Arcane damage to a random target from Crimson Hand Centurion.",
       "Arcane Lightning": "Caster ability from Greyheart Nether-Mage; source notes silence pressure.",
+      "Atrophic Blow": "Underbog Colossus pair: tank stat debuff. Stabilize tank.",
       "Avenger's Shield": "Hits up to 3 targets and dazes. Dangerous when Shield-Bearer is loose.",
       "Bestial Wrath": "Boosts Beast-Tamer and Sporebat damage. Kill/commit defensives during the buff.",
       "Blast Wave": "Fire AoE and slow from Astromancer.",
@@ -645,6 +646,7 @@ const i18n = {
       "Spell Reflection": "Reflects spells briefly. Stop casts into it.",
       "Spore Burst": "Nature AoE + DoT around Sporebat.",
       "Spore Quake": "Ground/raid Nature pressure from Underbog Colossus variant. Move out.",
+      "Serpentshrine Parasite": "Underbog Colossus pair: parasite debuff can spawn small adds. Clean up fast.",
       "Starfall": "Nearby Arcane raid damage from Star Scryer.",
       "Trample": "Melee-range damage from Crystalcore Sentinel.",
       "Uppercut": "Knockback on tank. Tank into wall.",
@@ -706,6 +708,7 @@ const i18n = {
       "Arcane Blast": "Dégâts Arcanes + knockback. Le tank joue dos au mur.",
       "Arcane Flurry": "Très gros burst Arcanes sur une cible aléatoire.",
       "Arcane Lightning": "Dégâts Arcanes avec silence sur le Greyheart Nether-Mage.",
+      "Atrophic Blow": "Paire Underbog: debuff stats sur tank. Stabiliser le tank.",
       "Avenger's Shield": "Touche jusqu'à 3 cibles et daze. Dangereux si le Shield-Bearer est libre.",
       "Bestial Wrath": "Booste les dégâts du Beast-Tamer et des Sporebats. Tuer vite pendant le buff.",
       "Blast Wave": "AoE feu + slow autour de l'Astromancer.",
@@ -762,6 +765,7 @@ const i18n = {
       "Silence": "AoE silence. LOS ou casters hors range.",
       "Sonic Scream": "Dégâts Arcanes du Hate-Screamer; portée exacte à confirmer en live.",
       "Spell Reflection": "Renvoie les sorts pendant une courte durée. Stop casts.",
+      "Serpentshrine Parasite": "Paire Underbog: debuff parasite qui peut spawn des petits adds.",
       "Spore Burst": "AoE nature + DoT autour du Sporebat.",
       "Spore Quake": "Très grande pression nature de zone. Le raid doit bouger vite.",
       "Starfall": "Dégâts Arcanes proches du Star Scryer.",
@@ -894,9 +898,9 @@ const trashData = [
       "tank",
       "dispel"
     ],
-    "danger": "Variant sets: Acid Geyser/Parasite, Atrophic Blow/Frenzy, or Spore Quake/Initial Infection; death effects vary.",
-    "call": "Identify variant; move out of Spore Quake; cleanse disease.",
-    "tank": "Tank steady for Enrage/Frenzy; OTs ready for Colossus Ragers on death.",
+    "danger": "3 random pairs: Geyser+Parasite / Atrophic+Frenzy / Quake+Infection. Death roll: none, 2 Ragers, many adds, Toxic Pool, or mushroom.",
+    "call": "CALL PAIR: Geyser target turns away; Quake raid out; Frenzy tranq; Infection cleanse.",
+    "tank": "Do not pull with pack. On death: OT pick Ragers/adds, raid out of pool, call mushroom safe.",
     "spells": [
       [
         "Spore Quake",
@@ -909,6 +913,18 @@ const trashData = [
       [
         "Acid Geyser",
         "assets/spell_nature_abolishmagic.jpg"
+      ],
+      [
+        "Serpentshrine Parasite",
+        "assets/ability_druid_supriseattack.jpg"
+      ],
+      [
+        "Atrophic Blow",
+        "assets/ability_warrior_decisivestrike.jpg"
+      ],
+      [
+        "Enrage",
+        "assets/ability_warrior_savageblow.jpg"
       ]
     ]
   },
@@ -1689,9 +1705,9 @@ const frTrashText = {
     "tank": "OTs ramassent vite les Sporebats; éviter les Charges libres sur les heals."
   },
   "Underbog Colossus": {
-    "danger": "Sets fixes: Acid Geyser/Parasite, Atrophic Blow/Frenzy ou Spore Quake/Initial Infection; effet à la mort variable.",
-    "call": "Identifier la variante; sortir de Spore Quake; cleanse maladie.",
-    "tank": "Tank stable sur Enrage/Frenzy; OTs prêts pour les Ragers à la mort."
+    "danger": "3 paires aléatoires: Geyser+Parasite / Atrophic+Frenzy / Quake+Infection. Mort: rien, 2 Ragers, beaucoup d'adds, Toxic Pool ou mushroom.",
+    "call": "CALL PAIRE: Geyser cible tourne; Quake raid out; Frenzy tranq; Infection cleanse.",
+    "tank": "Ne pas pull avec un pack. À la mort: OT prend Ragers/adds, raid sort pool, mushroom safe."
   },
   "Vashj'ir Honor Guard": {
     "danger": "Frightening Shout fear la mêlée; Mortal Cleave applique Mortal Strike; knockback tank.",
@@ -1999,12 +2015,12 @@ const auditData = {
   },
   "Underbog Colossus": {
     sourceUrl: sourceUrls.ssc,
-    sourceNote: "Wowhead lists multiple possible ability sets and death effects for the Colossus.",
+    sourceNote: "Wowhead lists eight abilities; current Anniversary guide notes 3 possible pairs: Acid Geyser/Parasite, Atrophic Blow/Frenzy, or Spore Quake/Initial Infection. Death can be none, Toxic Pool, 2 Ragers, many small adds, or mushroom.",
     confidence: "source",
     focusRank: null,
-    focusReason: "Single large trash mob; priority is identifying variant and reacting, not a pack focus order.",
+    focusReason: "Second-screen priority is identifying the active pair, then calling the death roll.",
     recommendedMarker: "skull",
-    callShort: "Identify variant; react to quake/disease/geyser."
+    callShort: "Call pair; call death roll."
   },
   "Vashj'ir Honor Guard": {
     sourceUrl: sourceUrls.ssc,
@@ -2346,6 +2362,7 @@ function tagPills(tags) {
 }
 
 function auditPanel(item) {
+  if (!state.auditOnly) return "";
   const rank = item.focusRank ?? "—";
   const marker = item.recommendedMarker ? markerImgs([item.recommendedMarker]) : "—";
   const sourceText = item.sourceQuoteShort || item.sourceNote || "—";
