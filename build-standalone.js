@@ -33,12 +33,12 @@ js = js.replace(
 );
 
 html = html.replace(
-  '<link rel="stylesheet" href="css/ssc-tk-trash.css">',
+  /<link rel="stylesheet" href="css\/ssc-tk-trash\.css(?:\?[^"]*)?">/,
   `<style>\n${css}\n</style>`
 );
 
 html = html.replace(
-  '  <script src="js/ssc-tk-trash.js"></script>',
+  /  <script src="js\/ssc-tk-trash\.js(?:\?[^"]*)?"><\/script>/,
   `  <script>\n${js}\n  </script>`
 );
 
