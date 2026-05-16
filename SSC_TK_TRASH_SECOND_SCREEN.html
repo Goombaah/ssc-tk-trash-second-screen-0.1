@@ -17,12 +17,6 @@
         </div>
       </div>
 
-      <nav class="tabs" aria-label="Raid filter">
-        <button data-raid="SSC">SSC</button>
-        <button data-raid="TK">TK</button>
-        <button data-raid="ALL">ALL</button>
-      </nav>
-
       <div class="actions">
         <label class="search">
           <input id="search" type="search" autocomplete="off" placeholder="Search mob / spell / danger   /">
@@ -52,9 +46,9 @@
     </header>
 
     <div class="subbar">
-      <div class="raid-plates" aria-hidden="true">
-        <div class="raid-plate raid-plate-ssc"><span>SSC</span></div>
-        <div class="raid-plate raid-plate-tk"><span>TK</span></div>
+      <div class="raid-plates" aria-label="Raid filter">
+        <button class="raid-plate raid-plate-ssc" data-raid-toggle="SSC" type="button"><span>SSC</span></button>
+        <button class="raid-plate raid-plate-tk" data-raid-toggle="TK" type="button"><span>TK</span></button>
       </div>
       <div id="filters" class="filters" aria-label="Action filters"></div>
       <div id="zoneFilters" class="zone-filters" aria-label="Zone filters"></div>

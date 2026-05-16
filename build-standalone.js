@@ -15,18 +15,6 @@ let html = fs.readFileSync("SSC_TK_TRASH_SECOND_SCREEN.html", "utf8");
 let css = fs.readFileSync(path.join("css", "ssc-tk-trash.css"), "utf8");
 let js = fs.readFileSync(path.join("js", "ssc-tk-trash.js"), "utf8");
 
-css = css.replaceAll(
-  'url("../assets/UI-RaidTargetingIcons.png")',
-  `url("${dataUri(path.join("assets", "UI-RaidTargetingIcons.png"))}")`
-);
-
-for (const fileName of ["raid-ssc.svg", "raid-tk.svg"]) {
-  css = css.replaceAll(
-    `url("../assets/${fileName}")`,
-    `url("${dataUri(path.join("assets", fileName))}")`
-  );
-}
-
 const embeddedIcons = {};
 for (const fileName of fs.readdirSync("assets")) {
   if (fileName.endsWith(".jpg")) {
@@ -38,6 +26,14 @@ js = js.replace(
   "const icon = (name) => `assets/${name}.jpg`;",
   `const embeddedIcons = ${JSON.stringify(embeddedIcons)};\nconst icon = (name) => embeddedIcons[name];`
 );
+
+for (const fileName of fs.readdirSync("assets")) {
+  if (!mime[path.extname(fileName)]) continue;
+  const uri = dataUri(path.join("assets", fileName));
+  css = css.replaceAll(`../assets/${fileName}`, uri);
+  js = js.replaceAll(`assets/${fileName}`, uri);
+  html = html.replaceAll(`assets/${fileName}`, uri);
+}
 
 html = html.replace(
   /<link rel="stylesheet" href="css\/ssc-tk-trash\.css(?:\?[^"]*)?">/,

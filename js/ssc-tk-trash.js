@@ -284,6 +284,7 @@ const guideSpellIcons = {
   "Countercharge": "assets/spell_arcane_arcanepotency.jpg",
   "Dive": "assets/ability_hunter_pet_bat.jpg",
   "Domination": "assets/spell_shadow_shadowworddominate.jpg",
+  "Dispel Magic": "assets/spell_holy_dispelmagic.jpg",
   "Enrage": "assets/ability_druid_challangingroar.jpg",
   "Fireball": "assets/spell_fire_flamebolt.jpg",
   "Fireball Volley": "assets/spell_fire_flamebolt.jpg",
@@ -315,6 +316,7 @@ const guideSpellIcons = {
   "Poison Shield": "assets/spell_nature_elementalshields.jpg",
   "Polymorph": "assets/spell_nature_polymorph.jpg",
   "Power Up": "assets/spell_arcane_arcanetorrent.jpg",
+  "Purge": "assets/spell_nature_purge.jpg",
   "Rain of Fire": "assets/spell_shadow_rainoffire.jpg",
   "Rancid Mushroom": "assets/inv_mushroom_07.jpg",
   "Recharge": "assets/spell_nature_elementalshields.jpg",
@@ -330,6 +332,7 @@ const guideSpellIcons = {
   "Silence": "assets/spell_holy_silence.jpg",
   "Sonic Scream": "assets/spell_nature_purge.jpg",
   "Spell Reflection": "assets/spell_shadow_teleport.jpg",
+  "Psychic Scream": "assets/spell_shadow_psychicscream.jpg",
   "Spore Burst": "assets/spell_nature_abolishmagic.jpg",
   "Spore Quake": "assets/spell_fire_felhellfire.jpg",
   "Starfall": "assets/spell_arcane_starfire.jpg",
@@ -1933,8 +1936,11 @@ trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
   callShort: item.call
 }));
 
+const savedRaid = localStorage.getItem("raid") || "ALL";
+const savedRaids = localStorage.getItem("raids");
+
 const state = {
-  raid: localStorage.getItem("raid") || "ALL",
+  raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK"] : [savedRaid])),
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
   zoom: localStorage.getItem("zoom") || "1",
@@ -1991,13 +1997,26 @@ function spellInfo(name, fallback) {
 }
 
 function save() {
-  localStorage.setItem("raid", state.raid);
+  const raidMode = activeRaidMode();
+  localStorage.setItem("raid", raidMode);
+  localStorage.setItem("raids", JSON.stringify([...state.raids]));
   localStorage.setItem("zone", state.zone);
   localStorage.setItem("mode", state.mode);
   localStorage.setItem("zoom", state.zoom);
   localStorage.setItem("dangerOnly", state.dangerOnly);
   localStorage.setItem("auditOnly", state.auditOnly);
   localStorage.setItem("tags", JSON.stringify([...state.tags]));
+}
+
+function activeRaidMode() {
+  if (state.raids.has("SSC") && state.raids.has("TK")) return "ALL";
+  if (state.raids.has("SSC")) return "SSC";
+  if (state.raids.has("TK")) return "TK";
+  return "NONE";
+}
+
+function activeRaidList() {
+  return ["SSC", "TK"].filter((raid) => state.raids.has(raid));
 }
 
 function normalized(text) {
@@ -2007,7 +2026,7 @@ function normalized(text) {
 function visibleItems() {
   const q = normalized(state.query);
   return trashData.map(localizedItem).filter((item) => {
-    if (state.raid !== "ALL" && item.raid !== state.raid) return false;
+    if (!state.raids.has(item.raid)) return false;
     if (state.zone !== "ALL" && item.zone !== state.zone) return false;
     if (state.dangerOnly && !["red", "orange"].includes(item.priority)) return false;
     if (state.auditOnly && item.confidence !== "to_confirm") return false;
@@ -2036,25 +2055,35 @@ function markerImgs(markers) {
 
 const tagMarkers = {
   focus: ["skull"],
-  kick: ["cross"],
   sheep: ["moon", "square"],
   stopcc: ["moon", "square"],
   banish: ["diamond", "triangle"]
 };
 
-const tagGlyphs = {
-  los: "S",
-  fear: "F",
+const tagIconSpells = {
+  kick: "Kick",
+  los: "Spell Reflection",
+  fear: "Psychic Scream",
   "enemy-mc": "MC",
   "priest-mc": "MC",
-  cleave: "C",
-  aoe: "A",
-  tank: "T",
-  ranged: "R",
-  stun: "S",
-  purge: "P",
-  dispel: "D",
-  tranq: "Q"
+  cleave: "Cleave",
+  aoe: "Blast Wave",
+  tank: "Shield Wall",
+  ranged: "Ranged",
+  stun: "Hammer of Justice",
+  purge: "Purge",
+  dispel: "Dispel Magic",
+  tranq: "Frenzy"
+};
+
+const tagIconPaths = {
+  "enemy-mc": "assets/spell_shadow_shadowworddominate.jpg",
+  "priest-mc": "assets/spell_shadow_shadowworddominate.jpg",
+  los: "assets/spell_arcane_blink.jpg",
+  tank: "assets/ability_warrior_shieldwall.jpg",
+  ranged: "assets/ability_marksmanship.jpg",
+  purge: "assets/spell_nature_purge.jpg",
+  dispel: "assets/spell_holy_dispelmagic.jpg"
 };
 
 function actionIcon(tag) {
@@ -2062,7 +2091,13 @@ function actionIcon(tag) {
   if (tagMarkers[tag]) {
     return `<span class="tag-icons">${tagMarkers[tag].map((marker) => `<span class="tag-marker marker-${marker}" title="${titles[marker] || marker}"></span>`).join("")}</span>`;
   }
-  return `<span class="tag-glyph">${escapeHtml(tagGlyphs[tag] || tag[0] || "")}</span>`;
+  const spellName = tagIconSpells[tag];
+  const src = tagIconPaths[tag] || (spellName ? spellIcon(spellName) : "");
+  if (src) {
+    const title = spellName === "MC" ? "Domination" : spellName || tag;
+    return `<span class="tag-icons"><img class="tag-spell-icon" src="${escapeHtml(src)}" alt="" title="${escapeHtml(title)}"></span>`;
+  }
+  return "";
 }
 
 function tagButtonContent(tag, label) {
@@ -2163,37 +2198,57 @@ function renderFilters() {
     .join("");
 }
 
-function zonesForCurrentRaid() {
+const zoneIcons = {
+  "Pre Hydross": "assets/spell_frost_frostshock.jpg",
+  "Pre Lurker Platforms": "assets/spell_nature_corrosivebreath.jpg",
+  "Pre Leotheras": "assets/spell_shadow_shadowfury.jpg",
+  "Pre Morogrim": "assets/spell_frost_icestorm.jpg",
+  "Entrance / Void Reaver Path": "assets/spell_arcane_blast.jpg",
+  "Al'ar Room": "assets/spell_fire_fireball02.jpg",
+  "Void Reaver Path": "assets/inv_gizmo_03.jpg",
+  "Kael Corridor": "assets/spell_fire_sealoffire.jpg"
+};
+
+function zonesForRaid(raid) {
   const zoneMap = new Map();
   trashData
-    .filter((item) => state.raid === "ALL" || item.raid === state.raid)
+    .filter((item) => item.raid === raid)
     .forEach((item) => zoneMap.set(item.zone, (zoneMap.get(item.zone) || 0) + 1));
   return [...zoneMap.entries()];
 }
 
 function renderZoneFilters() {
-  const zones = zonesForCurrentRaid();
+  const visibleRaids = activeRaidList();
+  const zones = visibleRaids.flatMap((raid) => zonesForRaid(raid));
   if (state.zone !== "ALL" && !zones.some(([zone]) => zone === state.zone)) {
     state.zone = "ALL";
   }
 
-  zoneFiltersEl.innerHTML = [
-    `<button data-zone="ALL" class="${state.zone === "ALL" ? "active" : ""}">${ui("allZones")} <span class="zone-count">${trashData.filter((item) => state.raid === "ALL" || item.raid === state.raid).length}</span></button>`,
-    ...zones.map(([zone, count]) => `<button data-zone="${escapeHtml(zone)}" class="${state.zone === zone ? "active" : ""}">${zone} <span class="zone-count">${count}</span></button>`)
-  ].join("");
+  const groups = visibleRaids.map((raid) => {
+    const zoneButtons = zonesForRaid(raid).map(([zone, count]) => {
+      const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
+      return `<button data-zone="${escapeHtml(zone)}" class="${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt="">${zone} <span class="zone-count">${count}</span></button>`;
+    }).join("");
+    const allRaidCount = trashData.filter((item) => item.raid === raid).length;
+    const allRaidButton = `<button data-zone="ALL" class="${state.zone === "ALL" ? "active" : ""}"><span class="zone-icon zone-icon-all">${raid}</span>${ui("allZones")} <span class="zone-count">${allRaidCount}</span></button>`;
+    return `<div class="zone-rail zone-rail-${raid.toLowerCase()}"><div class="zone-rail-title">${raid}</div>${allRaidButton}${zoneButtons}</div>`;
+  }).join("");
+
+  zoneFiltersEl.innerHTML = groups || `<div class="zone-rail"><div class="zone-rail-title">NO RAID</div></div>`;
 }
 
 function renderCards() {
   syncStaticText();
-  document.body.classList.toggle("raid-ssc", state.raid === "SSC");
-  document.body.classList.toggle("raid-tk", state.raid === "TK");
-  document.body.classList.toggle("raid-all", state.raid === "ALL");
+  const raidMode = activeRaidMode();
+  document.body.classList.toggle("raid-ssc", raidMode === "SSC");
+  document.body.classList.toggle("raid-tk", raidMode === "TK");
+  document.body.classList.toggle("raid-all", raidMode === "ALL");
   document.body.classList.toggle("compact", state.mode === "compact" || state.mode === "ultra");
   document.body.classList.toggle("ultra", state.mode === "ultra");
   document.querySelectorAll("[data-mode]").forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === state.mode));
   document.querySelector(".danger-toggle").classList.toggle("active", state.dangerOnly);
   document.querySelector("#auditOnly").classList.toggle("active", state.auditOnly);
-  document.querySelectorAll("[data-raid]").forEach((btn) => btn.classList.toggle("active", btn.dataset.raid === state.raid));
+  document.querySelectorAll("[data-raid-toggle]").forEach((btn) => btn.classList.toggle("active", state.raids.has(btn.dataset.raidToggle)));
 
   const items = visibleItems();
   countEl.textContent = `${items.length}/${trashData.length} mobs`;
@@ -2273,17 +2328,20 @@ zoneFiltersEl.addEventListener("click", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  const raid = event.target.closest("[data-raid]");
+  const raid = event.target.closest("[data-raid-toggle]");
   const mode = event.target.closest("[data-mode]");
   const single = event.target.closest("[data-single]");
   const langChoice = event.target.closest("[data-lang-choice]");
-  if (raid) state.raid = raid.dataset.raid;
+  if (raid) {
+    const raidName = raid.dataset.raidToggle;
+    state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
+  }
   if (mode) state.mode = mode.dataset.mode;
   if (langChoice) state.lang = langChoice.dataset.langChoice;
   if (event.target.closest("#dangerOnly")) state.dangerOnly = !state.dangerOnly;
   if (event.target.closest("#auditOnly")) state.auditOnly = !state.auditOnly;
   if (event.target.closest("#reset")) {
-    state.raid = "ALL";
+    state.raids = new Set(["SSC", "TK"]);
     state.zone = "ALL";
     state.mode = "detailed";
     state.dangerOnly = false;
@@ -2319,9 +2377,9 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     searchEl.focus();
   }
-  if (key === "1") state.raid = "SSC";
-  if (key === "2") state.raid = "TK";
-  if (key === "3") state.raid = "ALL";
+  if (key === "1") state.raids.has("SSC") ? state.raids.delete("SSC") : state.raids.add("SSC");
+  if (key === "2") state.raids.has("TK") ? state.raids.delete("TK") : state.raids.add("TK");
+  if (key === "3") state.raids = new Set(["SSC", "TK"]);
   if (key === "c") state.mode = state.mode === "compact" ? "detailed" : "compact";
   if (key === "u") state.mode = state.mode === "ultra" ? "detailed" : "ultra";
   if (key === "a") state.auditOnly = !state.auditOnly;
