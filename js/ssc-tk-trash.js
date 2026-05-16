@@ -13,18 +13,18 @@ const i18n = {
       "square": "Square"
     },
     "tagLabels": {
-      "focus": "☠️ Focus",
-      "kick": "✖️ Kick",
-      "sheep": "🌙 Sheep",
-      "los": "🛡️ LOS",
-      "fear": "😱 Fear",
-      "enemy-mc": "👁️ Enemy MC",
-      "priest-mc": "🧠 Priest MC",
-      "stopcc": "🌙 Stop cast",
-      "cleave": "💥 Cleave",
-      "aoe": "🔥 AoE",
-      "tank": "⚠️ Tank danger",
-      "ranged": "🏹 Ranged danger",
+      "focus": "Focus",
+      "kick": "Kick",
+      "sheep": "Sheep",
+      "los": "LOS",
+      "fear": "Fear",
+      "enemy-mc": "Enemy MC",
+      "priest-mc": "Priest MC",
+      "stopcc": "Stop cast",
+      "cleave": "Cleave",
+      "aoe": "AoE",
+      "tank": "Tank danger",
+      "ranged": "Ranged danger",
       "stun": "Stun",
       "purge": "Purge",
       "dispel": "Dispel",
@@ -143,18 +143,18 @@ const i18n = {
       "square": "Carré"
     },
     "tagLabels": {
-      "focus": "☠️ Focus",
-      "kick": "✖️ Kick",
-      "sheep": "🌙 Sheep",
-      "los": "🛡️ LOS",
-      "fear": "😱 Fear",
-      "enemy-mc": "👁️ MC ennemi",
-      "priest-mc": "🧠 MC prêtre",
-      "stopcc": "🌙 Stop cast",
-      "cleave": "💥 Cleave",
-      "aoe": "🔥 AoE",
-      "tank": "⚠️ Danger tank",
-      "ranged": "🏹 Danger distance",
+      "focus": "Focus",
+      "kick": "Kick",
+      "sheep": "Sheep",
+      "los": "LOS",
+      "fear": "Fear",
+      "enemy-mc": "MC ennemi",
+      "priest-mc": "MC prêtre",
+      "stopcc": "Stop cast",
+      "cleave": "Cleave",
+      "aoe": "AoE",
+      "tank": "Danger tank",
+      "ranged": "Danger distance",
       "stun": "Stun",
       "purge": "Purge",
       "dispel": "Dispel",
@@ -2034,6 +2034,41 @@ function markerImgs(markers) {
   return markers.map((m) => `<span class="marker marker-${m}" title="${titles[m] || m}" aria-label="${titles[m] || m}"></span>`).join("");
 }
 
+const tagMarkers = {
+  focus: ["skull"],
+  kick: ["cross"],
+  sheep: ["moon", "square"],
+  stopcc: ["moon", "square"],
+  banish: ["diamond", "triangle"]
+};
+
+const tagGlyphs = {
+  los: "S",
+  fear: "F",
+  "enemy-mc": "MC",
+  "priest-mc": "MC",
+  cleave: "C",
+  aoe: "A",
+  tank: "T",
+  ranged: "R",
+  stun: "S",
+  purge: "P",
+  dispel: "D",
+  tranq: "Q"
+};
+
+function actionIcon(tag) {
+  const titles = t().markerTitle;
+  if (tagMarkers[tag]) {
+    return `<span class="tag-icons">${tagMarkers[tag].map((marker) => `<span class="tag-marker marker-${marker}" title="${titles[marker] || marker}"></span>`).join("")}</span>`;
+  }
+  return `<span class="tag-glyph">${escapeHtml(tagGlyphs[tag] || tag[0] || "")}</span>`;
+}
+
+function tagButtonContent(tag, label) {
+  return `${actionIcon(tag)}<span>${escapeHtml(label)}</span>`;
+}
+
 function spellPills(spells) {
   return spells.map(([name, src]) => {
     const spell = spellInfo(name, src);
@@ -2085,7 +2120,7 @@ function richText(text) {
 
 function tagPills(tags) {
   const labels = t().tagLabels;
-  return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${labels[tag] || tag}</span>`).join("");
+  return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${tagButtonContent(tag, labels[tag] || tag)}</span>`).join("");
 }
 
 function auditPanel(item) {
@@ -2124,7 +2159,7 @@ function renderFilters() {
   const labels = t().tagLabels;
   filtersEl.innerHTML = Object.entries(labels)
     .filter(([key]) => ["focus", "kick", "sheep", "stopcc", "los", "fear", "enemy-mc", "priest-mc", "banish", "cleave", "aoe", "tank", "ranged"].includes(key))
-    .map(([key, label]) => `<button data-tag="${key}" class="${state.tags.has(key) ? "active" : ""}">${label}</button>`)
+    .map(([key, label]) => `<button data-tag="${key}" class="${state.tags.has(key) ? "active" : ""}">${tagButtonContent(key, label)}</button>`)
     .join("");
 }
 
@@ -2150,6 +2185,9 @@ function renderZoneFilters() {
 
 function renderCards() {
   syncStaticText();
+  document.body.classList.toggle("raid-ssc", state.raid === "SSC");
+  document.body.classList.toggle("raid-tk", state.raid === "TK");
+  document.body.classList.toggle("raid-all", state.raid === "ALL");
   document.body.classList.toggle("compact", state.mode === "compact" || state.mode === "ultra");
   document.body.classList.toggle("ultra", state.mode === "ultra");
   document.querySelectorAll("[data-mode]").forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === state.mode));

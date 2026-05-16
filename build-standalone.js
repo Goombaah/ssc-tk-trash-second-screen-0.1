@@ -15,10 +15,17 @@ let html = fs.readFileSync("SSC_TK_TRASH_SECOND_SCREEN.html", "utf8");
 let css = fs.readFileSync(path.join("css", "ssc-tk-trash.css"), "utf8");
 let js = fs.readFileSync(path.join("js", "ssc-tk-trash.js"), "utf8");
 
-css = css.replace(
+css = css.replaceAll(
   'url("../assets/UI-RaidTargetingIcons.png")',
   `url("${dataUri(path.join("assets", "UI-RaidTargetingIcons.png"))}")`
 );
+
+for (const fileName of ["raid-ssc.svg", "raid-tk.svg"]) {
+  css = css.replaceAll(
+    `url("../assets/${fileName}")`,
+    `url("${dataUri(path.join("assets", fileName))}")`
+  );
+}
 
 const embeddedIcons = {};
 for (const fileName of fs.readdirSync("assets")) {

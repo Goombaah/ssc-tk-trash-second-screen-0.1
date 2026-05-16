@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 96" role="img" aria-label="Tempest Keep">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#12091f"/>
+      <stop offset=".5" stop-color="#2e1742"/>
+      <stop offset="1" stop-color="#101018"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="55%" cy="48%" r="62%">
+      <stop offset="0" stop-color="#ffdb76" stop-opacity=".42"/>
+      <stop offset=".48" stop-color="#9d6dff" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+  </defs>
+  <rect width="420" height="96" fill="url(#bg)"/>
+  <rect width="420" height="96" fill="url(#glow)"/>
+  <path d="M0 76 L80 50 L150 69 L232 34 L312 58 L420 26 L420 96 L0 96 Z" fill="#130b1b" opacity=".88"/>
+  <g opacity=".75" filter="url(#soft)">
+    <path d="M246 18 l18 24 31-1-25 18 10 29-25-17-25 17 10-29-25-18 31 1z" fill="#ffcb59" opacity=".42"/>
+    <path d="M329 19 l10 15 18 1-14 11 4 18-15-10-16 9 5-17-13-12 18-1z" fill="#9d6dff" opacity=".32"/>
+  </g>
+  <path d="M186 72 C212 28 252 26 274 60 C290 84 340 80 365 47" fill="none" stroke="#ffd778" stroke-opacity=".34" stroke-width="5" stroke-linecap="round"/>
+  <path d="M179 31 C229 57 276 57 331 28" fill="none" stroke="#b994ff" stroke-opacity=".36" stroke-width="3" stroke-linecap="round"/>
+  <rect x="1.5" y="1.5" width="417" height="93" fill="none" stroke="#e0b765" stroke-opacity=".42" stroke-width="3"/>
+  <rect x="7" y="7" width="406" height="82" fill="none" stroke="#13090b" stroke-opacity=".9"/>
+  <text x="24" y="39" fill="#ffe4a0" font-family="Arial Black, Arial, sans-serif" font-size="24" letter-spacing="2">TK</text>
+  <text x="24" y="64" fill="#c7a7ff" font-family="Arial, sans-serif" font-size="13" letter-spacing="3">TRASH CHECK</text>
+  <circle cx="366" cy="48" r="23" fill="#0d0714" stroke="#ffd778" stroke-opacity=".4"/>
+  <path d="M353 57 C365 30 388 30 381 52 C377 66 359 69 351 55" fill="none" stroke="#ffd778" stroke-width="4" stroke-linecap="round" filter="url(#soft)"/>
+</svg>
