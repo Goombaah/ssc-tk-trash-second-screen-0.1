@@ -6,6 +6,8 @@ const i18n = {
       "skull": "Skull",
       "cross": "Cross",
       "moon": "Moon",
+      "diamond": "Diamond",
+      "circle": "Circle",
       "triangle": "Triangle",
       "star": "Star",
       "square": "Square"
@@ -16,7 +18,9 @@ const i18n = {
       "sheep": "🌙 Sheep",
       "los": "🛡️ LOS",
       "fear": "😱 Fear",
-      "mc": "👁️ MC",
+      "enemy-mc": "👁️ Enemy MC",
+      "priest-mc": "🧠 Priest MC",
+      "stopcc": "🌙 Stop cast",
       "cleave": "💥 Cleave",
       "aoe": "🔥 AoE",
       "tank": "⚠️ Tank danger",
@@ -37,6 +41,7 @@ const i18n = {
       "Bestial Wrath": "Boosts Beast-Tamer and Sporebat damage. Kill/commit defensives during the buff.",
       "Blast Wave": "Fire AoE and slow from Astromancer.",
       "Blizzard": "Ground AoE from Crimson Hand Battle Mage. Move out.",
+      "Banish": "Warlock control. Keep banished and kill last when assigned.",
       "Bloodthirst": "Melee damage ability on warrior-type trash.",
       "Chain Lightning": "Nature damage that jumps between players. Spread if it is chaining hard.",
       "Charge": "Charges and stuns a target. Keep loose mobs away from healers/casters.",
@@ -58,6 +63,7 @@ const i18n = {
       "Frostbolt": "Frost cast. Kick when listed on interrupt-priority trash.",
       "Frostbolt Volley": "Raid Frost damage from Crimson Hand Battle Mage.",
       "Golem Repair": "Heals nearby golem. Source suggests controlling/MC'ing Tempest-Smith.",
+      "Gouge": "Rogue control that can stop non-interruptible trash casts.",
       "Hammer of Justice": "Stun from Blood Knight. Dispellable per source.",
       "Healing Touch": "Large heal on murloc trash. Interrupt.",
       "Holy Fire": "Fire/Holy DoT from Coilfang Priestess.",
@@ -70,10 +76,12 @@ const i18n = {
       "Lightning Shield": "Damages attackers; purge/avoid hitting into it if needed.",
       "Mana Burn": "AoE mana pressure around Phoenix-Hawk.",
       "Molten Armor": "Buff on Astromancer that punishes attackers; purge/spellsteal.",
+      "Mind Control": "Priest control when assigned, or enemy Domination depending on card context.",
       "Mortal Cleave": "Frontal cleave applying Mortal Strike-style healing reduction.",
       "Overcharge": "Massive Arcane burst on highest-threat tank from Crystalcore Sentinel. Tank swap/hard heal.",
       "Poison Bolt Volley": "Raid Nature/Poison volley from Serpentshrine Lurker.",
       "Poison Shield": "Nature raid damage if ignored. Purge it.",
+      "Polymorph": "Mage control. Can stop non-interruptible casts on susceptible trash.",
       "Power Up": "Increases nearby golem damage by 50%. Control Tempest-Smith.",
       "Rain of Fire": "Ground Fire AoE. Move the pack/raid out.",
       "Rancid Mushroom": "Creates dangerous mushroom/cloud zones. Move away.",
@@ -128,6 +136,8 @@ const i18n = {
       "skull": "Crâne",
       "cross": "Croix",
       "moon": "Lune",
+      "diamond": "Losange",
+      "circle": "Cercle",
       "triangle": "Triangle",
       "star": "Étoile",
       "square": "Carré"
@@ -138,7 +148,9 @@ const i18n = {
       "sheep": "🌙 Sheep",
       "los": "🛡️ LOS",
       "fear": "😱 Fear",
-      "mc": "👁️ MC",
+      "enemy-mc": "👁️ MC ennemi",
+      "priest-mc": "🧠 MC prêtre",
+      "stopcc": "🌙 Stop cast",
       "cleave": "💥 Cleave",
       "aoe": "🔥 AoE",
       "tank": "⚠️ Danger tank",
@@ -159,6 +171,7 @@ const i18n = {
       "Bestial Wrath": "Booste les dégâts du Beast-Tamer et des Sporebats. Tuer vite pendant le buff.",
       "Blast Wave": "AoE feu + slow autour de l'Astromancer.",
       "Blizzard": "Zone au sol du Battle Mage. Sortir tout de suite.",
+      "Banish": "Contrôle démo. Garder banish, tuer en dernier.",
       "Bloodthirst": "Attaque mêlée qui met de la pression sur le tank.",
       "Chain Lightning": "Nature qui rebondit entre joueurs proches. S'écarter si ça chaîne trop.",
       "Charge": "Charge et stun brièvement. Éviter les mobs libres dans les heals/casters.",
@@ -180,6 +193,7 @@ const i18n = {
       "Frostbolt": "Cast de givre interruptible quand indiqué.",
       "Frostbolt Volley": "Dégâts givre sur tout le raid.",
       "Golem Repair": "Heal un golem proche. Source conseille le MC du Tempest-Smith.",
+      "Gouge": "Contrôle rogue qui peut stopper des casts non interruptibles.",
       "Hammer of Justice": "Stun du Blood Knight, dispellable.",
       "Healing Touch": "Gros heal sur un murloc. À kick.",
       "Holy Fire": "Dégât sacré + DoT feu de la Priestess.",
@@ -192,10 +206,12 @@ const i18n = {
       "Lightning Shield": "Punit les auto-attaques; purge ou attention mêlée.",
       "Mana Burn": "Pression mana autour du Phoenix-Hawk.",
       "Molten Armor": "Buff qui punit les attaquants; à purge/spellsteal.",
+      "Mind Control": "Contrôle prêtre assigné, ou Domination ennemie selon la carte.",
       "Mortal Cleave": "Cleave frontal avec effet Mortal Strike. Face loin du raid.",
       "Overcharge": "Énorme burst Arcanes sur le tank haut en menace. Swap/mitigation/heal fort.",
       "Poison Bolt Volley": "Volley nature/poison du Serpentshrine Lurker.",
       "Poison Shield": "Buff à purge tout de suite, sinon dégâts nature raid.",
+      "Polymorph": "Contrôle mage. Peut stopper des casts non interruptibles sur trash sensible.",
       "Power Up": "Augmente les dégâts des golems proches de 50%. Contrôler le Smith.",
       "Rain of Fire": "Zone feu canalisée. Sortir le raid/le pack.",
       "Rancid Mushroom": "Champignons qui créent des nuages nature. Ne pas les taper, bouger.",
@@ -257,6 +273,7 @@ const guideSpellIcons = {
   "Bestial Wrath": "assets/ability_druid_ferociousbite.jpg",
   "Blast Wave": "assets/spell_holy_excorcism_02.jpg",
   "Blizzard": "assets/spell_frost_icestorm.jpg",
+  "Banish": "assets/spell_shadow_cripple.jpg",
   "Bloodthirst": "assets/spell_nature_bloodlust.jpg",
   "Chain Lightning": "assets/spell_nature_chainlightning.jpg",
   "Charge": "assets/ability_warrior_charge.jpg",
@@ -278,6 +295,7 @@ const guideSpellIcons = {
   "Frostbolt": "assets/spell_frost_frostbolt02.jpg",
   "Frostbolt Volley": "assets/spell_frost_frostbolt02.jpg",
   "Golem Repair": "assets/inv_misc_enggizmos_15.jpg",
+  "Gouge": "assets/ability_gouge.jpg",
   "Hammer of Justice": "assets/spell_holy_sealofmight.jpg",
   "Healing Touch": "assets/spell_nature_healingtouch.jpg",
   "Holy Fire": "assets/spell_holy_searinglight.jpg",
@@ -290,10 +308,12 @@ const guideSpellIcons = {
   "Lightning Shield": "assets/spell_nature_lightningshield.jpg",
   "Mana Burn": "assets/spell_shadow_manaburn.jpg",
   "Molten Armor": "assets/inv_helmet_08.jpg",
+  "Mind Control": "assets/spell_shadow_shadowworddominate.jpg",
   "Mortal Cleave": "assets/ability_warrior_savageblow.jpg",
   "Overcharge": "assets/spell_arcane_arcanepotency.jpg",
   "Poison Bolt Volley": "assets/spell_nature_corrosivebreath.jpg",
   "Poison Shield": "assets/spell_nature_elementalshields.jpg",
+  "Polymorph": "assets/spell_nature_polymorph.jpg",
   "Power Up": "assets/spell_arcane_arcanetorrent.jpg",
   "Rain of Fire": "assets/spell_shadow_rainoffire.jpg",
   "Rancid Mushroom": "assets/inv_mushroom_07.jpg",
@@ -385,7 +405,7 @@ const trashData = [
     "mob": "Serpentshrine Sporebat",
     "priority": "yellow",
     "markers": [
-      "triangle"
+      "diamond"
     ],
     "tags": [
       "stun",
@@ -509,7 +529,7 @@ const trashData = [
     "mob": "Coilfang Priestess",
     "priority": "orange",
     "markers": [
-      "moon"
+      "diamond"
     ],
     "tags": [
       "sheep",
@@ -680,7 +700,7 @@ const trashData = [
     "mob": "Serpentshrine Lurker",
     "priority": "orange",
     "markers": [
-      "triangle"
+      "diamond"
     ],
     "tags": [
       "banish",
@@ -703,6 +723,18 @@ const trashData = [
         "Shadow Bolt",
         "assets/spell_shadow_shadowbolt.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "BANISH",
+        "spells": ["Banish"],
+        "note": "warlock; kill last"
+      },
+      {
+        "label": "WATCH",
+        "spells": ["Poison Bolt Volley", "Rancid Mushroom"],
+        "note": "poison + ground"
+      }
     ]
   },
   {
@@ -715,7 +747,7 @@ const trashData = [
     ],
     "tags": [
       "focus",
-      "mc",
+      "enemy-mc",
       "aoe",
       "tank"
     ],
@@ -735,6 +767,18 @@ const trashData = [
         "Shadow Bolt",
         "assets/spell_shadow_shadowbolt.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "ENEMY MC",
+        "spells": ["Domination"],
+        "note": "CC player instantly"
+      },
+      {
+        "label": "POSITION",
+        "spells": ["Shadow Nova"],
+        "note": "away from water"
+      }
     ]
   },
   {
@@ -923,7 +967,7 @@ const trashData = [
     ],
     "tags": [
       "focus",
-      "mc",
+      "enemy-mc",
       "aoe",
       "tank"
     ],
@@ -943,6 +987,23 @@ const trashData = [
         "Starfall",
         "assets/spell_arcane_starfire.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "ENEMY MC",
+        "spells": ["Domination"],
+        "note": "CC player instantly"
+      },
+      {
+        "label": "TANK",
+        "spells": ["Arcane Blast"],
+        "note": "back to wall"
+      },
+      {
+        "label": "AOE",
+        "spells": ["Starfall"],
+        "note": "kill second"
+      }
     ]
   },
   {
@@ -1095,7 +1156,7 @@ const trashData = [
     "mob": "Crystalcore Mechanic",
     "priority": "yellow",
     "markers": [
-      "moon"
+      "diamond"
     ],
     "tags": [
       "banish",
@@ -1113,6 +1174,18 @@ const trashData = [
         "Saw Blade",
         "assets/inv_gizmo_03.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "BANISH",
+        "spells": ["Banish"],
+        "note": "warlock; kill last"
+      },
+      {
+        "label": "IF ACTIVE",
+        "spells": ["Recharge", "Saw Blade"],
+        "note": "stop heal / bleed"
+      }
     ]
   },
   {
@@ -1121,16 +1194,16 @@ const trashData = [
     "mob": "Tempest-Smith",
     "priority": "orange",
     "markers": [
-      "moon"
+      "circle"
     ],
     "tags": [
-      "mc",
+      "priest-mc",
       "stun",
       "aoe"
     ],
-    "danger": "Power Up increases nearby golem damage by 50%; Golem Repair heals; can be Mind Controlled by Priest.",
+    "danger": "Priest can Mind Control Smith and use its golem tools.",
     "call": "PRIEST MC Smith until golems die.",
-    "tank": "If not MC'd, stop Power Up / Repair pressure à confirmer for interrupts.",
+    "tank": "If not MC'd: stop Power Up / Repair pressure à confirmer.",
     "spells": [
       [
         "Power Up",
@@ -1144,6 +1217,23 @@ const trashData = [
         "Shell Shock",
         "assets/inv_misc_bomb_05.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "PRIEST MC",
+        "spells": ["Mind Control"],
+        "note": "control Smith"
+      },
+      {
+        "label": "USE/STOP",
+        "spells": ["Power Up", "Golem Repair"],
+        "note": "golem buff/heal"
+      },
+      {
+        "label": "AOE",
+        "spells": ["Shell Shock"],
+        "note": "stun zone"
+      }
     ]
   },
   {
@@ -1186,12 +1276,13 @@ const trashData = [
     ],
     "tags": [
       "sheep",
+      "stopcc",
       "aoe",
       "tank",
       "ranged"
     ],
-    "danger": "Blizzard and Frostbolt Volley raid damage; Cone of Cold frontal slow. Spells cannot be interrupted, but Poly/Gouge can stop casts.",
-    "call": "SHEEP/Gouge Battle Mage if AoE hurts; move from Blizzard.",
+    "danger": "Blizzard/Frostbolt Volley cannot be kicked; Poly/Gouge can stop casts.",
+    "call": "Spam SHEEP/Gouge if AoE hurts; move Blizzard.",
     "tank": "Face into wall for Cone of Cold.",
     "spells": [
       [
@@ -1206,6 +1297,23 @@ const trashData = [
         "Frostbolt Volley",
         "assets/spell_frost_frostbolt02.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "STOP CAST",
+        "spells": ["Polymorph", "Gouge"],
+        "note": "works; not kickable"
+      },
+      {
+        "label": "AOE",
+        "spells": ["Blizzard", "Frostbolt Volley"],
+        "note": "move / stop casts"
+      },
+      {
+        "label": "FACE",
+        "spells": ["Cone of Cold"],
+        "note": "tank into wall"
+      }
     ]
   },
   {
@@ -1214,20 +1322,29 @@ const trashData = [
     "mob": "Crimson Hand Centurion",
     "priority": "orange",
     "markers": [
-      "skull"
+      "moon"
     ],
     "tags": [
-      "focus",
+      "sheep",
+      "stopcc",
+      "aoe",
       "ranged"
     ],
-    "danger": "Arcane Flurry deals massive damage to a random target.",
-    "call": "Watch random burst; CC if needed.",
+    "danger": "Arcane Flurry cannot be kicked; Poly/Gouge can stop casts.",
+    "call": "Spam SHEEP/Gouge Centurion if Arcane Flurry hurts.",
     "tank": "Keep in wall-facing AoE pack with Battle Mage/Blood Knight.",
     "spells": [
       [
         "Arcane Flurry",
         "assets/spell_arcane_blast.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "STOP CAST",
+        "spells": ["Arcane Flurry", "Polymorph", "Gouge"],
+        "note": "spam sheep/gouge"
+      }
     ]
   }
 ];
@@ -1364,9 +1481,9 @@ const frTrashText = {
     "tank": "Ne pas laisser Recharge freecast si actif; tuer après golems."
   },
   "Tempest-Smith": {
-    "danger": "Power Up augmente les dégâts golems proches de 50%; Golem Repair heal; MC possible par prêtre.",
+    "danger": "Le prêtre peut MC le Smith et utiliser ses outils golem.",
     "call": "PRÊTRE MC Smith jusqu'à la mort des golems.",
-    "tank": "Si pas MC, stopper Power Up / Repair; interrupts à confirmer."
+    "tank": "Si pas MC: stopper Power Up / Repair à confirmer."
   },
   "Crimson Hand Blood Knight": {
     "danger": "Flash of Light non interruptible; Hammer of Justice dispellable; Renew purgeable.",
@@ -1374,13 +1491,13 @@ const frTrashText = {
     "tank": "Tenir dans le pack AoE; heals dispel les stuns."
   },
   "Crimson Hand Battle Mage": {
-    "danger": "Blizzard et Frostbolt Volley font mal au raid; Cone of Cold frontal slow. Non interruptible, mais Poly/Gouge stop les casts.",
-    "call": "SHEEP/Gouge Battle Mage si l'AoE pique; sortir de Blizzard.",
+    "danger": "Blizzard/Frostbolt Volley non kickable; Poly/Gouge stop les casts.",
+    "call": "Spam SHEEP/Gouge si l'AoE pique; sortir Blizzard.",
     "tank": "Face au mur pour Cone of Cold."
   },
   "Crimson Hand Centurion": {
-    "danger": "Arcane Flurry met un énorme burst sur cible aléatoire.",
-    "call": "Surveiller burst aléatoire; CC si besoin.",
+    "danger": "Arcane Flurry non kickable; Poly/Gouge stop les casts.",
+    "call": "Spam SHEEP/Gouge Centurion si Arcane Flurry pique.",
     "tank": "Garder dans le pack AoE face mur avec Battle Mage/Blood Knight."
   }
 };
@@ -1424,6 +1541,7 @@ const frSpellNames = {
   "Arcane Flurry": "Rafale arcanique",
   "Arcane Lightning": "Éclair arcanique",
   "Avenger's Shield": "Bouclier du vengeur",
+  "Banish": "Bannir",
   "Bestial Wrath": "Courroux bestial",
   "Blast Wave": "Vague explosive",
   "Blizzard": "Blizzard",
@@ -1448,6 +1566,7 @@ const frSpellNames = {
   "Frostbolt": "Éclair de givre",
   "Frostbolt Volley": "Salve d'éclairs de givre",
   "Golem Repair": "Réparation de golem",
+  "Gouge": "Suriner",
   "Hammer of Justice": "Marteau de la justice",
   "Healing Touch": "Toucher guérisseur",
   "Holy Fire": "Flammes sacrées",
@@ -1460,10 +1579,12 @@ const frSpellNames = {
   "Lightning Shield": "Bouclier de foudre",
   "Mana Burn": "Brûlure de mana",
   "Molten Armor": "Armure de la fournaise",
+  "Mind Control": "Contrôle mental",
   "Mortal Cleave": "Enchaînement mortel",
   "Overcharge": "Surcharge",
   "Poison Bolt Volley": "Salve d'éclairs de poison",
   "Poison Shield": "Bouclier de poison",
+  "Polymorph": "Métamorphose",
   "Power Up": "Renforcement",
   "Rain of Fire": "Pluie de feu",
   "Rancid Mushroom": "Champignon rance",
@@ -1581,7 +1702,7 @@ const auditData = {
     confidence: "inferred",
     focusRank: null,
     focusReason: "CC/kill priority is inferred from dangerous death spirit and caster pressure; no strict source rank.",
-    recommendedMarker: "moon",
+    recommendedMarker: "diamond",
     callShort: "CC or kill; watch Spirit Nova after death."
   },
   "Coilfang Shatterer": {
@@ -1608,7 +1729,7 @@ const auditData = {
     confidence: "source",
     focusRank: null,
     focusReason: "Conditional source priority: kill first if not sheeped; if sheeped, hold it and kill after Tidecaller.",
-    recommendedMarker: "moon",
+    recommendedMarker: "diamond",
     callShort: "Kill first unless sheeped; dispel/spellsteal buffs."
   },
   "Greyheart Skulker": {
@@ -1766,12 +1887,12 @@ const auditData = {
   },
   "Tempest-Smith": {
     sourceUrl: sourceUrls.tk,
-    sourceNote: "Wowhead notes Priest Mind Control can control Tempest-Smith for golem packs. Interrupt handling needs verification.",
-    confidence: "to_confirm",
+    sourceNote: "Wowhead notes Priest Mind Control can control Tempest-Smith until nearby Crystalcore Golems die.",
+    confidence: "source",
     focusRank: null,
-    focusReason: "MC plan is sourced, but non-MC interrupt/stop call should be audited in-game.",
-    recommendedMarker: "moon",
-    callShort: "Priest MC if available; verify backup interrupts."
+    focusReason: "Sourced control target for Priests, distinct from enemy Mind Control mechanics.",
+    recommendedMarker: "circle",
+    callShort: "Priest MC until golems die."
   },
   "Crimson Hand Blood Knight": {
     sourceUrl: sourceUrls.tk,
@@ -1784,21 +1905,21 @@ const auditData = {
   },
   "Crimson Hand Battle Mage": {
     sourceUrl: sourceUrls.tk,
-    sourceNote: "Wowhead documents Blizzard, Frostbolt Volley, Cone of Cold, and CC stops.",
+    sourceNote: "Wowhead says Blizzard/Frostbolt Volley cannot be interrupted but can be stopped with Polymorph or Gouge.",
     confidence: "source",
     focusRank: null,
     focusReason: "CC/move handling is sourced; no absolute focus rank.",
     recommendedMarker: "moon",
-    callShort: "Sheep/Gouge if AoE hurts; move Blizzard."
+    callShort: "Spam Sheep/Gouge to stop AoE casts."
   },
   "Crimson Hand Centurion": {
     sourceUrl: sourceUrls.tk,
-    sourceNote: "Wowhead documents Arcane Flurry random burst.",
-    confidence: "inferred",
+    sourceNote: "Wowhead says Arcane Flurry cannot be interrupted but can be stopped with Polymorph or Gouge.",
+    confidence: "source",
     focusRank: null,
-    focusReason: "CC/watch call is inferred from random burst; no strict source rank.",
-    recommendedMarker: "skull",
-    callShort: "Watch random burst; CC if needed."
+    focusReason: "Sourced stop-cast target; not necessarily focus priority.",
+    recommendedMarker: "moon",
+    callShort: "Spam Sheep/Gouge to stop Arcane Flurry."
   }
 };
 
@@ -1926,8 +2047,12 @@ function spellChip(spell, className = "spell", showText = true) {
 }
 
 function renderSpellBlock(item) {
-  if (!item.spellGroups?.length) return `<div class="spells">${spellPills(item.spells)}</div>`;
-  return `<div class="spell-groups">${item.spellGroups.map((group) => `
+  const groups = item.spellGroups?.length ? item.spellGroups : [{
+    label: "WATCH",
+    spells: item.spells.map(([name]) => name),
+    note: item.callShort || ""
+  }];
+  return `<div class="spell-groups">${groups.map((group) => `
     <div class="spell-group">
       <div class="spell-group-head">${escapeHtml(group.label)}</div>
       <div class="spell-group-body">${spellPillsFromNames(group.spells)}</div>
@@ -1996,7 +2121,7 @@ function syncStaticText() {
 function renderFilters() {
   const labels = t().tagLabels;
   filtersEl.innerHTML = Object.entries(labels)
-    .filter(([key]) => ["focus", "kick", "sheep", "los", "fear", "mc", "cleave", "aoe", "tank", "ranged"].includes(key))
+    .filter(([key]) => ["focus", "kick", "sheep", "stopcc", "los", "fear", "enemy-mc", "priest-mc", "banish", "cleave", "aoe", "tank", "ranged"].includes(key))
     .map(([key, label]) => `<button data-tag="${key}" class="${state.tags.has(key) ? "active" : ""}">${label}</button>`)
     .join("");
 }

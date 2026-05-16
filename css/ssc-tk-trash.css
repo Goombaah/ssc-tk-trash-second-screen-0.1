@@ -299,6 +299,8 @@ button, input { font: inherit; }
 }
 
 .marker-star { background-position: 0 0; }
+.marker-circle { background-position: 33.333% 0; }
+.marker-diamond { background-position: 66.666% 0; }
 .marker-triangle { background-position: 100% 0; }
 .marker-moon { background-position: 0 100%; }
 .marker-square { background-position: 33.333% 100%; }
@@ -513,7 +515,9 @@ button, input { font: inherit; }
 .tag.sheep { color: #fff; border-color: #7284c8; background: #202943; }
 .tag.los { color: #fff; border-color: #6393aa; background: #17303c; }
 .tag.tank { color: #fff; border-color: #e2b33b; background: #3d3012; }
-.tag.mc { color: #fff; border-color: #a772d0; background: #311d40; }
+.tag.enemy-mc { color: #fff; border-color: #a772d0; background: #311d40; }
+.tag.priest-mc { color: #fff; border-color: #73a7ff; background: #172943; }
+.tag.stopcc { color: #fff; border-color: #7284c8; background: #202943; }
 
 .empty {
   padding: 24px;
