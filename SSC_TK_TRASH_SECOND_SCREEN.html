@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SSC_TK_TRASH_SECOND_SCREEN</title>
+  <link rel="stylesheet" href="css/ssc-tk-trash.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="sigil">T5</div>
+        <div>
+          <h1>SSC_TK_TRASH_SECOND_SCREEN</h1>
+          <small>TBC Anniversary Phase 2 · trash raid lead overlay · offline</small>
+        </div>
+      </div>
+
+      <nav class="tabs" aria-label="Raid filter">
+        <button data-raid="SSC">SSC</button>
+        <button data-raid="TK">TK</button>
+        <button data-raid="ALL">ALL</button>
+      </nav>
+
+      <div class="actions">
+        <label class="search">
+          <input id="search" type="search" autocomplete="off" placeholder="Search mob / spell / danger   /">
+        </label>
+        <button data-mode="compact">Compact</button>
+        <button data-mode="detailed">Detailed</button>
+        <button data-mode="ultra">Ultra</button>
+        <button id="dangerOnly" class="danger-toggle">RED/ORANGE</button>
+        <button id="fullscreen">Overlay</button>
+        <button id="reset">Reset</button>
+      </div>
+    </header>
+
+    <div class="subbar">
+      <div id="filters" class="filters" aria-label="Action filters"></div>
+      <div id="zoneFilters" class="zone-filters" aria-label="Zone filters"></div>
+      <div class="statusline">
+        <strong id="count">0 mobs</strong>
+        <span>Keys: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset</span>
+      </div>
+    </div>
+
+    <main id="cards" class="board"></main>
+  </div>
+
+  <script src="js/ssc-tk-trash.js"></script>
+</body>
+</html>
