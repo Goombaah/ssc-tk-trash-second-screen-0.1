@@ -120,23 +120,47 @@ button, input { font: inherit; }
 
 .actions button.danger-toggle.active { border-color: var(--red); background: #3a1618; }
 
-#languageToggle {
+.lang-switch {
   position: fixed;
   top: 10px;
   right: 12px;
   z-index: 80;
-  min-width: 52px;
-  border-color: var(--blue);
-  background: #12314a;
-  color: #fff;
-  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  background: #080d12;
   box-shadow: 0 0 0 1px rgba(82,183,255,.35), 0 8px 20px rgba(0,0,0,.45);
 }
 
-#languageToggle:hover,
-#languageToggle:focus {
+.lang-switch button {
+  min-width: 46px;
+  min-height: 34px;
+  border: 0;
+  border-radius: 0;
+  border-right: 1px solid #2d526b;
+  background: #101820;
+  color: #b8c8d8;
+  font-weight: 900;
+}
+
+.lang-switch button:last-child {
+  border-right: 0;
+}
+
+.lang-switch button.active {
+  border-color: var(--blue);
+  background: #1b5b86;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+}
+
+.lang-switch button:hover,
+.lang-switch button:focus {
   background: #1b496d;
-  border-color: #8ed0ff;
+  color: #fff;
 }
 
 .zone-filters {
@@ -484,7 +508,10 @@ body.fullscreen .topbar:hover, body.fullscreen .subbar:hover { opacity: 1; }
         <button data-mode="detailed">Detailed</button>
         <button data-mode="ultra">Ultra</button>
         <button id="dangerOnly" class="danger-toggle">RED/ORANGE</button>
-        <button id="languageToggle" title="Passer en français">FR</button>
+        <div id="languageSwitch" class="lang-switch" aria-label="Language switch">
+          <button data-lang-choice="en" type="button">EN</button>
+          <button data-lang-choice="fr" type="button">FR</button>
+        </div>
         <button id="fullscreen">Overlay</button>
         <button id="reset">Reset</button>
       </div>
@@ -617,8 +644,7 @@ const i18n = {
       "raidLabel": "Raid",
       "spells": "Spells",
       "copy": "Copy",
-      "unknownSpell": "Effect to confirm.",
-      "langButton": "FR"
+      "unknownSpell": "Effect to confirm."
     }
   },
   "fr": {
@@ -731,8 +757,7 @@ const i18n = {
       "raidLabel": "Call",
       "spells": "Sorts",
       "copy": "Copier",
-      "unknownSpell": "Effet à confirmer.",
-      "langButton": "EN"
+      "unknownSpell": "Effet à confirmer."
     }
   }
 };
@@ -1853,8 +1878,9 @@ function syncStaticText() {
   document.querySelector("[data-mode='detailed']").textContent = ui("detailed");
   document.querySelector("#dangerOnly").textContent = ui("dangerOnly");
   document.querySelector("#reset").textContent = ui("reset");
-  document.querySelector("#languageToggle").textContent = ui("langButton");
-  document.querySelector("#languageToggle").title = state.lang === "fr" ? "Switch to English" : "Passer en français";
+  document.querySelectorAll("[data-lang-choice]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.langChoice === state.lang);
+  });
   document.querySelector("[data-i18n='keys']").textContent = ui("keys");
 }
 
@@ -1972,9 +1998,10 @@ document.addEventListener("click", (event) => {
   const raid = event.target.closest("[data-raid]");
   const mode = event.target.closest("[data-mode]");
   const single = event.target.closest("[data-single]");
+  const langChoice = event.target.closest("[data-lang-choice]");
   if (raid) state.raid = raid.dataset.raid;
   if (mode) state.mode = mode.dataset.mode;
-  if (event.target.closest("#languageToggle")) state.lang = state.lang === "fr" ? "en" : "fr";
+  if (langChoice) state.lang = langChoice.dataset.langChoice;
   if (event.target.closest("#dangerOnly")) state.dangerOnly = !state.dangerOnly;
   if (event.target.closest("#reset")) {
     state.raid = "ALL";

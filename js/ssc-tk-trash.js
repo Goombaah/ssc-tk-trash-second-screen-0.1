@@ -111,8 +111,7 @@ const i18n = {
       "raidLabel": "Raid",
       "spells": "Spells",
       "copy": "Copy",
-      "unknownSpell": "Effect to confirm.",
-      "langButton": "FR"
+      "unknownSpell": "Effect to confirm."
     }
   },
   "fr": {
@@ -225,8 +224,7 @@ const i18n = {
       "raidLabel": "Call",
       "spells": "Sorts",
       "copy": "Copier",
-      "unknownSpell": "Effet à confirmer.",
-      "langButton": "EN"
+      "unknownSpell": "Effet à confirmer."
     }
   }
 };
@@ -1347,8 +1345,9 @@ function syncStaticText() {
   document.querySelector("[data-mode='detailed']").textContent = ui("detailed");
   document.querySelector("#dangerOnly").textContent = ui("dangerOnly");
   document.querySelector("#reset").textContent = ui("reset");
-  document.querySelector("#languageToggle").textContent = ui("langButton");
-  document.querySelector("#languageToggle").title = state.lang === "fr" ? "Switch to English" : "Passer en français";
+  document.querySelectorAll("[data-lang-choice]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.langChoice === state.lang);
+  });
   document.querySelector("[data-i18n='keys']").textContent = ui("keys");
 }
 
@@ -1466,9 +1465,10 @@ document.addEventListener("click", (event) => {
   const raid = event.target.closest("[data-raid]");
   const mode = event.target.closest("[data-mode]");
   const single = event.target.closest("[data-single]");
+  const langChoice = event.target.closest("[data-lang-choice]");
   if (raid) state.raid = raid.dataset.raid;
   if (mode) state.mode = mode.dataset.mode;
-  if (event.target.closest("#languageToggle")) state.lang = state.lang === "fr" ? "en" : "fr";
+  if (langChoice) state.lang = langChoice.dataset.langChoice;
   if (event.target.closest("#dangerOnly")) state.dangerOnly = !state.dangerOnly;
   if (event.target.closest("#reset")) {
     state.raid = "ALL";
