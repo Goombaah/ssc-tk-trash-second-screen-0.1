@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,11 +13,11 @@
         <div class="sigil">T5</div>
         <div>
           <h1>SSC_TK_TRASH_SECOND_SCREEN</h1>
-          <small>TBC Anniversary Phase 2 · outil trash raid lead · offline</small>
+          <small data-i18n="subtitle">TBC Anniversary Phase 2 · trash raid lead overlay · offline</small>
         </div>
       </div>
 
-      <nav class="tabs" aria-label="Filtre raid">
+      <nav class="tabs" aria-label="Raid filter">
         <button data-raid="SSC">SSC</button>
         <button data-raid="TK">TK</button>
         <button data-raid="ALL">ALL</button>
@@ -25,23 +25,24 @@
 
       <div class="actions">
         <label class="search">
-          <input id="search" type="search" autocomplete="off" placeholder="Chercher mob / sort / danger   /">
+          <input id="search" type="search" autocomplete="off" placeholder="Search mob / spell / danger   /">
         </label>
         <button data-mode="compact">Compact</button>
-        <button data-mode="detailed">Détaillé</button>
+        <button data-mode="detailed">Detailed</button>
         <button data-mode="ultra">Ultra</button>
         <button id="dangerOnly" class="danger-toggle">RED/ORANGE</button>
+        <button id="languageToggle" title="Passer en français">FR</button>
         <button id="fullscreen">Overlay</button>
         <button id="reset">Reset</button>
       </div>
     </header>
 
     <div class="subbar">
-      <div id="filters" class="filters" aria-label="Filtres actions"></div>
-      <div id="zoneFilters" class="zone-filters" aria-label="Filtres zones"></div>
+      <div id="filters" class="filters" aria-label="Action filters"></div>
+      <div id="zoneFilters" class="zone-filters" aria-label="Zone filters"></div>
       <div class="statusline">
         <strong id="count">0 mobs</strong>
-        <span>Touches: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset</span>
+        <span data-i18n="keys">Keys: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset · L language</span>
       </div>
     </div>
 
