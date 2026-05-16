@@ -1937,6 +1937,7 @@ const state = {
   raid: localStorage.getItem("raid") || "ALL",
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
+  zoom: localStorage.getItem("zoom") || "1",
   lang: "en",
   dangerOnly: localStorage.getItem("dangerOnly") === "true",
   auditOnly: localStorage.getItem("auditOnly") === "true",
@@ -1949,6 +1950,7 @@ const filtersEl = document.querySelector("#filters");
 const zoneFiltersEl = document.querySelector("#zoneFilters");
 const countEl = document.querySelector("#count");
 const searchEl = document.querySelector("#search");
+const zoomSelectEl = document.querySelector("#zoomSelect");
 
 function t() {
   return i18n[state.lang] || i18n.en;
@@ -1992,6 +1994,7 @@ function save() {
   localStorage.setItem("raid", state.raid);
   localStorage.setItem("zone", state.zone);
   localStorage.setItem("mode", state.mode);
+  localStorage.setItem("zoom", state.zoom);
   localStorage.setItem("dangerOnly", state.dangerOnly);
   localStorage.setItem("auditOnly", state.auditOnly);
   localStorage.setItem("tags", JSON.stringify([...state.tags]));
@@ -2047,11 +2050,8 @@ function spellChip(spell, className = "spell", showText = true) {
 }
 
 function renderSpellBlock(item) {
-  const groups = item.spellGroups?.length ? item.spellGroups : [{
-    label: "WATCH",
-    spells: item.spells.map(([name]) => name),
-    note: item.callShort || ""
-  }];
+  if (!item.spellGroups?.length) return `<div class="spell-strip">${spellPills(item.spells)}</div>`;
+  const groups = item.spellGroups;
   return `<div class="spell-groups">${groups.map((group) => `
     <div class="spell-group">
       <div class="spell-group-head">${escapeHtml(group.label)}</div>
@@ -2085,7 +2085,7 @@ function richText(text) {
 
 function tagPills(tags) {
   const labels = t().tagLabels;
-  return tags.map((tag) => `<span class="tag ${tag}">${labels[tag] || tag}</span>`).join("");
+  return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${labels[tag] || tag}</span>`).join("");
 }
 
 function auditPanel(item) {
@@ -2112,6 +2112,8 @@ function syncStaticText() {
   document.querySelector("#dangerOnly").textContent = ui("dangerOnly");
   document.querySelector("#auditOnly").textContent = ui("auditOnly");
   document.querySelector("#reset").textContent = ui("reset");
+  document.documentElement.style.setProperty("--ui-zoom", state.zoom);
+  zoomSelectEl.value = state.zoom;
   document.querySelectorAll("[data-lang-choice]").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.langChoice === state.lang);
   });
@@ -2182,10 +2184,12 @@ function renderCards() {
               <div class="markers">${markerImgs(item.markers)}</div>
             </div>
             <div class="card-body">
-              <div class="row"><div class="label">Danger</div><div class="value">${escapeHtml(item.danger)}</div></div>
-              <div class="row call-row"><div class="label">${ui("raidLabel")}</div><div class="value call">${escapeHtml(item.call)}</div></div>
-              <div class="row detail-row"><div class="label">Tank</div><div class="value">${escapeHtml(item.tank)}</div></div>
-              <div class="row spells-row"><div class="label">${ui("spells")}</div>${renderSpellBlock(item)}</div>
+              <div class="quick-call">${escapeHtml(item.call)}</div>
+              <div class="quick-grid">
+                <div class="quick-line danger-line"><span>!</span><b>${escapeHtml(item.danger)}</b></div>
+                <div class="quick-line tank-line"><span>T</span><b>${escapeHtml(item.tank)}</b></div>
+              </div>
+              <div class="spell-row">${renderSpellBlock(item)}</div>
             </div>
             ${auditPanel(item)}
             <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
@@ -2261,6 +2265,12 @@ document.addEventListener("click", (event) => {
 
 searchEl.addEventListener("input", (event) => {
   state.query = event.target.value;
+  renderCards();
+});
+
+zoomSelectEl.addEventListener("change", (event) => {
+  state.zoom = event.target.value;
+  save();
   renderCards();
 });
 
