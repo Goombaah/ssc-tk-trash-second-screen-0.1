@@ -240,16 +240,16 @@ button, input { font: inherit; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 8px;
+  align-items: start;
 }
 
 .card {
-  min-height: 185px;
   border: 1px solid var(--line);
   border-left-width: 6px;
   background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)), var(--panel);
   box-shadow: 0 4px 14px rgba(0,0,0,.22);
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto auto;
 }
 
 .card.red { border-left-color: var(--red); }
@@ -308,7 +308,7 @@ button, input { font: inherit; }
 .card-body {
   padding: 7px 9px;
   display: grid;
-  gap: 6px;
+  gap: 5px;
 }
 
 .row {
@@ -325,8 +325,8 @@ button, input { font: inherit; }
 }
 
 .value {
-  font-size: 17px;
-  line-height: 1.18;
+  font-size: 15px;
+  line-height: 1.16;
   font-weight: 800;
 }
 
@@ -351,7 +351,7 @@ button, input { font: inherit; }
   border: 1px solid #35424e;
   background: #0c1116;
   color: #dbe7f3;
-  font-size: 12px;
+  font-size: 11px;
   cursor: help;
   outline: none;
 }
@@ -375,8 +375,8 @@ button, input { font: inherit; }
 
 .spell img,
 .inline-spell img {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   object-fit: cover;
 }
 
@@ -387,15 +387,15 @@ button, input { font: inherit; }
 
 .spell-groups {
   display: grid;
-  gap: 5px;
+  gap: 4px;
 }
 
 .spell-group {
   display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 4px 6px;
+  grid-template-columns: 42px 1fr;
+  gap: 3px 5px;
   align-items: start;
-  padding: 5px;
+  padding: 4px;
   border: 1px solid #2f3a45;
   background: #090e13;
 }
@@ -403,7 +403,7 @@ button, input { font: inherit; }
 .spell-group-head {
   grid-row: span 2;
   color: #ffd36b;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   line-height: 1.05;
 }
@@ -416,7 +416,7 @@ button, input { font: inherit; }
 
 .spell-group-note {
   color: #d9e3ec;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   line-height: 1.18;
 }

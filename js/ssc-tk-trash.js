@@ -420,9 +420,9 @@ const trashData = [
       "tank",
       "dispel"
     ],
-    "danger": "PAIR A: Acid Geyser + Serpentshrine Parasite. PAIR B: Atrophic Blow + Frenzy. PAIR C: Spore Quake + Initial Infection.",
-    "call": "Identify first spell, call the pair. Acid Geyser target to tank; Spore Quake raid out; Frenzy tranq; Initial Infection cleanse.",
-    "tank": "Death roll: none / Toxic Pool / 2 Ragers / many adds / mana mushroom. OT pick adds; raid out of Toxic Pool.",
+    "danger": "3 random pairs. Identify the pair from first cast.",
+    "call": "A: target to tank + kill add. B: tank spike + tranq. C: raid out + cleanse.",
+    "tank": "Death roll: none / Toxic Pool / 2 Ragers / many adds / mana mushroom.",
     "spells": [
       [
         "Spore Quake",
@@ -453,22 +453,22 @@ const trashData = [
       {
         "label": "PAIR A",
         "spells": ["Acid Geyser", "Serpentshrine Parasite"],
-        "note": "Target runs to tank; kill parasite add."
+        "note": "target to tank; kill add"
       },
       {
         "label": "PAIR B",
         "spells": ["Atrophic Blow", "Frenzy"],
-        "note": "Tank debuff + speed spike; tranq/stabilize."
+        "note": "tank spike; tranq"
       },
       {
         "label": "PAIR C",
         "spells": ["Spore Quake", "Initial Infection"],
-        "note": "Raid moves; disease cleanse instant."
+        "note": "raid out; cleanse"
       },
       {
         "label": "DEATH",
         "spells": ["Toxic Pool"],
-        "note": "None / Toxic Pool / 2 Ragers / many adds / mana mushroom."
+        "note": "none / pool / 2 ragers / adds / mana"
       }
     ]
   },
@@ -1249,9 +1249,9 @@ const frTrashText = {
     "tank": "OTs ramassent vite les Sporebats; éviter les Charges libres sur les heals."
   },
   "Underbog Colossus": {
-    "danger": "PAIR A: Acid Geyser + Serpentshrine Parasite. PAIR B: Atrophic Blow + Frenzy. PAIR C: Spore Quake + Initial Infection.",
-    "call": "Identifier le premier sort, call la paire. Acid Geyser cible vers tank; Spore Quake raid out; Frenzy tranq; Initial Infection cleanse.",
-    "tank": "Mort: rien / Toxic Pool / 2 Ragers / beaucoup d'adds / mana mushroom. OT prend adds; raid sort Toxic Pool."
+    "danger": "3 paires aléatoires. Identifier la paire au premier cast.",
+    "call": "A: cible vers tank + tuer add. B: spike tank + tranq. C: raid out + cleanse.",
+    "tank": "Mort: rien / Toxic Pool / 2 Ragers / beaucoup d'adds / mana mushroom."
   },
   "Vashj'ir Honor Guard": {
     "danger": "Frightening Shout fear la mêlée; Mortal Cleave applique Mortal Strike; knockback tank.",
@@ -1931,7 +1931,7 @@ function renderSpellBlock(item) {
     <div class="spell-group">
       <div class="spell-group-head">${escapeHtml(group.label)}</div>
       <div class="spell-group-body">${spellPillsFromNames(group.spells)}</div>
-      <div class="spell-group-note">${richText(group.note || "")}</div>
+      <div class="spell-group-note">${escapeHtml(group.note || "")}</div>
     </div>
   `).join("")}</div>`;
 }
@@ -2057,9 +2057,9 @@ function renderCards() {
               <div class="markers">${markerImgs(item.markers)}</div>
             </div>
             <div class="card-body">
-              <div class="row"><div class="label">Danger</div><div class="value">${richText(item.danger)}</div></div>
-              <div class="row call-row"><div class="label">${ui("raidLabel")}</div><div class="value call">${richText(item.call)}</div></div>
-              <div class="row detail-row"><div class="label">Tank</div><div class="value">${richText(item.tank)}</div></div>
+              <div class="row"><div class="label">Danger</div><div class="value">${escapeHtml(item.danger)}</div></div>
+              <div class="row call-row"><div class="label">${ui("raidLabel")}</div><div class="value call">${escapeHtml(item.call)}</div></div>
+              <div class="row detail-row"><div class="label">Tank</div><div class="value">${escapeHtml(item.tank)}</div></div>
               <div class="row spells-row"><div class="label">${ui("spells")}</div>${renderSpellBlock(item)}</div>
             </div>
             ${auditPanel(item)}
