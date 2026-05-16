@@ -93,6 +93,7 @@ const i18n = {
       "Spore Quake": "Ground/raid Nature pressure from Underbog Colossus variant. Move out.",
       "Serpentshrine Parasite": "Underbog Colossus pair: parasite debuff can spawn small adds. Clean up fast.",
       "Starfall": "Nearby Arcane raid damage from Star Scryer.",
+      "Toxic Pool": "Underbog Colossus death roll: poisonous ground pool. Raid moves out.",
       "Trample": "Melee-range damage from Crystalcore Sentinel.",
       "Uppercut": "Knockback on tank. Tank into wall.",
       "Virulent Poison": "Poison effect from Tidecaller. Cleanse poison.",
@@ -214,6 +215,7 @@ const i18n = {
       "Spore Burst": "AoE nature + DoT autour du Sporebat.",
       "Spore Quake": "Très grande pression nature de zone. Le raid doit bouger vite.",
       "Starfall": "Dégâts Arcanes proches du Star Scryer.",
+      "Toxic Pool": "Effet de mort Underbog: flaque poison au sol. Raid sort.",
       "Trample": "Dégâts mêlée du Crystalcore Sentinel.",
       "Uppercut": "Knockback tank. Jouer dos au mur.",
       "Virulent Poison": "Poison dispellable du Tidecaller.",
@@ -243,6 +245,81 @@ const i18n = {
       "auditSource": "Source"
     }
   }
+};
+
+const guideSpellIcons = {
+  "Acid Geyser": "assets/spell_fire_felcano.jpg",
+  "Arcane Blast": "assets/spell_shadow_deathpact.jpg",
+  "Arcane Flurry": "assets/spell_nature_lightningoverload.jpg",
+  "Arcane Lightning": "assets/spell_nature_chainlightning.jpg",
+  "Atrophic Blow": "assets/ability_creature_disease_02.jpg",
+  "Avenger's Shield": "assets/spell_holy_devotionaura.jpg",
+  "Bestial Wrath": "assets/ability_druid_ferociousbite.jpg",
+  "Blast Wave": "assets/spell_holy_excorcism_02.jpg",
+  "Blizzard": "assets/spell_frost_icestorm.jpg",
+  "Bloodthirst": "assets/spell_nature_bloodlust.jpg",
+  "Chain Lightning": "assets/spell_nature_chainlightning.jpg",
+  "Charge": "assets/ability_warrior_charge.jpg",
+  "Charged Arcane Explosion": "assets/spell_nature_wispsplode.jpg",
+  "Cleave": "assets/ability_warrior_cleave.jpg",
+  "Cone of Cold": "assets/spell_frost_glacier.jpg",
+  "Corrupt Devotion Aura": "assets/spell_shadow_ragingscream.jpg",
+  "Countercharge": "assets/spell_arcane_arcanepotency.jpg",
+  "Dive": "assets/ability_hunter_pet_bat.jpg",
+  "Domination": "assets/spell_shadow_shadowworddominate.jpg",
+  "Enrage": "assets/ability_druid_challangingroar.jpg",
+  "Fireball": "assets/spell_fire_flamebolt.jpg",
+  "Fireball Volley": "assets/spell_fire_flamebolt.jpg",
+  "Flash of Light": "assets/spell_holy_heal.jpg",
+  "Frenzy": "assets/spell_shadow_unholyfrenzy.jpg",
+  "Frightening Shout": "assets/ability_golemthunderclap.jpg",
+  "Frost Nova": "assets/spell_frost_frostnova.jpg",
+  "Frost Shock": "assets/spell_frost_frostshock.jpg",
+  "Frostbolt": "assets/spell_frost_frostbolt02.jpg",
+  "Frostbolt Volley": "assets/spell_frost_frostbolt02.jpg",
+  "Golem Repair": "assets/inv_misc_enggizmos_15.jpg",
+  "Hammer of Justice": "assets/spell_holy_sealofmight.jpg",
+  "Healing Touch": "assets/spell_nature_healingtouch.jpg",
+  "Holy Fire": "assets/spell_holy_searinglight.jpg",
+  "Holy Nova": "assets/spell_holy_holynova.jpg",
+  "Holy Smite": "assets/spell_holy_holysmite.jpg",
+  "Initial Infection": "assets/spell_nature_nullifydisease.jpg",
+  "Kick": "assets/ability_kick.jpg",
+  "Knock Away": "assets/inv_gauntlets_05.jpg",
+  "Lightning Bolt": "assets/spell_nature_lightning.jpg",
+  "Lightning Shield": "assets/spell_nature_lightningshield.jpg",
+  "Mana Burn": "assets/spell_shadow_manaburn.jpg",
+  "Molten Armor": "assets/inv_helmet_08.jpg",
+  "Mortal Cleave": "assets/ability_warrior_savageblow.jpg",
+  "Overcharge": "assets/spell_arcane_arcanepotency.jpg",
+  "Poison Bolt Volley": "assets/spell_nature_corrosivebreath.jpg",
+  "Poison Shield": "assets/spell_nature_elementalshields.jpg",
+  "Power Up": "assets/spell_arcane_arcanetorrent.jpg",
+  "Rain of Fire": "assets/spell_shadow_rainoffire.jpg",
+  "Rancid Mushroom": "assets/inv_mushroom_07.jpg",
+  "Recharge": "assets/spell_nature_elementalshields.jpg",
+  "Rejuvenation": "assets/spell_nature_rejuvenation.jpg",
+  "Renew": "assets/spell_holy_renew.jpg",
+  "Saw Blade": "assets/ability_gouge.jpg",
+  "Serpentshrine Parasite": "assets/inv_misc_monsterhead_03.jpg",
+  "Shadow Bolt": "assets/spell_shadow_shadowbolt.jpg",
+  "Shadow Nova": "assets/spell_shadow_shadowfury.jpg",
+  "Shatter Armor": "assets/ability_warrior_decisivestrike.jpg",
+  "Shell Shock": "assets/spell_fire_selfdestruct.jpg",
+  "Shield Charge": "assets/ability_warrior_charge.jpg",
+  "Silence": "assets/spell_holy_silence.jpg",
+  "Sonic Scream": "assets/spell_nature_purge.jpg",
+  "Spell Reflection": "assets/spell_shadow_teleport.jpg",
+  "Spore Burst": "assets/spell_nature_abolishmagic.jpg",
+  "Spore Quake": "assets/spell_fire_felhellfire.jpg",
+  "Starfall": "assets/spell_arcane_starfire.jpg",
+  "Toxic Pool": "assets/ability_creature_poison_06.jpg",
+  "Trample": "assets/spell_nature_natureswrath.jpg",
+  "Uppercut": "assets/inv_gauntlets_05.jpg",
+  "Virulent Poison": "assets/spell_nature_corrosivebreath.jpg",
+  "Water Elemental Totem": "assets/spell_fire_sealoffire.jpg",
+  "Whirlwind": "assets/ability_whirlwind.jpg",
+  "Wing Buffet": "assets/inv_misc_monsterscales_14.jpg"
 };
 
 const trashData = [
@@ -343,9 +420,9 @@ const trashData = [
       "tank",
       "dispel"
     ],
-    "danger": "3 random pairs: Geyser+Parasite / Atrophic+Frenzy / Quake+Infection. Death roll: none, 2 Ragers, many adds, Toxic Pool, or mushroom.",
-    "call": "CALL PAIR: Geyser target turns away; Quake raid out; Frenzy tranq; Infection cleanse.",
-    "tank": "Do not pull with pack. On death: OT pick Ragers/adds, raid out of pool, call mushroom safe.",
+    "danger": "PAIR A: Acid Geyser + Serpentshrine Parasite. PAIR B: Atrophic Blow + Frenzy. PAIR C: Spore Quake + Initial Infection.",
+    "call": "Identify first spell, call the pair. Acid Geyser target to tank; Spore Quake raid out; Frenzy tranq; Initial Infection cleanse.",
+    "tank": "Death roll: none / Toxic Pool / 2 Ragers / many adds / mana mushroom. OT pick adds; raid out of Toxic Pool.",
     "spells": [
       [
         "Spore Quake",
@@ -371,6 +448,28 @@ const trashData = [
         "Enrage",
         "assets/ability_warrior_savageblow.jpg"
       ]
+    ],
+    "spellGroups": [
+      {
+        "label": "PAIR A",
+        "spells": ["Acid Geyser", "Serpentshrine Parasite"],
+        "note": "Target runs to tank; kill parasite add."
+      },
+      {
+        "label": "PAIR B",
+        "spells": ["Atrophic Blow", "Frenzy"],
+        "note": "Tank debuff + speed spike; tranq/stabilize."
+      },
+      {
+        "label": "PAIR C",
+        "spells": ["Spore Quake", "Initial Infection"],
+        "note": "Raid moves; disease cleanse instant."
+      },
+      {
+        "label": "DEATH",
+        "spells": ["Toxic Pool"],
+        "note": "None / Toxic Pool / 2 Ragers / many adds / mana mushroom."
+      }
     ]
   },
   {
@@ -1150,9 +1249,9 @@ const frTrashText = {
     "tank": "OTs ramassent vite les Sporebats; éviter les Charges libres sur les heals."
   },
   "Underbog Colossus": {
-    "danger": "3 paires aléatoires: Geyser+Parasite / Atrophic+Frenzy / Quake+Infection. Mort: rien, 2 Ragers, beaucoup d'adds, Toxic Pool ou mushroom.",
-    "call": "CALL PAIRE: Geyser cible tourne; Quake raid out; Frenzy tranq; Infection cleanse.",
-    "tank": "Ne pas pull avec un pack. À la mort: OT prend Ragers/adds, raid sort pool, mushroom safe."
+    "danger": "PAIR A: Acid Geyser + Serpentshrine Parasite. PAIR B: Atrophic Blow + Frenzy. PAIR C: Spore Quake + Initial Infection.",
+    "call": "Identifier le premier sort, call la paire. Acid Geyser cible vers tank; Spore Quake raid out; Frenzy tranq; Initial Infection cleanse.",
+    "tank": "Mort: rien / Toxic Pool / 2 Ragers / beaucoup d'adds / mana mushroom. OT prend adds; raid sort Toxic Pool."
   },
   "Vashj'ir Honor Guard": {
     "danger": "Frightening Shout fear la mêlée; Mortal Cleave applique Mortal Strike; knockback tank.",
@@ -1750,6 +1849,24 @@ function localizedItem(item) {
   return localized;
 }
 
+function spellDisplayName(name) {
+  return state.lang === "fr" ? (frSpellNames[name] || name) : name;
+}
+
+function spellIcon(name, fallback) {
+  return guideSpellIcons[name] || fallback || icon(name.toLowerCase().replace(/[^a-z0-9]+/g, "_"));
+}
+
+function spellInfo(name, fallback) {
+  const descriptions = t().spellDescriptions;
+  return {
+    name,
+    displayName: spellDisplayName(name),
+    description: descriptions[name] || ui("unknownSpell"),
+    src: spellIcon(name, fallback)
+  };
+}
+
 function save() {
   localStorage.setItem("raid", state.raid);
   localStorage.setItem("zone", state.zone);
@@ -1779,6 +1896,7 @@ function visibleItems() {
       item.raid, item.zone, item.mob, originalMob, item.priority, item.danger, item.call, item.tank,
       enItem.danger, enItem.call, enItem.tank, frItem.danger, frItem.call, frItem.tank,
       item.tags.join(" "), item.spells.map(([name]) => name).join(" "),
+      (item.spellGroups || []).map((group) => [group.label, group.note, ...group.spells].join(" ")).join(" "),
       item.spells.map(([name]) => frSpellNames[name] || "").join(" "),
       item.confidence, item.sourceNote, item.sourceQuoteShort, item.focusReason,
       item.recommendedMarker, item.callShort, String(item.focusRank ?? "")
@@ -1793,12 +1911,51 @@ function markerImgs(markers) {
 }
 
 function spellPills(spells) {
-  const descriptions = t().spellDescriptions;
   return spells.map(([name, src]) => {
-    const displayName = state.lang === "fr" ? (frSpellNames[name] || name) : name;
-    const description = descriptions[name] || ui("unknownSpell");
-    return `<span class="spell" tabindex="0" title="${escapeHtml(description)}" data-tip-title="${escapeHtml(displayName)}" data-tip="${escapeHtml(description)}"><img src="${src}" alt="">${displayName}</span>`;
+    const spell = spellInfo(name, src);
+    return spellChip(spell, "spell", true);
   }).join("");
+}
+
+function spellPillsFromNames(names) {
+  return names.map((name) => spellChip(spellInfo(name), "spell", true)).join("");
+}
+
+function spellChip(spell, className = "spell", showText = true) {
+  return `<span class="${className}" tabindex="0" title="${escapeHtml(spell.description)}" data-tip-title="${escapeHtml(spell.displayName)}" data-tip="${escapeHtml(spell.description)}"><img src="${escapeHtml(spell.src)}" alt="">${showText ? escapeHtml(spell.displayName) : ""}</span>`;
+}
+
+function renderSpellBlock(item) {
+  if (!item.spellGroups?.length) return `<div class="spells">${spellPills(item.spells)}</div>`;
+  return `<div class="spell-groups">${item.spellGroups.map((group) => `
+    <div class="spell-group">
+      <div class="spell-group-head">${escapeHtml(group.label)}</div>
+      <div class="spell-group-body">${spellPillsFromNames(group.spells)}</div>
+      <div class="spell-group-note">${richText(group.note || "")}</div>
+    </div>
+  `).join("")}</div>`;
+}
+
+function richText(text) {
+  const source = String(text);
+  const candidates = Object.keys(guideSpellIcons)
+    .flatMap((name) => {
+      const displayName = spellDisplayName(name);
+      return [name, displayName].filter((value, index, arr) => value && arr.indexOf(value) === index).map((label) => ({ label, name }));
+    })
+    .sort((a, b) => b.label.length - a.label.length);
+  let html = "";
+  for (let i = 0; i < source.length;) {
+    const match = candidates.find(({ label }) => source.startsWith(label, i));
+    if (match) {
+      html += spellChip(spellInfo(match.name), "inline-spell", true);
+      i += match.label.length;
+    } else {
+      html += escapeHtml(source[i]);
+      i += 1;
+    }
+  }
+  return html;
 }
 
 function tagPills(tags) {
@@ -1900,10 +2057,10 @@ function renderCards() {
               <div class="markers">${markerImgs(item.markers)}</div>
             </div>
             <div class="card-body">
-              <div class="row"><div class="label">Danger</div><div class="value">${item.danger}</div></div>
-              <div class="row call-row"><div class="label">${ui("raidLabel")}</div><div class="value call">${item.call}</div></div>
-              <div class="row detail-row"><div class="label">Tank</div><div class="value">${item.tank}</div></div>
-              <div class="row spells-row"><div class="label">${ui("spells")}</div><div class="spells">${spellPills(item.spells)}</div></div>
+              <div class="row"><div class="label">Danger</div><div class="value">${richText(item.danger)}</div></div>
+              <div class="row call-row"><div class="label">${ui("raidLabel")}</div><div class="value call">${richText(item.call)}</div></div>
+              <div class="row detail-row"><div class="label">Tank</div><div class="value">${richText(item.tank)}</div></div>
+              <div class="row spells-row"><div class="label">${ui("spells")}</div>${renderSpellBlock(item)}</div>
             </div>
             ${auditPanel(item)}
             <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
@@ -2027,7 +2184,7 @@ function moveTooltip(event) {
 }
 
 document.addEventListener("mouseover", (event) => {
-  const spell = event.target.closest(".spell[data-tip]");
+  const spell = event.target.closest(".spell[data-tip], .inline-spell[data-tip]");
   if (!spell) return;
   tooltip.innerHTML = `<div class="tip-title">${spell.dataset.tipTitle}</div><div class="tip-body">${spell.dataset.tip}</div>`;
   tooltip.classList.add("visible");
@@ -2039,11 +2196,11 @@ document.addEventListener("mousemove", (event) => {
 });
 
 document.addEventListener("mouseout", (event) => {
-  if (event.target.closest(".spell[data-tip]")) tooltip.classList.remove("visible");
+  if (event.target.closest(".spell[data-tip], .inline-spell[data-tip]")) tooltip.classList.remove("visible");
 });
 
 document.addEventListener("focusin", (event) => {
-  const spell = event.target.closest(".spell[data-tip]");
+  const spell = event.target.closest(".spell[data-tip], .inline-spell[data-tip]");
   if (!spell) return;
   const rect = spell.getBoundingClientRect();
   tooltip.innerHTML = `<div class="tip-title">${spell.dataset.tipTitle}</div><div class="tip-body">${spell.dataset.tip}</div>`;
@@ -2052,7 +2209,7 @@ document.addEventListener("focusin", (event) => {
 });
 
 document.addEventListener("focusout", (event) => {
-  if (event.target.closest(".spell[data-tip]")) tooltip.classList.remove("visible");
+  if (event.target.closest(".spell[data-tip], .inline-spell[data-tip]")) tooltip.classList.remove("visible");
 });
 
 renderFilters();

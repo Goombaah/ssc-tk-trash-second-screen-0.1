@@ -341,7 +341,8 @@ button, input { font: inherit; }
   gap: 4px;
 }
 
-.spell {
+.spell,
+.inline-spell {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -355,17 +356,69 @@ button, input { font: inherit; }
   outline: none;
 }
 
+.inline-spell {
+  vertical-align: -5px;
+  margin: 0 2px;
+  padding-right: 4px;
+  font-size: .82em;
+  line-height: 1;
+}
+
 .spell:hover,
-.spell:focus {
+.spell:focus,
+.inline-spell:hover,
+.inline-spell:focus {
   border-color: #d7a43b;
   background: #17120a;
   color: #fff;
 }
 
-.spell img {
+.spell img,
+.inline-spell img {
   width: 22px;
   height: 22px;
   object-fit: cover;
+}
+
+.inline-spell img {
+  width: 18px;
+  height: 18px;
+}
+
+.spell-groups {
+  display: grid;
+  gap: 5px;
+}
+
+.spell-group {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 4px 6px;
+  align-items: start;
+  padding: 5px;
+  border: 1px solid #2f3a45;
+  background: #090e13;
+}
+
+.spell-group-head {
+  grid-row: span 2;
+  color: #ffd36b;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.spell-group-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.spell-group-note {
+  color: #d9e3ec;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.18;
 }
 
 .spell-tooltip {
