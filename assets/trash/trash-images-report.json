@@ -191,16 +191,16 @@
     {
         "mob":  "Crimson Hand Blood Knight",
         "id":  20049,
-        "source":  "placeholder",
+        "source":  "custom",
         "file":  "assets/trash/crimson_hand_blood_knight.png",
-        "imageUrl":  "https://wow.zamimg.com/images/logos/share-icon.png"
+        "imageUrl":  "C:/Users/Goom/Downloads/1194025-crimson-hand-blood-knight.jpg"
     },
     {
         "mob":  "Crimson Hand Battle Mage",
         "id":  20047,
-        "source":  "placeholder",
+        "source":  "custom",
         "file":  "assets/trash/crimson_hand_battle_mage.png",
-        "imageUrl":  "https://wow.zamimg.com/images/logos/share-icon.png"
+        "imageUrl":  "C:/Users/Goom/Downloads/830686-crimson-hand-battle-mage.jpg"
     },
     {
         "mob":  "Crimson Hand Centurion",
