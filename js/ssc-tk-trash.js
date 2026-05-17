@@ -963,7 +963,7 @@ const trashData = [
   },
   {
     "raid": "TK",
-    "zone": "Entrance / Void Reaver path",
+    "zone": "Entrance / Solarian path",
     "mob": "Astromancer",
     "priority": "red",
     "markers": [
@@ -995,7 +995,7 @@ const trashData = [
   },
   {
     "raid": "TK",
-    "zone": "Entrance / Void Reaver path",
+    "zone": "Entrance / Solarian path",
     "mob": "Star Scryer",
     "priority": "red",
     "markers": [
@@ -1044,7 +1044,7 @@ const trashData = [
   },
   {
     "raid": "TK",
-    "zone": "Entrance / Void Reaver path",
+    "zone": "Entrance / Solarian path",
     "mob": "Bloodwarder Marshal",
     "priority": "orange",
     "markers": [
@@ -2290,9 +2290,9 @@ const zoneIcons = {
   "Pre Lurker Platforms": "assets/ui-ej-boss-the-lurker-below.png",
   "Pre Leotheras": "assets/ui-ej-boss-leotheras-the-blind.png",
   "Pre Morogrim": "assets/ui-ej-boss-morogrim-tidewalker.png",
-  "Entrance / Void Reaver path": "assets/ui-ej-boss-void-reaver.png",
+  "Entrance / Solarian path": "assets/ui-ej-boss-high-astromancer-solarian.png",
   "Al'ar room": "assets/ui-ej-boss-alar.png",
-  "Void Reaver path": "assets/ui-ej-boss-high-astromancer-solarian.png",
+  "Void Reaver path": "assets/ui-ej-boss-void-reaver.png",
   "Kael corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
 };
 
@@ -2302,9 +2302,9 @@ const zoneLabels = {
     "Pre Lurker Platforms": "Lurker Platforms",
     "Pre Leotheras": "Leotheras Path",
     "Pre Morogrim": "Morogrim Path",
-    "Entrance / Void Reaver path": "Void Reaver Path",
+    "Entrance / Solarian path": "Entrance / Solarian Path",
     "Al'ar room": "Al'ar Room",
-    "Void Reaver path": "Solarian Path",
+    "Void Reaver path": "Void Reaver Path",
     "Kael corridor": "Kael Corridor"
   },
   fr: {
@@ -2312,9 +2312,9 @@ const zoneLabels = {
     "Pre Lurker Platforms": "Plateformes Lurker",
     "Pre Leotheras": "Chemin Leotheras",
     "Pre Morogrim": "Chemin Morogrim",
-    "Entrance / Void Reaver path": "Chemin Void Reaver",
+    "Entrance / Solarian path": "Entrée / chemin Solarian",
     "Al'ar room": "Salle Al'ar",
-    "Void Reaver path": "Chemin Solarian",
+    "Void Reaver path": "Chemin Void Reaver",
     "Kael corridor": "Couloir Kael"
   }
 };
@@ -2420,7 +2420,7 @@ function renderCards() {
             <div class="card-main">
               <div class="card-head">
                 <div class="mobline">
-                  <div class="zone">${item.raid} - ${item.zone}</div>
+                  <div class="zone">${item.raid} - ${escapeHtml(zoneLabel(item.zone))}</div>
                   <div class="mob">${item.mob}</div>
                   <div class="action-title">${escapeHtml(actionTitle(item))}</div>
                 </div>
