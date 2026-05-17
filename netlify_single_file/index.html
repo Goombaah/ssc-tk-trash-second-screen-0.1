@@ -28,6 +28,7 @@
 html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); }
 body { font-size: 17px; letter-spacing: 0; overflow-x: hidden; }
 button, input { font: inherit; }
+button, select { user-select: none; }
 
 .app {
   min-height: 100vh;
@@ -562,6 +563,7 @@ body.raid-all .raid-plate {
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr);
   grid-template-rows: auto auto auto;
+  user-select: text;
 }
 
 .card.red { border-left-color: var(--red); }
@@ -3483,14 +3485,28 @@ document.addEventListener("click", (event) => {
   const mode = event.target.closest("[data-mode]");
   const single = event.target.closest("[data-single]");
   const langChoice = event.target.closest("[data-lang-choice]");
+  let changed = false;
   if (raid && !raidPlatesEl.contains(raid)) {
     const raidName = raid.dataset.raidToggle;
     state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
+    changed = true;
   }
-  if (mode) state.mode = mode.dataset.mode;
-  if (langChoice) state.lang = langChoice.dataset.langChoice;
-  if (event.target.closest("#dangerOnly")) state.dangerOnly = !state.dangerOnly;
-  if (event.target.closest("#auditOnly")) state.auditOnly = !state.auditOnly;
+  if (mode) {
+    state.mode = mode.dataset.mode;
+    changed = true;
+  }
+  if (langChoice) {
+    state.lang = langChoice.dataset.langChoice;
+    changed = true;
+  }
+  if (event.target.closest("#dangerOnly")) {
+    state.dangerOnly = !state.dangerOnly;
+    changed = true;
+  }
+  if (event.target.closest("#auditOnly")) {
+    state.auditOnly = !state.auditOnly;
+    changed = true;
+  }
   if (event.target.closest("#reset")) {
     state.raids = new Set(["SSC", "TK"]);
     state.zone = "ALL";
@@ -3501,9 +3517,17 @@ document.addEventListener("click", (event) => {
     state.query = "";
     searchEl.value = "";
     document.body.classList.remove("fullscreen");
+    changed = true;
   }
-  if (event.target.closest("#fullscreen")) document.body.classList.toggle("fullscreen");
-  if (single) copyText(single.dataset.single);
+  if (event.target.closest("#fullscreen")) {
+    document.body.classList.toggle("fullscreen");
+    changed = true;
+  }
+  if (single) {
+    copyText(single.dataset.single);
+    return;
+  }
+  if (!changed) return;
   save();
   renderFilters();
   renderCards();
@@ -3521,19 +3545,43 @@ zoomSelectEl.addEventListener("change", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.target.matches("input")) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (event.target.matches("input, textarea, select, [contenteditable='true']")) return;
   const key = event.key.toLowerCase();
+  let changed = false;
   if (key === "/") {
     event.preventDefault();
     searchEl.focus();
+    return;
   }
-  if (key === "1") state.raids.has("SSC") ? state.raids.delete("SSC") : state.raids.add("SSC");
-  if (key === "2") state.raids.has("TK") ? state.raids.delete("TK") : state.raids.add("TK");
-  if (key === "3") state.raids = new Set(["SSC", "TK"]);
-  if (key === "c") state.mode = state.mode === "compact" ? "detailed" : "compact";
-  if (key === "u") state.mode = state.mode === "ultra" ? "detailed" : "ultra";
-  if (key === "a") state.auditOnly = !state.auditOnly;
-  if (key === "l") state.lang = state.lang === "fr" ? "en" : "fr";
+  if (key === "1") {
+    state.raids.has("SSC") ? state.raids.delete("SSC") : state.raids.add("SSC");
+    changed = true;
+  }
+  if (key === "2") {
+    state.raids.has("TK") ? state.raids.delete("TK") : state.raids.add("TK");
+    changed = true;
+  }
+  if (key === "3") {
+    state.raids = new Set(["SSC", "TK"]);
+    changed = true;
+  }
+  if (key === "c") {
+    state.mode = state.mode === "compact" ? "detailed" : "compact";
+    changed = true;
+  }
+  if (key === "u") {
+    state.mode = state.mode === "ultra" ? "detailed" : "ultra";
+    changed = true;
+  }
+  if (key === "a") {
+    state.auditOnly = !state.auditOnly;
+    changed = true;
+  }
+  if (key === "l") {
+    state.lang = state.lang === "fr" ? "en" : "fr";
+    changed = true;
+  }
   if (key === "r") {
     state.zone = "ALL";
     state.dangerOnly = false;
@@ -3541,8 +3589,13 @@ document.addEventListener("keydown", (event) => {
     state.tags.clear();
     state.query = "";
     searchEl.value = "";
+    changed = true;
   }
-  if (key === "f") document.body.classList.toggle("fullscreen");
+  if (key === "f") {
+    document.body.classList.toggle("fullscreen");
+    changed = true;
+  }
+  if (!changed) return;
   save();
   renderFilters();
   renderCards();
