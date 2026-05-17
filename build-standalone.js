@@ -4,6 +4,7 @@ const path = require("path");
 const mime = {
   ".jpg": "image/jpeg",
   ".png": "image/png",
+  ".webp": "image/webp",
   ".svg": "image/svg+xml"
 };
 

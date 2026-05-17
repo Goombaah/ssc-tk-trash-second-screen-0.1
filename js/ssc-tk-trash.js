@@ -346,36 +346,36 @@ const guideSpellIcons = {
 };
 
 const trashImages = {
-  "Astromancer": "assets/Trash2/astromancer.png",
-  "Bloodwarder Marshal": "assets/Trash2/bloodwarder_marshal.png",
-  "Coilfang Beast-Tamer": "assets/Trash2/coilfang_beast_tamer.png",
-  "Coilfang Fathom-Witch": "assets/Trash2/coilfang_fathom_witch.png",
-  "Coilfang Hate-Screamer": "assets/Trash2/coilfang_hate_screamer.png",
-  "Coilfang Priestess": "assets/Trash2/coilfang_priestess.png",
-  "Coilfang Serpentguard": "assets/Trash2/coilfang_serpentguard.png",
-  "Coilfang Shatterer": "assets/Trash2/coilfang_shatterer.png",
-  "Crimson Hand Battle Mage": "assets/Trash2/crimson_hand_battle_mage.png",
-  "Crimson Hand Blood Knight": "assets/Trash2/crimson_hand_blood_knight.png",
-  "Crimson Hand Centurion": "assets/Trash2/crimson_hand_centurion.png",
-  "Crystalcore Devastator": "assets/Trash2/crystalcore_devastator.png",
-  "Crystalcore Mechanic": "assets/Trash2/crystalcore_mechanic.png",
-  "Crystalcore Sentinel": "assets/Trash2/crystalcore_sentinel.png",
-  "Greyheart Nether-Mage": "assets/Trash2/greyheart_nether_mage.png",
-  "Greyheart Shield-Bearer": "assets/Trash2/greyheart_shield_bearer.png",
-  "Greyheart Skulker": "assets/Trash2/greyheart_skulker.png",
-  "Greyheart Tidecaller": "assets/Trash2/greyheart_tidecaller.png",
-  "Phoenix-Hawk": "assets/Trash2/phoenix_hawk.png",
-  "Phoenix-Hawk Hatchling": "assets/Trash2/phoenix_hawk_hatchling.png",
-  "Serpentshrine Lurker": "assets/Trash2/serpentshrine_lurker.png",
-  "Serpentshrine Sporebat": "assets/Trash2/serpentshrine_sporebat.png",
-  "Star Scryer": "assets/Trash2/star_scryer.png",
-  "Tempest-Smith": "assets/Trash2/tempest_smith.png",
-  "Tidewalker Depth-Seer": "assets/Trash2/tidewalker_depth_seer.png",
-  "Tidewalker Hydromancer": "assets/Trash2/tidewalker_hydromancer.png",
-  "Tidewalker Shaman": "assets/Trash2/tidewalker_shaman.png",
-  "Tidewalker Warrior": "assets/Trash2/tidewalker_warrior.png",
-  "Underbog Colossus": "assets/Trash2/underbog_colossus.png",
-  "Vashj'ir Honor Guard": "assets/Trash2/vashj_ir_honor_guard.png"
+  "Astromancer": "assets/Trash2_fast/astromancer.webp",
+  "Bloodwarder Marshal": "assets/Trash2_fast/bloodwarder_marshal.webp",
+  "Coilfang Beast-Tamer": "assets/Trash2_fast/coilfang_beast_tamer.webp",
+  "Coilfang Fathom-Witch": "assets/Trash2_fast/coilfang_fathom_witch.webp",
+  "Coilfang Hate-Screamer": "assets/Trash2_fast/coilfang_hate_screamer.webp",
+  "Coilfang Priestess": "assets/Trash2_fast/coilfang_priestess.webp",
+  "Coilfang Serpentguard": "assets/Trash2_fast/coilfang_serpentguard.webp",
+  "Coilfang Shatterer": "assets/Trash2_fast/coilfang_shatterer.webp",
+  "Crimson Hand Battle Mage": "assets/Trash2_fast/crimson_hand_battle_mage.webp",
+  "Crimson Hand Blood Knight": "assets/Trash2_fast/crimson_hand_blood_knight.webp",
+  "Crimson Hand Centurion": "assets/Trash2_fast/crimson_hand_centurion.webp",
+  "Crystalcore Devastator": "assets/Trash2_fast/crystalcore_devastator.webp",
+  "Crystalcore Mechanic": "assets/Trash2_fast/crystalcore_mechanic.webp",
+  "Crystalcore Sentinel": "assets/Trash2_fast/crystalcore_sentinel.webp",
+  "Greyheart Nether-Mage": "assets/Trash2_fast/greyheart_nether_mage.webp",
+  "Greyheart Shield-Bearer": "assets/Trash2_fast/greyheart_shield_bearer.webp",
+  "Greyheart Skulker": "assets/Trash2_fast/greyheart_skulker.webp",
+  "Greyheart Tidecaller": "assets/Trash2_fast/greyheart_tidecaller.webp",
+  "Phoenix-Hawk": "assets/Trash2_fast/phoenix_hawk.webp",
+  "Phoenix-Hawk Hatchling": "assets/Trash2_fast/phoenix_hawk_hatchling.webp",
+  "Serpentshrine Lurker": "assets/Trash2_fast/serpentshrine_lurker.webp",
+  "Serpentshrine Sporebat": "assets/Trash2_fast/serpentshrine_sporebat.webp",
+  "Star Scryer": "assets/Trash2_fast/star_scryer.webp",
+  "Tempest-Smith": "assets/Trash2_fast/tempest_smith.webp",
+  "Tidewalker Depth-Seer": "assets/Trash2_fast/tidewalker_depth_seer.webp",
+  "Tidewalker Hydromancer": "assets/Trash2_fast/tidewalker_hydromancer.webp",
+  "Tidewalker Shaman": "assets/Trash2_fast/tidewalker_shaman.webp",
+  "Tidewalker Warrior": "assets/Trash2_fast/tidewalker_warrior.webp",
+  "Underbog Colossus": "assets/Trash2_fast/underbog_colossus.webp",
+  "Vashj'ir Honor Guard": "assets/Trash2_fast/vashj_ir_honor_guard.webp"
 };
 
 const trashData = [
@@ -2242,7 +2242,7 @@ function trashPortrait(item) {
   if (!src) {
     return `<div class="mob-portrait portrait-${raidClass} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;
   }
-  return `<div class="mob-portrait portrait-${raidClass}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}"></div>`;
+  return `<div class="mob-portrait portrait-${raidClass}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}" loading="lazy" decoding="async"></div>`;
 }
 
 function auditPanel(item) {
