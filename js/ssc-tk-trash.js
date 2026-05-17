@@ -2203,10 +2203,10 @@ const zoneIcons = {
   "Pre Lurker Platforms": "assets/ui-ej-boss-the-lurker-below.png",
   "Pre Leotheras": "assets/ui-ej-boss-leotheras-the-blind.png",
   "Pre Morogrim": "assets/ui-ej-boss-morogrim-tidewalker.png",
-  "Entrance / Void Reaver Path": "assets/ui-ej-boss-void-reaver.png",
-  "Al'ar Room": "assets/ui-ej-boss-alar.png",
-  "Void Reaver Path": "assets/ui-ej-boss-high-astromancer-solarian.png",
-  "Kael Corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
+  "Entrance / Void Reaver path": "assets/ui-ej-boss-void-reaver.png",
+  "Al'ar room": "assets/ui-ej-boss-alar.png",
+  "Void Reaver path": "assets/ui-ej-boss-high-astromancer-solarian.png",
+  "Kael corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
 };
 
 const zoneLabels = {
@@ -2215,20 +2215,20 @@ const zoneLabels = {
     "Pre Lurker Platforms": "Lurker Platforms",
     "Pre Leotheras": "Leotheras Path",
     "Pre Morogrim": "Morogrim Path",
-    "Entrance / Void Reaver Path": "Void Reaver Path",
-    "Al'ar Room": "Al'ar Room",
-    "Void Reaver Path": "Solarian Path",
-    "Kael Corridor": "Kael Corridor"
+    "Entrance / Void Reaver path": "Void Reaver Path",
+    "Al'ar room": "Al'ar Room",
+    "Void Reaver path": "Solarian Path",
+    "Kael corridor": "Kael Corridor"
   },
   fr: {
     "Pre Hydross": "Chemin Hydross",
     "Pre Lurker Platforms": "Plateformes Lurker",
     "Pre Leotheras": "Chemin Leotheras",
     "Pre Morogrim": "Chemin Morogrim",
-    "Entrance / Void Reaver Path": "Chemin Void Reaver",
-    "Al'ar Room": "Salle Al'ar",
-    "Void Reaver Path": "Chemin Solarian",
-    "Kael Corridor": "Couloir Kael"
+    "Entrance / Void Reaver path": "Chemin Void Reaver",
+    "Al'ar room": "Salle Al'ar",
+    "Void Reaver path": "Chemin Solarian",
+    "Kael corridor": "Couloir Kael"
   }
 };
 
