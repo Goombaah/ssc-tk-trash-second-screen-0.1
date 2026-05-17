@@ -1988,6 +1988,8 @@ const cardsEl = document.querySelector("#cards");
 const filtersEl = document.querySelector("#filters");
 const raidPlatesEl = document.querySelector("#raidPlates");
 const countEl = document.querySelector("#count");
+const mainCountEl = document.querySelector("#mainCount");
+const contentTitleEl = document.querySelector("#contentTitle");
 const searchEl = document.querySelector("#search");
 const zoomSelectEl = document.querySelector("#zoomSelect");
 
@@ -2045,11 +2047,12 @@ function activeRaidMode() {
   if (state.raids.has("SSC") && state.raids.has("TK")) return "ALL";
   if (state.raids.has("SSC")) return "SSC";
   if (state.raids.has("TK")) return "TK";
+  for (const raid of ["HYJAL", "BT", "SUNWELL"]) if (state.raids.has(raid)) return raid;
   return "NONE";
 }
 
 function activeRaidList() {
-  return ["SSC", "TK"].filter((raid) => state.raids.has(raid));
+  return raidCatalog.map((raid) => raid.key).filter((raid) => state.raids.has(raid));
 }
 
 function normalized(text) {
@@ -2295,8 +2298,19 @@ function zoneLabel(zone) {
 
 const raidAllIcons = {
   SSC: "assets/ui-ej-boss-lady-vashj.png",
-  TK: "assets/ui-ej-boss-kaelthas-sunstrider.png"
+  TK: "assets/ui-ej-boss-kaelthas-sunstrider.png",
+  HYJAL: "assets/inv_misc_questionmark.jpg",
+  BT: "assets/inv_misc_questionmark.jpg",
+  SUNWELL: "assets/inv_misc_questionmark.jpg"
 };
+
+const raidCatalog = [
+  { key: "SSC", label: "Serpentshrine Cavern", short: "SSC", status: "live" },
+  { key: "TK", label: "Tempest Keep", short: "TK", status: "live" },
+  { key: "HYJAL", label: "Mount Hyjal", short: "Hyjal", status: "later" },
+  { key: "BT", label: "Black Temple", short: "BT", status: "later" },
+  { key: "SUNWELL", label: "Sunwell Plateau", short: "Sunwell", status: "later" }
+];
 
 function zonesForRaid(raid) {
   const zoneMap = new Map();
@@ -2307,23 +2321,26 @@ function zonesForRaid(raid) {
 }
 
 function renderRaidPlates() {
-  const allZones = ["SSC", "TK"].flatMap((raid) => zonesForRaid(raid));
+  const allZones = raidCatalog.flatMap((raid) => zonesForRaid(raid.key));
   if (state.zone !== "ALL" && !allZones.some(([zone]) => zone === state.zone)) {
     state.zone = "ALL";
   }
 
-  raidPlatesEl.innerHTML = ["SSC", "TK"].map((raid) => {
+  raidPlatesEl.innerHTML = raidCatalog.map((raidInfo) => {
+    const raid = raidInfo.key;
     const active = state.raids.has(raid);
-    const zoneButtons = zonesForRaid(raid).map(([zone, count]) => {
+    const zones = zonesForRaid(raid);
+    const zoneButtons = zones.map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
       return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${escapeHtml(zoneLabel(zone))}</span><span class="zone-count">${count}</span></button>`;
     }).join("");
     const allRaidCount = trashData.filter((item) => item.raid === raid).length;
     const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
+    const placeholder = zones.length ? "" : `<div class="zone-placeholder">Coming later</div>`;
     return `
-      <div class="raid-panel raid-panel-${raid.toLowerCase()} ${active ? "active" : "inactive"}" data-raid-panel="${raid}">
-        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${raid}</span></button>
-        <div class="zone-rail zone-rail-${raid.toLowerCase()}">${allRaidButton}${zoneButtons}</div>
+      <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"}" data-raid-panel="${raid}">
+        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
+        <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + zoneButtons : placeholder}</div>
       </div>
     `;
   }).join("");
@@ -2345,9 +2362,19 @@ function renderCards() {
 
   const items = visibleItems();
   countEl.textContent = `${items.length}/${trashData.length} mobs`;
+  if (mainCountEl) mainCountEl.textContent = String(items.length);
+  if (contentTitleEl) {
+    const activeRaids = activeRaidList();
+    const raidLabel = activeRaids.length
+      ? activeRaids.map((key) => raidCatalog.find((raid) => raid.key === key)?.short || key).join(" + ")
+      : "No raid selected";
+    const zoneText = state.zone === "ALL" ? ui("allZones") : zoneLabel(state.zone);
+    contentTitleEl.textContent = `${raidLabel} - ${zoneText}`;
+  }
 
   if (!items.length) {
-    cardsEl.innerHTML = `<div class="empty">${ui("empty")}</div>`;
+    const hasFutureRaid = activeRaidList().some((raid) => !["SSC", "TK"].includes(raid));
+    cardsEl.innerHTML = `<div class="empty ${hasFutureRaid ? "coming-later" : ""}">${hasFutureRaid ? "Coming later - raid placeholder ready for future trash data." : ui("empty")}</div>`;
     return;
   }
 
