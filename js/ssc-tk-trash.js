@@ -2189,6 +2189,33 @@ function richText(text) {
   return html;
 }
 
+const lineBreakMobs = new Set([
+  "Underbog Colossus",
+  "Star Scryer",
+  "Tempest-Smith",
+  "Crimson Hand Battle Mage"
+]);
+
+function formattedCardText(text, item) {
+  const originalMob = item.originalMob || item.mob;
+  if (!lineBreakMobs.has(originalMob)) return escapeHtml(text);
+  const lines = String(text)
+    .replace(/;\s+/g, "\n")
+    .replace(/\s+(B:)/g, "\n$1")
+    .replace(/\s+(C:)/g, "\n$1")
+    .replace(/\s+(If not MC'd:)/i, "\n$1")
+    .replace(/\s+(Si pas MC:)/i, "\n$1")
+    .replace(/Death roll:\s*/i, "Death roll:\n")
+    .replace(/Mort:\s*/i, "Mort:\n")
+    .replace(/\s+\/\s+(2 Ragers|many adds|mana mushroom|beaucoup d'adds|mana)/i, "\n/ $1")
+    .replace(/\s+(and use its golem tools\.?)/i, "\n$1")
+    .replace(/\s+(et utiliser ses outils golem\.?)/i, "\n$1")
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  return `<span class="text-lines">${lines.map((line) => `<span class="text-line">${escapeHtml(line)}</span>`).join("")}</span>`;
+}
+
 function tagPills(tags) {
   const labels = t().tagLabels;
   return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${tagButtonContent(tag, labels[tag] || tag)}</span>`).join("");
@@ -2388,7 +2415,7 @@ function renderCards() {
       <div class="section-title">${raid} <span>${raidItems.length} ${ui("visibleCards")}</span></div>
       <div class="cards">
         ${raidItems.map((item) => `
-          <article class="card ${item.priority} ${item.spellGroups?.length > 2 ? "card-complex" : ""}">
+          <article class="card ${item.priority} ${item.spellGroups?.length > 2 ? "card-complex" : ""} ${lineBreakMobs.has(item.originalMob || item.mob) ? "card-checklist" : ""}">
             ${trashPortrait(item)}
             <div class="card-main">
               <div class="card-head">
@@ -2403,14 +2430,14 @@ function renderCards() {
                 <div class="info-panels">
                   <section class="info-panel danger-panel">
                     <div class="panel-label">DANGER</div>
-                    <div class="panel-text">${escapeHtml(item.danger)}</div>
+                    <div class="panel-text">${formattedCardText(item.danger, item)}</div>
                   </section>
                   <section class="info-panel call-panel">
                     <div class="panel-label">CALL</div>
-                    <div class="panel-text">${escapeHtml(item.call)}</div>
+                    <div class="panel-text">${formattedCardText(item.call, item)}</div>
                   </section>
                 </div>
-                <div class="tank-note"><span>T</span><b>${escapeHtml(item.tank)}</b></div>
+                <div class="tank-note"><span>T</span><b>${formattedCardText(item.tank, item)}</b></div>
                 <div class="spell-row">${renderSpellBlock(item)}</div>
               </div>
               ${auditPanel(item)}

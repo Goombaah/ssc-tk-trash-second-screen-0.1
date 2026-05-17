@@ -1205,7 +1205,7 @@ body.ultra .cards { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
   font-weight: 800;
 }
 
-.tank-note span {
+.tank-note > span {
   display: inline-grid;
   place-items: center;
   height: 18px;
@@ -2393,6 +2393,20 @@ body {
 .tagbar {
   max-height: none;
   overflow: visible;
+}
+
+.card-checklist .text-lines {
+  display: grid;
+  gap: 2px;
+}
+
+.card-checklist .text-line {
+  display: block;
+}
+
+.card-checklist .panel-text,
+.card-checklist .tank-note b {
+  line-height: 1.18;
 }
 
 body.compact .cards {
