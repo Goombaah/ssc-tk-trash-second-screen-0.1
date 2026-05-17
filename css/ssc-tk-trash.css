@@ -295,6 +295,7 @@ body.raid-all .topbar::after {
     linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,0)),
     #05080a;
   box-shadow: inset 0 0 0 1px #000;
+  cursor: pointer;
 }
 
 .raid-panel.inactive {
@@ -394,10 +395,10 @@ body.raid-all .raid-plate {
 .zone-rail {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   min-width: 0;
   overflow-x: auto;
-  padding: 6px;
+  padding: 7px 8px 8px;
   background:
     linear-gradient(90deg, rgba(255,255,255,.045), transparent 24%),
     #070a0d;
@@ -405,52 +406,73 @@ body.raid-all .raid-plate {
 }
 
 .zone-rail button {
-  min-height: 28px;
-  display: inline-flex;
+  position: relative;
+  min-width: 142px;
+  min-height: 70px;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: 1fr auto;
   align-items: center;
-  gap: 5px;
-  padding: 3px 8px;
-  border-color: #40351f;
-  background: linear-gradient(180deg, #121820, #080b0f);
-  color: #c9bea8;
-  font-size: 11px;
+  gap: 4px 8px;
+  padding: 7px 9px 7px 7px;
+  border: 1px solid #4d3719;
+  background:
+    linear-gradient(180deg, rgba(255,220,130,.11), rgba(0,0,0,0) 42%),
+    radial-gradient(circle at 28px 24px, rgba(255,255,255,.08), transparent 42px),
+    linear-gradient(180deg, #15120d, #070605);
+  color: #ffe083;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.08;
   text-transform: uppercase;
+  text-align: left;
   cursor: pointer;
+  box-shadow: inset 0 0 0 1px #000, 0 1px 0 #000;
 }
 
 .zone-rail button.active {
   border-color: var(--orange);
-  background: #332313;
-  box-shadow: inset 0 0 0 1px rgba(255,157,46,.35);
+  background:
+    linear-gradient(180deg, rgba(255,220,130,.2), rgba(0,0,0,0) 45%),
+    linear-gradient(180deg, #34200d, #090705);
+  box-shadow: inset 0 0 0 1px rgba(255,157,46,.45), 0 0 12px rgba(255,157,46,.16);
 }
 
-.zone-rail button:disabled {
-  cursor: default;
-  opacity: .46;
+.raid-panel.inactive .zone-rail button {
+  opacity: .54;
   filter: grayscale(.75);
 }
 
 .zone-rail .zone-count {
-  color: var(--muted);
-  margin-left: 1px;
+  position: absolute;
+  right: 6px;
+  bottom: 5px;
+  min-width: 18px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.55);
+  color: #b8c7d8;
+  font-size: 10px;
+  line-height: 1;
 }
 
 .zone-icon {
-  width: 19px;
-  height: 19px;
-  object-fit: cover;
-  border: 1px solid #1c242d;
-  box-shadow: 0 1px 2px #000;
+  grid-row: 1 / span 2;
+  width: 64px;
+  height: 54px;
+  object-fit: contain;
+  border: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 2px #000);
 }
 
-.zone-icon-all {
-  display: inline-grid;
-  place-items: center;
-  width: 24px;
-  color: #ffcf73;
-  background: #140e07;
-  font-size: 9px;
-  font-weight: 950;
+.zone-label {
+  align-self: center;
+  color: #ffe083;
+  text-shadow: 0 2px 1px #000;
 }
 
 .statusline {

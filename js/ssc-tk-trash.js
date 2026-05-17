@@ -2209,6 +2209,11 @@ const zoneIcons = {
   "Kael Corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
 };
 
+const raidAllIcons = {
+  SSC: "assets/ui-ej-boss-lady-vashj.png",
+  TK: "assets/ui-ej-boss-kaelthas-sunstrider.png"
+};
+
 function zonesForRaid(raid) {
   const zoneMap = new Map();
   trashData
@@ -2227,12 +2232,12 @@ function renderRaidPlates() {
     const active = state.raids.has(raid);
     const zoneButtons = zonesForRaid(raid).map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
-      return `<button data-zone="${escapeHtml(zone)}" class="${state.zone === zone ? "active" : ""}" ${active ? "" : "disabled"}><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt="">${zone} <span class="zone-count">${count}</span></button>`;
+      return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${zone}</span><span class="zone-count">${count}</span></button>`;
     }).join("");
     const allRaidCount = trashData.filter((item) => item.raid === raid).length;
-    const allRaidButton = `<button data-zone="ALL" class="${state.zone === "ALL" ? "active" : ""}" ${active ? "" : "disabled"}><span class="zone-icon zone-icon-all">${raid}</span>${ui("allZones")} <span class="zone-count">${allRaidCount}</span></button>`;
+    const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
     return `
-      <div class="raid-panel raid-panel-${raid.toLowerCase()} ${active ? "active" : "inactive"}">
+      <div class="raid-panel raid-panel-${raid.toLowerCase()} ${active ? "active" : "inactive"}" data-raid-panel="${raid}">
         <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${raid}</span></button>
         <div class="zone-rail zone-rail-${raid.toLowerCase()}">${allRaidButton}${zoneButtons}</div>
       </div>
@@ -2322,12 +2327,19 @@ filtersEl.addEventListener("click", (event) => {
 });
 
 raidPlatesEl.addEventListener("click", (event) => {
-  const raidToggle = event.target.closest("[data-raid-toggle]");
-  if (raidToggle) return;
   const btn = event.target.closest("[data-zone]");
-  if (!btn) return;
-  if (btn.disabled) return;
-  state.zone = btn.dataset.zone;
+  if (btn) {
+    const panel = btn.closest("[data-raid-panel]");
+    if (panel) state.raids.add(panel.dataset.raidPanel);
+    state.zone = btn.dataset.zone;
+    save();
+    renderCards();
+    return;
+  }
+  const panel = event.target.closest("[data-raid-panel]");
+  if (!panel) return;
+  const raidName = panel.dataset.raidPanel;
+  state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
   save();
   renderCards();
 });
@@ -2337,7 +2349,7 @@ document.addEventListener("click", (event) => {
   const mode = event.target.closest("[data-mode]");
   const single = event.target.closest("[data-single]");
   const langChoice = event.target.closest("[data-lang-choice]");
-  if (raid) {
+  if (raid && !raidPlatesEl.contains(raid)) {
     const raidName = raid.dataset.raidToggle;
     state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
   }
