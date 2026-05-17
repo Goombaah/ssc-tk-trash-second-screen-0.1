@@ -1654,6 +1654,29 @@ body.ultra .portrait-kind-massive img {
   transform: none;
 }
 
+/* Portrait zoom only: keep frames/cards untouched, enlarge the mob render inside. */
+.mob-portrait img,
+.portrait-kind-humanoid img,
+.portrait-kind-wide img,
+.portrait-kind-massive img {
+  transform: scale(1.22);
+  transform-origin: center center;
+}
+
+body.compact .mob-portrait img,
+body.compact .portrait-kind-humanoid img,
+body.compact .portrait-kind-wide img,
+body.compact .portrait-kind-massive img {
+  transform: scale(1.18);
+}
+
+body.ultra .mob-portrait img,
+body.ultra .portrait-kind-humanoid img,
+body.ultra .portrait-kind-wide img,
+body.ultra .portrait-kind-massive img {
+  transform: scale(1.12);
+}
+
 .portrait-ssc,
 .portrait-tk {
   background: #020203;
