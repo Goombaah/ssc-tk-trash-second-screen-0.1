@@ -1953,7 +1953,7 @@ const state = {
 
 const cardsEl = document.querySelector("#cards");
 const filtersEl = document.querySelector("#filters");
-const zoneFiltersEl = document.querySelector("#zoneFilters");
+const raidPlatesEl = document.querySelector("#raidPlates");
 const countEl = document.querySelector("#count");
 const searchEl = document.querySelector("#search");
 const zoomSelectEl = document.querySelector("#zoomSelect");
@@ -2199,14 +2199,14 @@ function renderFilters() {
 }
 
 const zoneIcons = {
-  "Pre Hydross": "assets/spell_frost_frostshock.jpg",
-  "Pre Lurker Platforms": "assets/spell_nature_corrosivebreath.jpg",
-  "Pre Leotheras": "assets/spell_shadow_shadowfury.jpg",
-  "Pre Morogrim": "assets/spell_frost_icestorm.jpg",
-  "Entrance / Void Reaver Path": "assets/spell_arcane_blast.jpg",
-  "Al'ar Room": "assets/spell_fire_fireball02.jpg",
-  "Void Reaver Path": "assets/inv_gizmo_03.jpg",
-  "Kael Corridor": "assets/spell_fire_sealoffire.jpg"
+  "Pre Hydross": "assets/ui-ej-boss-hydross-the-unstable.png",
+  "Pre Lurker Platforms": "assets/ui-ej-boss-the-lurker-below.png",
+  "Pre Leotheras": "assets/ui-ej-boss-leotheras-the-blind.png",
+  "Pre Morogrim": "assets/ui-ej-boss-morogrim-tidewalker.png",
+  "Entrance / Void Reaver Path": "assets/ui-ej-boss-void-reaver.png",
+  "Al'ar Room": "assets/ui-ej-boss-alar.png",
+  "Void Reaver Path": "assets/ui-ej-boss-high-astromancer-solarian.png",
+  "Kael Corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
 };
 
 function zonesForRaid(raid) {
@@ -2217,24 +2217,27 @@ function zonesForRaid(raid) {
   return [...zoneMap.entries()];
 }
 
-function renderZoneFilters() {
-  const visibleRaids = activeRaidList();
-  const zones = visibleRaids.flatMap((raid) => zonesForRaid(raid));
-  if (state.zone !== "ALL" && !zones.some(([zone]) => zone === state.zone)) {
+function renderRaidPlates() {
+  const allZones = ["SSC", "TK"].flatMap((raid) => zonesForRaid(raid));
+  if (state.zone !== "ALL" && !allZones.some(([zone]) => zone === state.zone)) {
     state.zone = "ALL";
   }
 
-  const groups = visibleRaids.map((raid) => {
+  raidPlatesEl.innerHTML = ["SSC", "TK"].map((raid) => {
+    const active = state.raids.has(raid);
     const zoneButtons = zonesForRaid(raid).map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
-      return `<button data-zone="${escapeHtml(zone)}" class="${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt="">${zone} <span class="zone-count">${count}</span></button>`;
+      return `<button data-zone="${escapeHtml(zone)}" class="${state.zone === zone ? "active" : ""}" ${active ? "" : "disabled"}><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt="">${zone} <span class="zone-count">${count}</span></button>`;
     }).join("");
     const allRaidCount = trashData.filter((item) => item.raid === raid).length;
-    const allRaidButton = `<button data-zone="ALL" class="${state.zone === "ALL" ? "active" : ""}"><span class="zone-icon zone-icon-all">${raid}</span>${ui("allZones")} <span class="zone-count">${allRaidCount}</span></button>`;
-    return `<div class="zone-rail zone-rail-${raid.toLowerCase()}"><div class="zone-rail-title">${raid}</div>${allRaidButton}${zoneButtons}</div>`;
+    const allRaidButton = `<button data-zone="ALL" class="${state.zone === "ALL" ? "active" : ""}" ${active ? "" : "disabled"}><span class="zone-icon zone-icon-all">${raid}</span>${ui("allZones")} <span class="zone-count">${allRaidCount}</span></button>`;
+    return `
+      <div class="raid-panel raid-panel-${raid.toLowerCase()} ${active ? "active" : "inactive"}">
+        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${raid}</span></button>
+        <div class="zone-rail zone-rail-${raid.toLowerCase()}">${allRaidButton}${zoneButtons}</div>
+      </div>
+    `;
   }).join("");
-
-  zoneFiltersEl.innerHTML = groups || `<div class="zone-rail"><div class="zone-rail-title">NO RAID</div></div>`;
 }
 
 function renderCards() {
@@ -2248,7 +2251,7 @@ function renderCards() {
   document.querySelectorAll("[data-mode]").forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === state.mode));
   document.querySelector(".danger-toggle").classList.toggle("active", state.dangerOnly);
   document.querySelector("#auditOnly").classList.toggle("active", state.auditOnly);
-  document.querySelectorAll("[data-raid-toggle]").forEach((btn) => btn.classList.toggle("active", state.raids.has(btn.dataset.raidToggle)));
+  renderRaidPlates();
 
   const items = visibleItems();
   countEl.textContent = `${items.length}/${trashData.length} mobs`;
@@ -2318,12 +2321,14 @@ filtersEl.addEventListener("click", (event) => {
   renderCards();
 });
 
-zoneFiltersEl.addEventListener("click", (event) => {
+raidPlatesEl.addEventListener("click", (event) => {
+  const raidToggle = event.target.closest("[data-raid-toggle]");
+  if (raidToggle) return;
   const btn = event.target.closest("[data-zone]");
   if (!btn) return;
+  if (btn.disabled) return;
   state.zone = btn.dataset.zone;
   save();
-  renderZoneFilters();
   renderCards();
 });
 
@@ -2355,7 +2360,6 @@ document.addEventListener("click", (event) => {
   if (single) copyText(single.dataset.single);
   save();
   renderFilters();
-  renderZoneFilters();
   renderCards();
 });
 
@@ -2395,7 +2399,6 @@ document.addEventListener("keydown", (event) => {
   if (key === "f") document.body.classList.toggle("fullscreen");
   save();
   renderFilters();
-  renderZoneFilters();
   renderCards();
 });
 
@@ -2444,5 +2447,4 @@ document.addEventListener("focusout", (event) => {
 });
 
 renderFilters();
-renderZoneFilters();
 renderCards();
