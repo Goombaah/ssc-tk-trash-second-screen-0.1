@@ -117,7 +117,7 @@ const i18n = {
       "auditOnly": "Audit ?",
       "reset": "Reset",
       "keys": "Keys: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L language",
-      "allZones": "All pre",
+      "allZones": "All trash",
       "empty": "No visible cards. Reset filters or change search.",
       "visibleCards": "visible cards",
       "raidLabel": "Raid",
@@ -247,7 +247,7 @@ const i18n = {
       "auditOnly": "Audit ?",
       "reset": "Reset",
       "keys": "Touches: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L langue",
-      "allZones": "Toutes zones",
+      "allZones": "Tous trash",
       "empty": "Aucune carte visible. Reset filtres ou change la recherche.",
       "visibleCards": "cartes visibles",
       "raidLabel": "Call",
@@ -2192,9 +2192,9 @@ function syncStaticText() {
 
 function renderFilters() {
   const labels = t().tagLabels;
-  filtersEl.innerHTML = Object.entries(labels)
-    .filter(([key]) => ["focus", "kick", "sheep", "stopcc", "los", "fear", "enemy-mc", "priest-mc", "banish", "cleave", "aoe", "tank", "ranged"].includes(key))
-    .map(([key, label]) => `<button data-tag="${key}" class="${state.tags.has(key) ? "active" : ""}">${tagButtonContent(key, label)}</button>`)
+  const filterOrder = ["focus", "kick", "stopcc", "sheep", "banish", "enemy-mc", "priest-mc", "tank", "los", "fear", "cleave", "aoe", "ranged"];
+  filtersEl.innerHTML = filterOrder
+    .map((key) => `<button data-tag="${key}" class="${state.tags.has(key) ? "active" : ""}">${tagButtonContent(key, labels[key] || key)}</button>`)
     .join("");
 }
 
@@ -2208,6 +2208,33 @@ const zoneIcons = {
   "Void Reaver Path": "assets/ui-ej-boss-high-astromancer-solarian.png",
   "Kael Corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
 };
+
+const zoneLabels = {
+  en: {
+    "Pre Hydross": "Hydross Path",
+    "Pre Lurker Platforms": "Lurker Platforms",
+    "Pre Leotheras": "Leotheras Path",
+    "Pre Morogrim": "Morogrim Path",
+    "Entrance / Void Reaver Path": "Void Reaver Path",
+    "Al'ar Room": "Al'ar Room",
+    "Void Reaver Path": "Solarian Path",
+    "Kael Corridor": "Kael Corridor"
+  },
+  fr: {
+    "Pre Hydross": "Chemin Hydross",
+    "Pre Lurker Platforms": "Plateformes Lurker",
+    "Pre Leotheras": "Chemin Leotheras",
+    "Pre Morogrim": "Chemin Morogrim",
+    "Entrance / Void Reaver Path": "Chemin Void Reaver",
+    "Al'ar Room": "Salle Al'ar",
+    "Void Reaver Path": "Chemin Solarian",
+    "Kael Corridor": "Couloir Kael"
+  }
+};
+
+function zoneLabel(zone) {
+  return zoneLabels[state.lang]?.[zone] || zoneLabels.en[zone] || zone;
+}
 
 const raidAllIcons = {
   SSC: "assets/ui-ej-boss-lady-vashj.png",
@@ -2232,7 +2259,7 @@ function renderRaidPlates() {
     const active = state.raids.has(raid);
     const zoneButtons = zonesForRaid(raid).map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
-      return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${zone}</span><span class="zone-count">${count}</span></button>`;
+      return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${escapeHtml(zoneLabel(zone))}</span><span class="zone-count">${count}</span></button>`;
     }).join("");
     const allRaidCount = trashData.filter((item) => item.raid === raid).length;
     const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
