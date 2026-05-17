@@ -539,7 +539,7 @@ body.raid-all .raid-plate {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
   gap: 12px;
   align-items: start;
 }
@@ -553,6 +553,7 @@ body.raid-all .raid-plate {
     var(--panel);
   box-shadow: 0 5px 18px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.025);
   display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
   grid-template-rows: auto auto auto;
 }
 
@@ -561,7 +562,72 @@ body.raid-all .raid-plate {
 .card.yellow { border-left-color: var(--yellow); }
 .card.green { border-left-color: var(--green); }
 
+.mob-portrait {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: stretch;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 186px;
+  margin: 8px 0 8px 8px;
+  overflow: hidden;
+  border: 1px solid #5a4527;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,218,123,.16), transparent 43%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,0) 44%),
+    #06090d;
+  box-shadow: inset 0 0 0 1px #000, 0 4px 10px rgba(0,0,0,.38);
+}
+
+.mob-portrait img {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 4px 5px rgba(0,0,0,.75));
+}
+
+.portrait-ssc {
+  border-color: rgba(51,215,197,.45);
+  background:
+    radial-gradient(circle at 50% 34%, rgba(51,215,197,.18), transparent 43%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,0) 44%),
+    #041214;
+}
+
+.portrait-tk {
+  border-color: rgba(240,181,90,.48);
+  background:
+    radial-gradient(circle at 50% 34%, rgba(240,181,90,.18), transparent 43%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(0,0,0,0) 44%),
+    #120b17;
+}
+
+.mob-portrait.no-image {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  color: #ffd36b;
+  text-transform: uppercase;
+}
+
+.portrait-initials {
+  font-size: 31px;
+  font-weight: 950;
+  text-shadow: 0 2px 0 #000;
+}
+
+.mob-portrait small {
+  color: #9ba7b4;
+  font-size: 9px;
+  font-weight: 900;
+}
+
 .card-head {
+  grid-column: 2;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 8px;
@@ -614,6 +680,7 @@ body.raid-all .raid-plate {
 .marker-skull { background-position: 100% 100%; }
 
 .card-body {
+  grid-column: 2;
   padding: 10px 11px 9px;
   display: grid;
   gap: 10px;
@@ -792,6 +859,7 @@ body.raid-all .raid-plate {
 }
 
 .tagbar {
+  grid-column: 2;
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
@@ -799,6 +867,7 @@ body.raid-all .raid-plate {
 }
 
 .audit-panel {
+  grid-column: 2;
   margin: 0 9px 8px;
   padding: 7px 8px;
   border: 1px solid #35414d;
@@ -898,13 +967,17 @@ body.raid-all .raid-plate {
   text-align: center;
 }
 
-body.compact .cards { grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); }
+body.compact .cards { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+body.compact .card { grid-template-columns: 76px minmax(0, 1fr); }
+body.compact .mob-portrait { min-height: 116px; margin: 6px 0 6px 6px; }
 body.compact .card-body { gap: 4px; padding: 6px 8px; }
 body.compact .mob { font-size: 19px; }
 body.compact .quick-grid, body.compact .spell-row { display: none; }
 body.compact .quick-call { font-size: 15px; }
 body.compact .tagbar { padding-bottom: 6px; }
 body.ultra .quick-grid, body.ultra .tagbar, body.ultra .spell-row { display: none; }
+body.ultra .card { grid-template-columns: 46px minmax(0, 1fr); }
+body.ultra .mob-portrait { min-height: 64px; margin: 5px 0 5px 5px; }
 body.ultra .mob { font-size: 18px; }
 body.ultra .quick-call { font-size: 14px; }
 body.ultra .cards { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }

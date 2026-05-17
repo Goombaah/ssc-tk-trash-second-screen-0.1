@@ -1,0 +1,212 @@
+﻿[
+    {
+        "mob":  "Coilfang Beast-Tamer",
+        "id":  21221,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_beast_tamer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28936-coilfang-beast-tamer.jpg"
+    },
+    {
+        "mob":  "Coilfang Hate-Screamer",
+        "id":  21339,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_hate_screamer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28937-coilfang-hate-screamer.jpg"
+    },
+    {
+        "mob":  "Serpentshrine Sporebat",
+        "id":  21246,
+        "source":  "wowhead",
+        "file":  "assets/trash/serpentshrine_sporebat.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/26517-serpentshrine-sporebat.jpg"
+    },
+    {
+        "mob":  "Underbog Colossus",
+        "id":  21251,
+        "source":  "wowhead",
+        "file":  "assets/trash/underbog_colossus.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28938-underbog-colossus.jpg"
+    },
+    {
+        "mob":  "Vashj\u0027ir Honor Guard",
+        "id":  21218,
+        "source":  "wowhead",
+        "file":  "assets/trash/vashj_ir_honor_guard.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28940-vashjir-honor-guard.jpg"
+    },
+    {
+        "mob":  "Coilfang Priestess",
+        "id":  21220,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_priestess.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28942-coilfang-priestess.jpg"
+    },
+    {
+        "mob":  "Coilfang Shatterer",
+        "id":  21301,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_shatterer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28941-coilfang-shatterer.jpg"
+    },
+    {
+        "mob":  "Greyheart Tidecaller",
+        "id":  21229,
+        "source":  "wowhead",
+        "file":  "assets/trash/greyheart_tidecaller.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/37966-greyheart-tidecaller.jpg"
+    },
+    {
+        "mob":  "Greyheart Nether-Mage",
+        "id":  21230,
+        "source":  "wowhead",
+        "file":  "assets/trash/greyheart_nether_mage.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28944-greyheart-nether-mage.jpg"
+    },
+    {
+        "mob":  "Greyheart Skulker",
+        "id":  21232,
+        "source":  "wowhead",
+        "file":  "assets/trash/greyheart_skulker.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28945-greyheart-skulker.jpg"
+    },
+    {
+        "mob":  "Greyheart Shield-Bearer",
+        "id":  21231,
+        "source":  "wowhead",
+        "file":  "assets/trash/greyheart_shield_bearer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28958-greyheart-shield-bearer.jpg"
+    },
+    {
+        "mob":  "Serpentshrine Lurker",
+        "id":  21863,
+        "source":  "wowhead",
+        "file":  "assets/trash/serpentshrine_lurker.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28960-serpentshrine-lurker.jpg"
+    },
+    {
+        "mob":  "Coilfang Fathom-Witch",
+        "id":  21299,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_fathom_witch.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28946-coilfang-fathom-witch.jpg"
+    },
+    {
+        "mob":  "Coilfang Serpentguard",
+        "id":  21298,
+        "source":  "wowhead",
+        "file":  "assets/trash/coilfang_serpentguard.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28943-coilfang-serpentguard.jpg"
+    },
+    {
+        "mob":  "Tidewalker Warrior",
+        "id":  21225,
+        "source":  "wowhead",
+        "file":  "assets/trash/tidewalker_warrior.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28947-tidewalker-warrior.jpg"
+    },
+    {
+        "mob":  "Tidewalker Hydromancer",
+        "id":  21228,
+        "source":  "wowhead",
+        "file":  "assets/trash/tidewalker_hydromancer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28952-tidewalker-hydromancer.jpg"
+    },
+    {
+        "mob":  "Tidewalker Depth-Seer",
+        "id":  21224,
+        "source":  "wowhead",
+        "file":  "assets/trash/tidewalker_depth_seer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28950-tidewalker-depth-seer.jpg"
+    },
+    {
+        "mob":  "Tidewalker Shaman",
+        "id":  21226,
+        "source":  "wowhead",
+        "file":  "assets/trash/tidewalker_shaman.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28949-tidewalker-shaman.jpg"
+    },
+    {
+        "mob":  "Astromancer",
+        "id":  20033,
+        "source":  "wowhead",
+        "file":  "assets/trash/astromancer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28967-astromancer.jpg"
+    },
+    {
+        "mob":  "Star Scryer",
+        "id":  20034,
+        "source":  "wowhead",
+        "file":  "assets/trash/star_scryer.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28963-star-scryer.jpg"
+    },
+    {
+        "mob":  "Bloodwarder Marshal",
+        "id":  20035,
+        "source":  "wowhead",
+        "file":  "assets/trash/bloodwarder_marshal.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/55684-bloodwarder-marshal.jpg"
+    },
+    {
+        "mob":  "Phoenix-Hawk Hatchling",
+        "id":  20038,
+        "source":  "wowhead",
+        "file":  "assets/trash/phoenix_hawk_hatchling.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/1194012-phoenix-hawk-hatchling.jpg"
+    },
+    {
+        "mob":  "Phoenix-Hawk",
+        "id":  20039,
+        "source":  "wowhead",
+        "file":  "assets/trash/phoenix_hawk.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/28968-phoenix-hawk.jpg"
+    },
+    {
+        "mob":  "Crystalcore Devastator",
+        "id":  20040,
+        "source":  "wowhead",
+        "file":  "assets/trash/crystalcore_devastator.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/46895-crystalcore-devastator.jpg"
+    },
+    {
+        "mob":  "Crystalcore Sentinel",
+        "id":  20041,
+        "source":  "wowhead",
+        "file":  "assets/trash/crystalcore_sentinel.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/46897-crystalcore-sentinel.jpg"
+    },
+    {
+        "mob":  "Crystalcore Mechanic",
+        "id":  20052,
+        "source":  "wowhead",
+        "file":  "assets/trash/crystalcore_mechanic.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/46893-crystalcore-mechanic.jpg"
+    },
+    {
+        "mob":  "Tempest-Smith",
+        "id":  20042,
+        "source":  "wowhead",
+        "file":  "assets/trash/tempest_smith.png",
+        "imageUrl":  "https://wow.zamimg.com/uploads/screenshots/normal/47185-tempest-smith.jpg"
+    },
+    {
+        "mob":  "Crimson Hand Blood Knight",
+        "id":  20049,
+        "source":  "placeholder",
+        "file":  "assets/trash/crimson_hand_blood_knight.png",
+        "imageUrl":  "https://wow.zamimg.com/images/logos/share-icon.png"
+    },
+    {
+        "mob":  "Crimson Hand Battle Mage",
+        "id":  20047,
+        "source":  "placeholder",
+        "file":  "assets/trash/crimson_hand_battle_mage.png",
+        "imageUrl":  "https://wow.zamimg.com/images/logos/share-icon.png"
+    },
+    {
+        "mob":  "Crimson Hand Centurion",
+        "id":  20048,
+        "source":  "custom",
+        "file":  "assets/trash/crimson_hand_centurion.png",
+        "imageUrl":  "https://wow.zamimg.com/images/logos/share-icon.png"
+    }
+]

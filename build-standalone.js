@@ -11,14 +11,22 @@ function dataUri(filePath) {
   return `data:${mime[path.extname(filePath)]};base64,${fs.readFileSync(filePath).toString("base64")}`;
 }
 
+function assetFiles(dir = "assets") {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const filePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return assetFiles(filePath);
+    return mime[path.extname(entry.name)] ? [filePath] : [];
+  });
+}
+
 let html = fs.readFileSync("SSC_TK_TRASH_SECOND_SCREEN.html", "utf8");
 let css = fs.readFileSync(path.join("css", "ssc-tk-trash.css"), "utf8");
 let js = fs.readFileSync(path.join("js", "ssc-tk-trash.js"), "utf8");
 
 const embeddedIcons = {};
-for (const fileName of fs.readdirSync("assets")) {
-  if (fileName.endsWith(".jpg")) {
-    embeddedIcons[path.basename(fileName, ".jpg")] = dataUri(path.join("assets", fileName));
+for (const filePath of assetFiles()) {
+  if (path.dirname(filePath) === "assets" && filePath.endsWith(".jpg")) {
+    embeddedIcons[path.basename(filePath, ".jpg")] = dataUri(filePath);
   }
 }
 
@@ -27,12 +35,12 @@ js = js.replace(
   `const embeddedIcons = ${JSON.stringify(embeddedIcons)};\nconst icon = (name) => embeddedIcons[name];`
 );
 
-for (const fileName of fs.readdirSync("assets")) {
-  if (!mime[path.extname(fileName)]) continue;
-  const uri = dataUri(path.join("assets", fileName));
-  css = css.replaceAll(`../assets/${fileName}`, uri);
-  js = js.replaceAll(`assets/${fileName}`, uri);
-  html = html.replaceAll(`assets/${fileName}`, uri);
+for (const filePath of assetFiles()) {
+  const uri = dataUri(filePath);
+  const webPath = filePath.split(path.sep).join("/");
+  css = css.replaceAll(`../${webPath}`, uri);
+  js = js.replaceAll(webPath, uri);
+  html = html.replaceAll(webPath, uri);
 }
 
 html = html.replace(
