@@ -2361,7 +2361,7 @@ function renderCards() {
       <div class="section-title">${raid} <span>${raidItems.length} ${ui("visibleCards")}</span></div>
       <div class="cards">
         ${raidItems.map((item) => `
-          <article class="card ${item.priority}">
+          <article class="card ${item.priority} ${item.spellGroups?.length > 2 ? "card-complex" : ""}">
             ${trashPortrait(item)}
             <div class="card-main">
               <div class="card-head">

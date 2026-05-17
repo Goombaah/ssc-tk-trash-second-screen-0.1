@@ -1815,6 +1815,182 @@ body.ultra .panel-text {
   overflow: hidden;
 }
 
+/* V0.5.1: Detailed uses natural card height; fast modes keep fixed heights. */
+:root {
+  --card-height: auto;
+  --portrait-width: 116px;
+  --portrait-height: 260px;
+}
+
+body.audit {
+  --card-height: auto;
+  --portrait-width: 136px;
+  --portrait-height: 320px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.card,
+.card.portrait-card-wide,
+.card.portrait-card-massive {
+  flex: 1 1 430px;
+  max-width: calc((100% - 36px) / 4);
+  height: auto;
+  min-height: 302px;
+  grid-template-rows: auto;
+  align-items: start;
+  overflow: hidden;
+}
+
+.card.card-complex {
+  flex-basis: 620px;
+  max-width: calc((100% - 24px) / 3);
+}
+
+.card-main {
+  height: auto;
+  min-height: 302px;
+  grid-template-rows: auto auto auto auto;
+}
+
+.mob-portrait,
+.portrait-kind-humanoid,
+.portrait-kind-wide,
+.portrait-kind-massive,
+body.audit .mob-portrait,
+body.audit .portrait-kind-wide,
+body.audit .portrait-kind-massive {
+  height: var(--portrait-height);
+  max-height: var(--portrait-height);
+  align-self: start;
+  margin-top: 12px;
+}
+
+.card-head {
+  min-height: 0;
+  max-height: none;
+}
+
+.card-body {
+  overflow: visible;
+}
+
+.spell-row {
+  max-height: none;
+  overflow: visible;
+}
+
+.card-complex .spell-group {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.card-complex .spell-group-body {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.card-complex .spell {
+  white-space: nowrap;
+}
+
+.tagbar {
+  min-height: 38px;
+  max-height: none;
+  overflow: visible;
+}
+
+body.compact .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
+}
+
+body.compact .card,
+body.compact .card.portrait-card-wide,
+body.compact .card.portrait-card-massive,
+body.compact .card.card-complex {
+  max-width: none;
+  height: var(--card-height);
+  min-height: 0;
+  align-items: stretch;
+  grid-template-rows: 1fr;
+}
+
+body.compact .card-main {
+  height: 100%;
+  min-height: 0;
+}
+
+body.compact .mob-portrait,
+body.compact .portrait-kind-wide,
+body.compact .portrait-kind-massive {
+  align-self: center;
+  margin-top: 0;
+}
+
+body.ultra .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+}
+
+body.ultra .card,
+body.ultra .card.portrait-card-wide,
+body.ultra .card.portrait-card-massive,
+body.ultra .card.card-complex {
+  max-width: none;
+  height: var(--card-height);
+  min-height: 0;
+  align-items: stretch;
+  grid-template-rows: 1fr;
+}
+
+body.ultra .card-main {
+  height: 100%;
+  min-height: 0;
+}
+
+body.ultra .mob-portrait,
+body.ultra .portrait-kind-wide,
+body.ultra .portrait-kind-massive {
+  align-self: center;
+  margin-top: 0;
+}
+
+@media (max-width: 1700px) {
+  .card,
+  .card.portrait-card-wide,
+  .card.portrait-card-massive,
+  .card.card-complex {
+    max-width: calc((100% - 24px) / 3);
+  }
+}
+
+@media (max-width: 1180px) {
+  .card,
+  .card.portrait-card-wide,
+  .card.portrait-card-massive,
+  .card.card-complex {
+    max-width: calc((100% - 12px) / 2);
+  }
+
+  .card-complex .spell-group-body {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 760px) {
+  .card,
+  .card.portrait-card-wide,
+  .card.portrait-card-massive,
+  .card.card-complex {
+    max-width: none;
+  }
+}
+
 body.fullscreen .topbar, body.fullscreen .subbar { opacity: .18; transition: opacity .12s; }
 body.fullscreen .topbar:hover, body.fullscreen .subbar:hover { opacity: 1; }
 
