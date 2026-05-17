@@ -346,36 +346,36 @@ const guideSpellIcons = {
 };
 
 const trashImages = {
-  "Astromancer": "assets/trash/astromancer.png",
-  "Bloodwarder Marshal": "assets/trash/bloodwarder_marshal.png",
-  "Coilfang Beast-Tamer": "assets/trash/coilfang_beast_tamer.png",
-  "Coilfang Fathom-Witch": "assets/trash/coilfang_fathom_witch.png",
-  "Coilfang Hate-Screamer": "assets/trash/coilfang_hate_screamer.png",
-  "Coilfang Priestess": "assets/trash/coilfang_priestess.png",
-  "Coilfang Serpentguard": "assets/trash/coilfang_serpentguard.png",
-  "Coilfang Shatterer": "assets/trash/coilfang_shatterer.png",
-  "Crimson Hand Battle Mage": "assets/trash/crimson_hand_battle_mage.png",
-  "Crimson Hand Blood Knight": "assets/trash/crimson_hand_blood_knight.png",
-  "Crimson Hand Centurion": "assets/trash/crimson_hand_centurion.png",
-  "Crystalcore Devastator": "assets/trash/crystalcore_devastator.png",
-  "Crystalcore Mechanic": "assets/trash/crystalcore_mechanic.png",
-  "Crystalcore Sentinel": "assets/trash/crystalcore_sentinel.png",
-  "Greyheart Nether-Mage": "assets/trash/greyheart_nether_mage.png",
-  "Greyheart Shield-Bearer": "assets/trash/greyheart_shield_bearer.png",
-  "Greyheart Skulker": "assets/trash/greyheart_skulker.png",
-  "Greyheart Tidecaller": "assets/trash/greyheart_tidecaller.png",
-  "Phoenix-Hawk": "assets/trash/phoenix_hawk.png",
-  "Phoenix-Hawk Hatchling": "assets/trash/phoenix_hawk_hatchling.png",
-  "Serpentshrine Lurker": "assets/trash/serpentshrine_lurker.png",
-  "Serpentshrine Sporebat": "assets/trash/serpentshrine_sporebat.png",
-  "Star Scryer": "assets/trash/star_scryer.png",
-  "Tempest-Smith": "assets/trash/tempest_smith.png",
-  "Tidewalker Depth-Seer": "assets/trash/tidewalker_depth_seer.png",
-  "Tidewalker Hydromancer": "assets/trash/tidewalker_hydromancer.png",
-  "Tidewalker Shaman": "assets/trash/tidewalker_shaman.png",
-  "Tidewalker Warrior": "assets/trash/tidewalker_warrior.png",
-  "Underbog Colossus": "assets/trash/underbog_colossus.png",
-  "Vashj'ir Honor Guard": "assets/trash/vashj_ir_honor_guard.png"
+  "Astromancer": "assets/Trash2/astromancer.png",
+  "Bloodwarder Marshal": "assets/Trash2/bloodwarder_marshal.png",
+  "Coilfang Beast-Tamer": "assets/Trash2/coilfang_beast_tamer.png",
+  "Coilfang Fathom-Witch": "assets/Trash2/coilfang_fathom_witch.png",
+  "Coilfang Hate-Screamer": "assets/Trash2/coilfang_hate_screamer.png",
+  "Coilfang Priestess": "assets/Trash2/coilfang_priestess.png",
+  "Coilfang Serpentguard": "assets/Trash2/coilfang_serpentguard.png",
+  "Coilfang Shatterer": "assets/Trash2/coilfang_shatterer.png",
+  "Crimson Hand Battle Mage": "assets/Trash2/crimson_hand_battle_mage.png",
+  "Crimson Hand Blood Knight": "assets/Trash2/crimson_hand_blood_knight.png",
+  "Crimson Hand Centurion": "assets/Trash2/crimson_hand_centurion.png",
+  "Crystalcore Devastator": "assets/Trash2/crystalcore_devastator.png",
+  "Crystalcore Mechanic": "assets/Trash2/crystalcore_mechanic.png",
+  "Crystalcore Sentinel": "assets/Trash2/crystalcore_sentinel.png",
+  "Greyheart Nether-Mage": "assets/Trash2/greyheart_nether_mage.png",
+  "Greyheart Shield-Bearer": "assets/Trash2/greyheart_shield_bearer.png",
+  "Greyheart Skulker": "assets/Trash2/greyheart_skulker.png",
+  "Greyheart Tidecaller": "assets/Trash2/greyheart_tidecaller.png",
+  "Phoenix-Hawk": "assets/Trash2/phoenix_hawk.png",
+  "Phoenix-Hawk Hatchling": "assets/Trash2/phoenix_hawk_hatchling.png",
+  "Serpentshrine Lurker": "assets/Trash2/serpentshrine_lurker.png",
+  "Serpentshrine Sporebat": "assets/Trash2/serpentshrine_sporebat.png",
+  "Star Scryer": "assets/Trash2/star_scryer.png",
+  "Tempest-Smith": "assets/Trash2/tempest_smith.png",
+  "Tidewalker Depth-Seer": "assets/Trash2/tidewalker_depth_seer.png",
+  "Tidewalker Hydromancer": "assets/Trash2/tidewalker_hydromancer.png",
+  "Tidewalker Shaman": "assets/Trash2/tidewalker_shaman.png",
+  "Tidewalker Warrior": "assets/Trash2/tidewalker_warrior.png",
+  "Underbog Colossus": "assets/Trash2/underbog_colossus.png",
+  "Vashj'ir Honor Guard": "assets/Trash2/vashj_ir_honor_guard.png"
 };
 
 const trashData = [
@@ -2201,21 +2201,6 @@ function actionTitle(item) {
     .join(" / ");
 }
 
-const portraitKinds = {
-  "Serpentshrine Sporebat": "wide",
-  "Phoenix-Hawk": "wide",
-  "Phoenix-Hawk Hatchling": "wide",
-  "Underbog Colossus": "massive",
-  "Serpentshrine Lurker": "massive",
-  "Crystalcore Devastator": "massive",
-  "Crystalcore Sentinel": "massive",
-  "Crystalcore Mechanic": "massive"
-};
-
-function portraitKind(item) {
-  return portraitKinds[item.originalMob || item.mob] || "humanoid";
-}
-
 function mobInitials(mob) {
   return mob.split(/[^A-Za-z0-9]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 }
@@ -2224,11 +2209,10 @@ function trashPortrait(item) {
   const originalMob = item.originalMob || item.mob;
   const src = trashImages[originalMob];
   const raidClass = item.raid.toLowerCase();
-  const kind = portraitKind(item);
   if (!src) {
-    return `<div class="mob-portrait portrait-${raidClass} portrait-kind-${kind} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;
+    return `<div class="mob-portrait portrait-${raidClass} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;
   }
-  return `<div class="mob-portrait portrait-${raidClass} portrait-kind-${kind}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}"></div>`;
+  return `<div class="mob-portrait portrait-${raidClass}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}"></div>`;
 }
 
 function auditPanel(item) {
@@ -2377,7 +2361,7 @@ function renderCards() {
       <div class="section-title">${raid} <span>${raidItems.length} ${ui("visibleCards")}</span></div>
       <div class="cards">
         ${raidItems.map((item) => `
-          <article class="card ${item.priority} portrait-card-${portraitKind(item)}">
+          <article class="card ${item.priority}">
             ${trashPortrait(item)}
             <div class="card-main">
               <div class="card-head">

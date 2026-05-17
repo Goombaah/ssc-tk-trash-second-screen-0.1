@@ -1561,6 +1561,215 @@ body.audit .portrait-kind-massive {
   height: 190px;
 }
 
+/* V0.5: fixed portrait/card integration for final 1024x1536 Trash2 assets. */
+:root {
+  --card-height: 278px;
+  --portrait-width: 136px;
+  --portrait-height: 236px;
+}
+
+body.compact {
+  --card-height: 188px;
+  --portrait-width: 88px;
+  --portrait-height: 150px;
+}
+
+body.ultra {
+  --card-height: 104px;
+  --portrait-width: 52px;
+  --portrait-height: 78px;
+}
+
+body.audit {
+  --card-height: 340px;
+  --portrait-width: 154px;
+  --portrait-height: 276px;
+}
+
+.cards {
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  align-items: start;
+}
+
+.card,
+.card.portrait-card-wide,
+.card.portrait-card-massive {
+  height: var(--card-height);
+  min-height: 0;
+  grid-template-columns: calc(var(--portrait-width) + 22px) minmax(0, 1fr);
+  grid-template-rows: 1fr;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.card-main {
+  grid-row: 1;
+  height: 100%;
+  align-self: stretch;
+  overflow: hidden;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+}
+
+.mob-portrait,
+.portrait-kind-humanoid,
+.portrait-kind-wide,
+.portrait-kind-massive,
+body.audit .mob-portrait,
+body.audit .portrait-kind-wide,
+body.audit .portrait-kind-massive {
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  min-height: 0;
+  max-height: var(--portrait-height);
+  flex: 0 0 var(--portrait-width);
+  grid-row: 1;
+  align-self: center;
+  margin: 0 0 0 11px;
+  overflow: hidden;
+  background: #020203;
+  box-shadow:
+    0 0 0 1px #050403,
+    inset 0 0 0 1px rgba(255,236,172,.08),
+    inset 0 0 28px rgba(0,0,0,.82),
+    0 9px 18px rgba(0,0,0,.48);
+}
+
+.mob-portrait img,
+.portrait-kind-humanoid img,
+.portrait-kind-wide img,
+.portrait-kind-massive img,
+body.compact .mob-portrait img,
+body.compact .portrait-kind-humanoid img,
+body.compact .portrait-kind-wide img,
+body.compact .portrait-kind-massive img,
+body.ultra .mob-portrait img,
+body.ultra .portrait-kind-humanoid img,
+body.ultra .portrait-kind-wide img,
+body.ultra .portrait-kind-massive img {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+
+.portrait-ssc,
+.portrait-tk {
+  background: #020203;
+}
+
+.card-head {
+  min-height: 64px;
+}
+
+.card-body {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.info-panels {
+  min-height: 0;
+}
+
+.panel-text {
+  -webkit-line-clamp: 3;
+}
+
+.tank-note {
+  min-height: 0;
+  max-height: 38px;
+  overflow: hidden;
+}
+
+.spell-row {
+  min-height: 0;
+  max-height: 42px;
+  overflow: hidden;
+}
+
+.tagbar {
+  min-height: 38px;
+  max-height: 38px;
+  overflow: hidden;
+  align-content: start;
+}
+
+body.compact .cards {
+  grid-template-columns: repeat(auto-fill, minmax(395px, 1fr));
+}
+
+body.compact .card,
+body.compact .card.portrait-card-wide,
+body.compact .card.portrait-card-massive {
+  grid-template-columns: calc(var(--portrait-width) + 18px) minmax(0, 1fr);
+}
+
+body.compact .mob-portrait,
+body.compact .portrait-kind-wide,
+body.compact .portrait-kind-massive {
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  min-height: 0;
+  margin: 0 0 0 9px;
+}
+
+body.compact .card-head {
+  min-height: 52px;
+}
+
+body.compact .info-panels {
+  grid-template-columns: 1fr 1fr;
+}
+
+body.compact .panel-text {
+  -webkit-line-clamp: 2;
+}
+
+body.compact .tagbar {
+  min-height: 32px;
+  max-height: 32px;
+}
+
+body.ultra .cards {
+  grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+}
+
+body.ultra .card,
+body.ultra .card.portrait-card-wide,
+body.ultra .card.portrait-card-massive {
+  grid-template-columns: calc(var(--portrait-width) + 13px) minmax(0, 1fr);
+}
+
+body.ultra .mob-portrait,
+body.ultra .portrait-kind-wide,
+body.ultra .portrait-kind-massive {
+  width: var(--portrait-width);
+  height: var(--portrait-height);
+  min-height: 0;
+  margin: 0 0 0 7px;
+}
+
+body.ultra .card-main {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+body.ultra .card-head {
+  min-height: 46px;
+}
+
+body.ultra .card-body {
+  min-height: 0;
+}
+
+body.ultra .info-panels {
+  grid-template-columns: 1fr;
+}
+
+body.ultra .panel-text {
+  -webkit-line-clamp: 1;
+}
+
 body.fullscreen .topbar, body.fullscreen .subbar { opacity: .18; transition: opacity .12s; }
 body.fullscreen .topbar:hover, body.fullscreen .subbar:hover { opacity: 1; }
 
