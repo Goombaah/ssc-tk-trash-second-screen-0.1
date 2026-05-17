@@ -2191,6 +2191,16 @@ function tagPills(tags) {
   return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${tagButtonContent(tag, labels[tag] || tag)}</span>`).join("");
 }
 
+function actionTitle(item) {
+  const labels = t().tagLabels;
+  const order = ["focus", "kick", "stopcc", "sheep", "banish", "los", "tank", "aoe", "ranged", "enemy-mc", "priest-mc", "cleave", "fear"];
+  return order
+    .filter((tag) => item.tags.includes(tag))
+    .slice(0, 2)
+    .map((tag) => labels[tag] || tag)
+    .join(" / ");
+}
+
 function mobInitials(mob) {
   return mob.split(/[^A-Za-z0-9]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 }
@@ -2352,23 +2362,32 @@ function renderCards() {
         ${raidItems.map((item) => `
           <article class="card ${item.priority}">
             ${trashPortrait(item)}
-            <div class="card-head">
-              <div class="mobline">
-                <div class="zone">${item.raid} — ${item.zone}</div>
-                <div class="mob">${item.mob}</div>
+            <div class="card-main">
+              <div class="card-head">
+                <div class="mobline">
+                  <div class="zone">${item.raid} - ${item.zone}</div>
+                  <div class="mob">${item.mob}</div>
+                  <div class="action-title">${escapeHtml(actionTitle(item))}</div>
+                </div>
+                <div class="markers">${markerImgs(item.markers)}</div>
               </div>
-              <div class="markers">${markerImgs(item.markers)}</div>
-            </div>
-            <div class="card-body">
-              <div class="quick-call">${escapeHtml(item.call)}</div>
-              <div class="quick-grid">
-                <div class="quick-line danger-line"><span>!</span><b>${escapeHtml(item.danger)}</b></div>
-                <div class="quick-line tank-line"><span>T</span><b>${escapeHtml(item.tank)}</b></div>
+              <div class="card-body">
+                <div class="info-panels">
+                  <section class="info-panel danger-panel">
+                    <div class="panel-label">DANGER</div>
+                    <div class="panel-text">${escapeHtml(item.danger)}</div>
+                  </section>
+                  <section class="info-panel call-panel">
+                    <div class="panel-label">CALL</div>
+                    <div class="panel-text">${escapeHtml(item.call)}</div>
+                  </section>
+                </div>
+                <div class="tank-note"><span>T</span><b>${escapeHtml(item.tank)}</b></div>
+                <div class="spell-row">${renderSpellBlock(item)}</div>
               </div>
-              <div class="spell-row">${renderSpellBlock(item)}</div>
+              ${auditPanel(item)}
+              <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
             </div>
-            ${auditPanel(item)}
-            <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
           </article>
         `).join("")}
       </div>
