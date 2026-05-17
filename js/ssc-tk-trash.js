@@ -2201,6 +2201,21 @@ function actionTitle(item) {
     .join(" / ");
 }
 
+const portraitKinds = {
+  "Serpentshrine Sporebat": "wide",
+  "Phoenix-Hawk": "wide",
+  "Phoenix-Hawk Hatchling": "wide",
+  "Underbog Colossus": "massive",
+  "Serpentshrine Lurker": "massive",
+  "Crystalcore Devastator": "massive",
+  "Crystalcore Sentinel": "massive",
+  "Crystalcore Mechanic": "massive"
+};
+
+function portraitKind(item) {
+  return portraitKinds[item.originalMob || item.mob] || "humanoid";
+}
+
 function mobInitials(mob) {
   return mob.split(/[^A-Za-z0-9]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 }
@@ -2209,10 +2224,11 @@ function trashPortrait(item) {
   const originalMob = item.originalMob || item.mob;
   const src = trashImages[originalMob];
   const raidClass = item.raid.toLowerCase();
+  const kind = portraitKind(item);
   if (!src) {
-    return `<div class="mob-portrait portrait-${raidClass} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;
+    return `<div class="mob-portrait portrait-${raidClass} portrait-kind-${kind} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;
   }
-  return `<div class="mob-portrait portrait-${raidClass}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}"></div>`;
+  return `<div class="mob-portrait portrait-${raidClass} portrait-kind-${kind}"><img src="${escapeHtml(src)}" alt="${escapeHtml(item.mob)}"></div>`;
 }
 
 function auditPanel(item) {
@@ -2337,6 +2353,7 @@ function renderCards() {
   document.body.classList.toggle("raid-all", raidMode === "ALL");
   document.body.classList.toggle("compact", state.mode === "compact" || state.mode === "ultra");
   document.body.classList.toggle("ultra", state.mode === "ultra");
+  document.body.classList.toggle("audit", state.auditOnly);
   document.querySelectorAll("[data-mode]").forEach((btn) => btn.classList.toggle("active", btn.dataset.mode === state.mode));
   document.querySelector(".danger-toggle").classList.toggle("active", state.dangerOnly);
   document.querySelector("#auditOnly").classList.toggle("active", state.auditOnly);
@@ -2360,7 +2377,7 @@ function renderCards() {
       <div class="section-title">${raid} <span>${raidItems.length} ${ui("visibleCards")}</span></div>
       <div class="cards">
         ${raidItems.map((item) => `
-          <article class="card ${item.priority}">
+          <article class="card ${item.priority} portrait-card-${portraitKind(item)}">
             ${trashPortrait(item)}
             <div class="card-main">
               <div class="card-head">
