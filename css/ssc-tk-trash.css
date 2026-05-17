@@ -1114,7 +1114,7 @@ body.ultra .cards { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
 .mob {
   margin-top: 1px;
   color: #fff4d4;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.02;
   text-shadow: 0 2px 0 #000, 0 0 10px rgba(255,181,74,.24);
 }
@@ -1563,9 +1563,9 @@ body.audit .portrait-kind-massive {
 
 /* V0.5: fixed portrait/card integration for final 1024x1536 Trash2 assets. */
 :root {
-  --card-height: 278px;
-  --portrait-width: 136px;
-  --portrait-height: 236px;
+  --card-height: 660px;
+  --portrait-width: 116px;
+  --portrait-height: 618px;
 }
 
 body.compact {
@@ -1581,13 +1581,13 @@ body.ultra {
 }
 
 body.audit {
-  --card-height: 340px;
+  --card-height: 720px;
   --portrait-width: 154px;
-  --portrait-height: 276px;
+  --portrait-height: 672px;
 }
 
 .cards {
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
   align-items: start;
 }
 
@@ -1596,7 +1596,7 @@ body.audit {
 .card.portrait-card-massive {
   height: var(--card-height);
   min-height: 0;
-  grid-template-columns: calc(var(--portrait-width) + 22px) minmax(0, 1fr);
+  grid-template-columns: calc(var(--portrait-width) + 20px) minmax(0, 1fr);
   grid-template-rows: 1fr;
   align-items: stretch;
   overflow: hidden;
@@ -1607,7 +1607,7 @@ body.audit {
   height: 100%;
   align-self: stretch;
   overflow: hidden;
-  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  grid-template-rows: 74px minmax(0, 1fr) auto auto;
 }
 
 .mob-portrait,
@@ -1661,30 +1661,52 @@ body.ultra .portrait-kind-massive img {
 
 .card-head {
   min-height: 64px;
+  max-height: 72px;
+  overflow: hidden;
 }
 
 .card-body {
   min-height: 0;
   overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 8px;
 }
 
 .info-panels {
+  grid-template-columns: 1fr;
   min-height: 0;
+  overflow: visible;
+}
+
+.info-panel {
+  min-height: 0;
+  overflow: visible;
 }
 
 .panel-text {
-  -webkit-line-clamp: 3;
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
 
 .tank-note {
   min-height: 0;
-  max-height: 38px;
-  overflow: hidden;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+.tank-note b {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
 }
 
 .spell-row {
   min-height: 0;
-  max-height: 42px;
+  height: auto;
+  max-height: 430px;
   overflow: hidden;
 }
 
@@ -1716,14 +1738,33 @@ body.compact .portrait-kind-massive {
 
 body.compact .card-head {
   min-height: 52px;
+  max-height: 56px;
+}
+
+body.compact .card-main {
+  grid-template-rows: 56px minmax(0, 1fr) auto;
+}
+
+body.compact .card-body {
+  grid-template-rows: minmax(0, 62px);
+  gap: 0;
 }
 
 body.compact .info-panels {
   grid-template-columns: 1fr 1fr;
+  height: 62px;
 }
 
 body.compact .panel-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+body.compact .tank-note,
+body.compact .spell-row {
+  display: none;
 }
 
 body.compact .tagbar {
@@ -1760,6 +1801,7 @@ body.ultra .card-head {
 
 body.ultra .card-body {
   min-height: 0;
+  grid-template-rows: 1fr;
 }
 
 body.ultra .info-panels {
@@ -1767,7 +1809,10 @@ body.ultra .info-panels {
 }
 
 body.ultra .panel-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 
 body.fullscreen .topbar, body.fullscreen .subbar { opacity: .18; transition: opacity .12s; }
