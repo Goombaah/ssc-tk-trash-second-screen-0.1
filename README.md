@@ -13,14 +13,14 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 
 ## Etat actuel
 
-- 69 cartes trash au total
+- 71 cartes trash au total
 - SSC: 18 cartes
 - TK: 12 cartes
 - Hyjal: 8 cartes
-- Black Temple: 31 cartes
+- Black Temple: 33 cartes
 - Icones boss BT recuperees depuis le boss overview Wowhead
-- Portraits trash BT: screenshots Wowhead quand disponibles
-- Portraits trash P3: placeholders pour l'instant
+- Portraits trash BT: screenshots et modelviewer Wowhead/Zamimg quand disponibles
+- Portraits trash P3 restants: placeholders quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs
 - Sauvegarde preferences via `localStorage`
 - Fonctionne offline une fois les fichiers recuperes

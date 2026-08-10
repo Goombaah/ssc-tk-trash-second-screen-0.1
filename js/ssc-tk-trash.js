@@ -475,6 +475,10 @@ const trashImages = {
   "Illidari Fearbringer": "assets/TrashBT_wowhead/illidari_fearbringer.jpg",
   "Dragonmaw Wind Reaver": "assets/TrashBT_wowhead/dragonmaw_wind_reaver.jpg",
   "Ashtongue Channeler": "assets/TrashBT_wowhead/ashtongue_channeler.webp",
+  "Bonechewer Blade Fury": "assets/TrashBT_wowhead/bonechewer_blade_fury.jpg",
+  "Bonechewer Blood Prophet": "assets/TrashBT_wowhead/bonechewer_blood_prophet.jpg",
+  "Bonechewer Shield Disciple": "assets/TrashBT_wowhead/bonechewer_shield_disciple.webp",
+  "Mutant War Hound": "assets/TrashBT_wowhead/mutant_war_hound.jpg",
   "Shadowmoon Blood Mage": "assets/TrashBT_wowhead/shadowmoon_blood_mage.jpg",
   "Hand of Gorefiend": "assets/TrashBT_wowhead/hand_of_gorefiend.jpg",
   "Bonechewer Behemoth": "assets/TrashBT_wowhead/bonechewer_behemoth.jpg",
@@ -482,6 +486,9 @@ const trashImages = {
   "Priestess of Torment": "assets/TrashBT_wowhead/priestess_of_torment.jpg",
   "Mistress of Dementia": "assets/TrashBT_wowhead/mistress_of_dementia.jpg",
   "Promenade Sentinel": "assets/TrashBT_wowhead/promenade_sentinel.jpg",
+  "Illidari Archon": "assets/TrashBT_wowhead/illidari_archon.webp",
+  "Illidari Assassin": "assets/TrashBT_wowhead/illidari_assassin.webp",
+  "Illidari Battle-mage": "assets/TrashBT_wowhead/illidari_battle_mage.webp",
   "Illidari Blood Lord": "assets/TrashBT_wowhead/illidari_blood_lord.jpg"
 };
 
@@ -1856,14 +1863,38 @@ const trashData = [
   {
     "raid": "BT",
     "zone": "Reliquary approach",
-    "mob": "Reliquary Ghosts",
+    "mob": "Suffering Soul Fragment",
     "priority": "yellow",
+    "markers": ["cross"],
+    "tags": ["kick", "aoe", "tank"],
+    "danger": "One of the Reliquary approach ghosts; Soul Blast AoE interrupt info à confirmer.",
+    "call": "RUN to ramp; KICK Soul Blast; AoE fragments.",
+    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
+    "spells": [["Soul Blast", "assets/spell_shadow_shadowbolt.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Reliquary approach",
+    "mob": "Hungering Soul Fragment",
+    "priority": "green",
     "markers": ["triangle"],
+    "tags": ["aoe", "stun", "tank"],
+    "danger": "One of the Reliquary approach ghosts; individually low threat, fast respawn area.",
+    "call": "RUN to ramp; STUN/AoE fragments.",
+    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
+    "spells": []
+  },
+  {
+    "raid": "BT",
+    "zone": "Reliquary approach",
+    "mob": "Angered Soul Fragment",
+    "priority": "yellow",
+    "markers": ["diamond"],
     "tags": ["aoe", "tank"],
-    "danger": "Many small ghosts respawn quickly. Wowhead suggests running through to the ramp then AoEing them down.",
-    "call": "RUN to ramp; AoE ghosts together.",
-    "tank": "Collect on the move; stabilize at ramp.",
-    "spells": [["Shadow Bolt", "assets/spell_shadow_shadowbolt.jpg"]]
+    "danger": "One of the Reliquary approach ghosts; short range AoE anger damage à confirmer.",
+    "call": "RUN to ramp; AoE fragments together.",
+    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
+    "spells": [["Anger", "assets/spell_shadow_unholyfrenzy.jpg"]]
   },
   {
     "raid": "BT",
