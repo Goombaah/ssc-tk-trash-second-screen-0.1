@@ -1,0 +1,32 @@
+﻿[
+    {
+        "target":  "shadowy_necromancer.png",
+        "name":  "Shadowy Necromancer",
+        "source":  "Shadow Necro.png"
+    },
+    {
+        "target":  "banshee.png",
+        "name":  "Banshee",
+        "source":  "Banshee.png"
+    },
+    {
+        "target":  "gargoyle.png",
+        "name":  "Gargoyle",
+        "source":  "Gargoyle.png"
+    },
+    {
+        "target":  "frost_wyrm.png",
+        "name":  "Frost Wyrm",
+        "source":  "Frost Wyrm.png"
+    },
+    {
+        "target":  "giant_infernal.png",
+        "name":  "Giant Infernal",
+        "source":  "Giant Infernal.png"
+    },
+    {
+        "target":  "fel_stalker.png",
+        "name":  "Fel Stalker",
+        "source":  "Fel Stalker.png"
+    }
+]
