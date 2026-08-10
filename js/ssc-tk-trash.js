@@ -2915,6 +2915,19 @@ function renderFilters() {
     .join("");
 }
 
+function toggleRaidTab(raidName) {
+  if (state.raids.has(raidName)) {
+    state.raids.delete(raidName);
+    state.collapsedRaids.add(raidName);
+    if (state.zone !== "ALL" && zonesForRaid(raidName).some(([zone]) => zone === state.zone)) {
+      state.zone = "ALL";
+    }
+  } else {
+    state.raids.add(raidName);
+    state.collapsedRaids.delete(raidName);
+  }
+}
+
 const zoneIcons = {
   "Pre Hydross": "assets/ui-ej-boss-hydross-the-unstable.png",
   "Pre Lurker Platforms": "assets/ui-ej-boss-the-lurker-below.png",
@@ -3129,8 +3142,7 @@ filtersEl.addEventListener("click", (event) => {
 raidPlatesEl.addEventListener("click", (event) => {
   const collapseBtn = event.target.closest("[data-raid-collapse]");
   if (collapseBtn) {
-    const raidName = collapseBtn.dataset.raidCollapse;
-    state.collapsedRaids.has(raidName) ? state.collapsedRaids.delete(raidName) : state.collapsedRaids.add(raidName);
+    toggleRaidTab(collapseBtn.dataset.raidCollapse);
     save();
     renderCards();
     return;
@@ -3144,10 +3156,16 @@ raidPlatesEl.addEventListener("click", (event) => {
     renderCards();
     return;
   }
+  const raidPlate = event.target.closest("[data-raid-toggle]");
+  if (raidPlate) {
+    toggleRaidTab(raidPlate.dataset.raidToggle);
+    save();
+    renderCards();
+    return;
+  }
   const panel = event.target.closest("[data-raid-panel]");
   if (!panel) return;
-  const raidName = panel.dataset.raidPanel;
-  state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
+  toggleRaidTab(panel.dataset.raidPanel);
   save();
   renderCards();
 });
