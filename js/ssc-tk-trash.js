@@ -2728,13 +2728,13 @@ const zoneIcons = {
   "Void Reaver path": "assets/ui-ej-boss-void-reaver.png",
   "Kael corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png",
   "Wave trash": "assets/UI-RaidTargetingIcons.png",
-  "Before Naj'entus": "assets/UI-RaidTargetingIcons.png",
-  "Akama / Sanctuary": "assets/UI-RaidTargetingIcons.png",
-  "Teron path": "assets/UI-RaidTargetingIcons.png",
-  "Before Gurtogg": "assets/UI-RaidTargetingIcons.png",
-  "Reliquary approach": "assets/UI-RaidTargetingIcons.png",
-  "Before Mother Shahraz": "assets/UI-RaidTargetingIcons.png",
-  "Before Council": "assets/UI-RaidTargetingIcons.png"
+  "Before Naj'entus": "assets/ui-ej-boss-high-warlord-najentus.png",
+  "Akama / Sanctuary": "assets/ui-ej-boss-shade-of-akama.png",
+  "Teron path": "assets/ui-ej-boss-teron-gorefiend.png",
+  "Before Gurtogg": "assets/ui-ej-boss-gurtogg-bloodboil.png",
+  "Reliquary approach": "assets/ui-ej-boss-reliquary-of-souls.png",
+  "Before Mother Shahraz": "assets/ui-ej-boss-mother-shahraz.png",
+  "Before Council": "assets/ui-ej-boss-illidari-council.png"
 };
 
 const zoneLabels = {
@@ -2784,7 +2784,7 @@ const raidAllIcons = {
   SSC: "assets/ui-ej-boss-lady-vashj.png",
   TK: "assets/ui-ej-boss-kaelthas-sunstrider.png",
   HYJAL: "assets/UI-RaidTargetingIcons.png",
-  BT: "assets/UI-RaidTargetingIcons.png",
+  BT: "assets/ui-ej-boss-illidan-stormrage.png",
   SUNWELL: "assets/UI-RaidTargetingIcons.png"
 };
 
@@ -2814,7 +2814,8 @@ function renderRaidPlates() {
     const raid = raidInfo.key;
     const active = state.raids.has(raid);
     const zones = zonesForRaid(raid);
-    const zoneButtons = zones.map(([zone, count]) => {
+    const visibleZones = zones.length === 1 ? [] : zones;
+    const zoneButtons = visibleZones.map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
       return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${escapeHtml(zoneLabel(zone))}</span><span class="zone-count">${count}</span></button>`;
     }).join("");
