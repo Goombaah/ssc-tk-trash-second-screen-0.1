@@ -3038,7 +3038,7 @@ function renderRaidPlates() {
     const placeholder = zones.length ? "" : `<div class="zone-placeholder">Coming later</div>`;
     return `
       <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"} ${collapsed ? "collapsed" : ""}" data-raid-panel="${raid}">
-        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button" aria-expanded="${collapsed ? "false" : "true"}"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
+        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" type="button" aria-expanded="${collapsed ? "false" : "true"}"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
         <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + zoneButtons : placeholder}</div>
       </div>
     `;
@@ -3146,13 +3146,6 @@ raidPlatesEl.addEventListener("click", (event) => {
     renderCards();
     return;
   }
-  const raidPlate = event.target.closest("[data-raid-toggle]");
-  if (raidPlate) {
-    toggleRaidTab(raidPlate.dataset.raidToggle);
-    save();
-    renderCards();
-    return;
-  }
   const panel = event.target.closest("[data-raid-panel]");
   if (!panel) return;
   toggleRaidTab(panel.dataset.raidPanel);
@@ -3161,15 +3154,9 @@ raidPlatesEl.addEventListener("click", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  const raid = event.target.closest("[data-raid-toggle]");
   const mode = event.target.closest("[data-mode]");
   const langChoice = event.target.closest("[data-lang-choice]");
   let changed = false;
-  if (raid && !raidPlatesEl.contains(raid)) {
-    const raidName = raid.dataset.raidToggle;
-    state.raids.has(raidName) ? state.raids.delete(raidName) : state.raids.add(raidName);
-    changed = true;
-  }
   if (mode) {
     state.mode = mode.dataset.mode;
     changed = true;
