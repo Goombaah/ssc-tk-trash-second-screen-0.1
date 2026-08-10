@@ -20,7 +20,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - Black Temple: 33 cartes
 - Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee, a confirmer hors Wowhead
 - Icones boss BT recuperees depuis le boss overview Wowhead
-- Portraits trash Hyjal: 7 portraits generes + Ghoul/Abomination en screenshots Wowhead/Zamimg
+- Portraits trash Hyjal: 8 portraits generes + Abomination en screenshot Wowhead/Zamimg
 - Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees
 - Portraits trash P3 restants: placeholders uniquement quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs

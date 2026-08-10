@@ -463,7 +463,7 @@ const trashImages = {
   "Tidewalker Warrior": "assets/Trash2_fast/tidewalker_warrior.webp",
   "Underbog Colossus": "assets/Trash2_fast/underbog_colossus.webp",
   "Vashj'ir Honor Guard": "assets/Trash2_fast/vashj_ir_honor_guard.webp",
-  "Ghoul": "assets/TrashHyjal_wowhead/ghoul.jpg",
+  "Ghoul": "assets/TrashHyjal_generated/ghoul.png",
   "Shadowy Necromancer": "assets/TrashHyjal_generated/shadowy_necromancer.png",
   "Abomination": "assets/TrashHyjal_wowhead/abomination.jpg",
   "Banshee": "assets/TrashHyjal_generated/banshee.png",
