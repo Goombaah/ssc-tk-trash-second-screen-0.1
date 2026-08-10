@@ -124,7 +124,8 @@ const i18n = {
       "Virulent Poison": "Poison effect from Tidecaller. Cleanse poison.",
       "Water Elemental Totem": "Summons a large Water Elemental. Swap/kill totem instantly.",
       "Whirlwind": "Melee AoE. Melee step out / tank control.",
-      "Wing Buffet": "Knockback from Phoenix-Hawk Hatchling."
+      "Wing Buffet": "Knockback from Phoenix-Hawk Hatchling.",
+      "Web": "Hyjal Crypt Fiend ability: immobilizes a player for 10 sec."
     },
     "ui": {
       "subtitle": "TBC Anniversary Phase 3 · trash raid lead overlay · offline",
@@ -254,7 +255,8 @@ const i18n = {
       "Virulent Poison": "Poison dispellable du Tidecaller.",
       "Water Elemental Totem": "Pose un totem qui invoque un gros élémentaire. Swap totem instant.",
       "Whirlwind": "AoE mêlée. Mêlées dehors / tank contrôle.",
-      "Wing Buffet": "Knockback du Phoenix-Hawk Hatchling."
+      "Wing Buffet": "Knockback du Phoenix-Hawk Hatchling.",
+      "Web": "Capacite du Crypt Fiend Hyjal: immobilise un joueur pendant 10 sec."
     },
     "ui": {
       "subtitle": "TBC Anniversary Phase 3 · outil trash raid lead · offline",
@@ -355,6 +357,7 @@ const guideSpellIcons = {
   "Starfall": "assets/spell_arcane_starfire.jpg",
   "Toxic Pool": "assets/ability_creature_poison_06.jpg",
   "Trample": "assets/spell_nature_natureswrath.jpg",
+  "Web": "assets/spell_nature_polymorph.jpg",
   "Abomination": "assets/ability_creature_disease_02.jpg",
   "Anti-Magic Shell": "assets/spell_nature_elementalshields.jpg",
   "Banshee Curse": "assets/spell_shadow_cripple.jpg",
@@ -468,6 +471,7 @@ const trashImages = {
   "Frost Wyrm": "assets/TrashHyjal_generated/frost_wyrm.png",
   "Giant Infernal": "assets/TrashHyjal_generated/giant_infernal.png",
   "Fel Stalker": "assets/TrashHyjal_generated/fel_stalker.png",
+  "Crypt Fiend": "assets/TrashHyjal_generated/crypt_fiend.png",
   "Leviathan": "assets/TrashBT_generated/01_leviathan.png",
   "Coilskar Wrangler": "assets/TrashBT_generated/02_coilskar_wrangler.png",
   "Dragon Turtle": "assets/TrashBT_generated/03_dragon_turtle.png",
@@ -1574,6 +1578,21 @@ const trashData = [
   {
     "raid": "HYJAL",
     "zone": "Wave trash",
+    "mob": "Crypt Fiend",
+    "priority": "yellow",
+    "markers": ["star"],
+    "tags": ["ranged", "stun"],
+    "danger": "Web can immobilize a player for 10 sec; small spider shots are minor damage per Wowpedia.",
+    "call": "Melee swap once Crypt Fiends are in melee; control Web targets if needed.",
+    "tank": "Pull into the wave stack; do not chase too far out of camp for them.",
+    "spells": [["Web", "assets/spell_nature_polymorph.jpg"]],
+    "spellGroups": [
+      { "label": "CONTROL", "spells": ["Web"], "note": "10 sec immobilize" }
+    ]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
     "mob": "Frost Wyrm",
     "priority": "orange",
     "markers": ["diamond"],
@@ -2264,7 +2283,8 @@ const frSpellNames = {
   "Virulent Poison": "Poison virulent",
   "Water Elemental Totem": "Totem d'élémentaire d'eau",
   "Whirlwind": "Tourbillon",
-  "Wing Buffet": "Coup d'aile"
+  "Wing Buffet": "Coup d'aile",
+  "Web": "Toile"
 };
 
 const frNameAliases = {
@@ -2979,7 +2999,7 @@ function renderHyjalWaves() {
                           <span class="wave-mob ${trashImages[name] ? "" : "uncertain"}">
                             ${waveMobIcon(name)}
                             <b>${count}</b>
-                            <span>${escapeHtml(name === "Crypt Fiend" ? "Crypt Fiend?" : name)}</span>
+                            <span>${escapeHtml(name)}</span>
                           </span>
                         `).join("")}
                       </span>

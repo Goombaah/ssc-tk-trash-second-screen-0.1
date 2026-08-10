@@ -16,11 +16,11 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - 71 cartes trash au total
 - SSC: 18 cartes
 - TK: 12 cartes
-- Hyjal: 8 cartes
+- Hyjal: 9 cartes
 - Black Temple: 33 cartes
 - Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee, a confirmer hors Wowhead
 - Icones boss BT recuperees depuis le boss overview Wowhead
-- Portraits trash Hyjal: 6 portraits generes + Ghoul/Abomination en screenshots Wowhead/Zamimg
+- Portraits trash Hyjal: 7 portraits generes + Ghoul/Abomination en screenshots Wowhead/Zamimg
 - Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees
 - Portraits trash P3 restants: placeholders uniquement quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs
