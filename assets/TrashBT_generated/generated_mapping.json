@@ -1,0 +1,200 @@
+﻿[
+    {
+        "index":  1,
+        "name":  "Leviathan",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_52 (1).png",
+        "target":  "01_leviathan.png"
+    },
+    {
+        "index":  2,
+        "name":  "Coilskar Wrangler",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_52 (2).png",
+        "target":  "02_coilskar_wrangler.png"
+    },
+    {
+        "index":  3,
+        "name":  "Dragon Turtle",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_53 (3).png",
+        "target":  "03_dragon_turtle.png"
+    },
+    {
+        "index":  4,
+        "name":  "Coilskar Harpooner",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_53 (4).png",
+        "target":  "04_coilskar_harpooner.png"
+    },
+    {
+        "index":  5,
+        "name":  "Coilskar General",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_54 (5).png",
+        "target":  "05_coilskar_general.png"
+    },
+    {
+        "index":  6,
+        "name":  "Aqueous Lord",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_54 (6).png",
+        "target":  "06_aqueous_lord.png"
+    },
+    {
+        "index":  7,
+        "name":  "Aqueous Spawn",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_54 (7).png",
+        "target":  "07_aqueous_spawn.png"
+    },
+    {
+        "index":  8,
+        "name":  "Coilskar Sea-Caller",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_54 (8).png",
+        "target":  "08_coilskar_sea_caller.png"
+    },
+    {
+        "index":  9,
+        "name":  "Bonechewer Taskmaster",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_55 (9).png",
+        "target":  "09_bonechewer_taskmaster.png"
+    },
+    {
+        "index":  10,
+        "name":  "Bonechewer Worker",
+        "source":  "ChatGPT Image 10 août 2026, 12_56_56 (10).png",
+        "target":  "10_bonechewer_worker.png"
+    },
+    {
+        "index":  11,
+        "name":  "Dragonmaw Sky Stalker",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_47 (1).png",
+        "target":  "11_dragonmaw_sky_stalker.png"
+    },
+    {
+        "index":  12,
+        "name":  "Dragonmaw Wyrmcaller",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_47 (2).png",
+        "target":  "12_dragonmaw_wyrmcaller.png"
+    },
+    {
+        "index":  13,
+        "name":  "Illidari Fearbringer",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_47 (3).png",
+        "target":  "13_illidari_fearbringer.png"
+    },
+    {
+        "index":  14,
+        "name":  "Dragonmaw Wind Reaver",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_47 (4).png",
+        "target":  "14_dragonmaw_wind_reaver.png"
+    },
+    {
+        "index":  15,
+        "name":  "Ashtongue Channeler",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_48 (5).png",
+        "target":  "15_ashtongue_channeler.png"
+    },
+    {
+        "index":  16,
+        "name":  "Shadowmoon Blood Mage",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_48 (6).png",
+        "target":  "16_shadowmoon_blood_mage.png"
+    },
+    {
+        "index":  17,
+        "name":  "Hand of Gorefiend",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_49 (7).png",
+        "target":  "17_hand_of_gorefiend.png"
+    },
+    {
+        "index":  18,
+        "name":  "Bonechewer Behemoth",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_49 (8).png",
+        "target":  "18_bonechewer_behemoth.png"
+    },
+    {
+        "index":  19,
+        "name":  "Bonechewer Blade Fury",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_50 (9).png",
+        "target":  "19_bonechewer_blade_fury.png"
+    },
+    {
+        "index":  20,
+        "name":  "Bonechewer Blood Prophet",
+        "source":  "ChatGPT Image 10 août 2026, 12_59_50 (10).png",
+        "target":  "20_bonechewer_blood_prophet.png"
+    },
+    {
+        "index":  21,
+        "name":  "Bonechewer Shield Disciple",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_53 (1).png",
+        "target":  "21_bonechewer_shield_disciple.png"
+    },
+    {
+        "index":  22,
+        "name":  "Mutant War Hound",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_53 (2).png",
+        "target":  "22_mutant_war_hound.png"
+    },
+    {
+        "index":  23,
+        "name":  "Suffering Soul Fragment",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_54 (3).png",
+        "target":  "23_suffering_soul_fragment.png"
+    },
+    {
+        "index":  24,
+        "name":  "Hungering Soul Fragment",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_54 (4).png",
+        "target":  "24_hungering_soul_fragment.png"
+    },
+    {
+        "index":  25,
+        "name":  "Angered Soul Fragment",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_54 (5).png",
+        "target":  "25_angered_soul_fragment.png"
+    },
+    {
+        "index":  26,
+        "name":  "Mistress of Woe",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_55 (6).png",
+        "target":  "26_mistress_of_woe.png"
+    },
+    {
+        "index":  27,
+        "name":  "Priestess of Torment",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_56 (7).png",
+        "target":  "27_priestess_of_torment.png"
+    },
+    {
+        "index":  28,
+        "name":  "Mistress of Dementia",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_56 (8).png",
+        "target":  "28_mistress_of_dementia.png"
+    },
+    {
+        "index":  29,
+        "name":  "Promenade Sentinel",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_56 (9).png",
+        "target":  "29_promenade_sentinel.png"
+    },
+    {
+        "index":  30,
+        "name":  "Illidari Archon",
+        "source":  "ChatGPT Image 10 août 2026, 13_02_56 (10).png",
+        "target":  "30_illidari_archon.png"
+    },
+    {
+        "index":  31,
+        "name":  "Illidari Assassin",
+        "source":  "ChatGPT Image 10 août 2026, 13_05_17 (1).png",
+        "target":  "31_illidari_assassin.png"
+    },
+    {
+        "index":  32,
+        "name":  "Illidari Battle-mage",
+        "source":  "ChatGPT Image 10 août 2026, 13_05_17 (2).png",
+        "target":  "32_illidari_battle_mage.png"
+    },
+    {
+        "index":  33,
+        "name":  "Illidari Blood Lord",
+        "source":  "ChatGPT Image 10 août 2026, 13_05_18 (3).png",
+        "target":  "33_illidari_blood_lord.png"
+    }
+]

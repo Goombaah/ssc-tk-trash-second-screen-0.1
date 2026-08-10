@@ -20,7 +20,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - Black Temple: 33 cartes
 - Icones boss BT recuperees depuis le boss overview Wowhead
 - Portraits trash Hyjal: 8 screenshots Wowhead/Zamimg recuperes
-- Portraits trash BT: screenshots et modelviewer Wowhead/Zamimg quand disponibles
+- Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees
 - Portraits trash P3 restants: placeholders uniquement quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs
 - Sauvegarde preferences via `localStorage`
