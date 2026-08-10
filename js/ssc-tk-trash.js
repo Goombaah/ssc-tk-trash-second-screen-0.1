@@ -2947,13 +2947,35 @@ const waveMobLabels = {
   "Shadowy Necromancer": "Necro",
   "Abomination": "Abo",
   "Crypt Fiend": "Fiend",
-  "Giant Infernal": "Infernal",
+  "Giant Infernal": "Inf",
   "Fel Stalker": "Stalker",
   "Frost Wyrm": "Wyrm",
-  "Gargoyle": "Gargoyle",
-  "Banshee": "Banshee",
+  "Gargoyle": "Garg",
+  "Banshee": "Bansh",
   "Ghoul": "Ghoul"
 };
+
+function compactWaveCall(call) {
+  return String(call)
+    .replace(/Melee sur Spider une fois dans la melee/g, "Melee spider")
+    .replace(/Glebes sur le pop/g, "Glebe pop")
+    .replace(/Glebe sur le pop/g, "Glebe pop")
+    .replace(/Focus Abo/g, "Focus Abo")
+    .replace(/Kick Droite Shaman \+ Kick Gauche Mage/g, "Kick R sham + L mage")
+    .replace(/Feral tank Wyrm/g, "Feral tank Wyrm")
+    .replace(/Focus Wyrm quand targetable/g, "Focus Wyrm targetable")
+    .replace(/Focus Wyrm quand possible/g, "Focus Wyrm asap")
+    .replace(/Packing avec Ghoul/g, "pack Ghoul")
+    .replace(/Mage \+ Demo \+ Hunt \+ Feral \+ 1 heal > camp troll/g, "Mage/Demo/Hunt/Feral + heal > troll")
+    .replace(/Entrer du camp/g, "Entree camp")
+    .replace(/Entre Troll et entree du camp/g, "Troll -> entree camp")
+    .replace(/Melee sur Ghoul \+ reste sur Infernal/g, "Melee Ghoul / reste Infernal")
+    .replace(/Melee sur Fel Stalker \+ reste sur Infernal/g, "Melee Stalker / reste Infernal")
+    .replace(/Melee sur entree \+ reste sur Infernal/g, "Melee entree / reste Infernal")
+    .replace(/Glebe \+ Glebe \+ Kick/g, "Glebe x2 + Kick")
+    .replace(/\s+\+\s+/g, " + ")
+    .trim();
+}
 
 function waveMatches(wave) {
   const tags = waveTags(wave);
@@ -3004,7 +3026,7 @@ function renderHyjalWaves() {
                   const priority = wavePriority(wave);
                   const tags = waveTags(wave);
                   return `
-                    <button class="wave-row ${priority} ${state.hyjalActiveBoss === boss && state.hyjalActiveWave === wave.wave ? "active" : ""}" data-wave-row="${escapeHtml(boss)}" data-wave="${wave.wave}" type="button" title="${escapeHtml(tags.join(" / "))}">
+                    <button class="wave-row ${priority} ${state.hyjalActiveBoss === boss && state.hyjalActiveWave === wave.wave ? "active" : ""}" data-wave-row="${escapeHtml(boss)}" data-wave="${wave.wave}" type="button" title="${escapeHtml(wave.call)}">
                       <span class="wave-num">${wave.wave}</span>
                       <span class="wave-mobs">
                         ${wave.mobs.map(([name, count]) => `
@@ -3015,7 +3037,7 @@ function renderHyjalWaves() {
                           </span>
                         `).join("")}
                       </span>
-                      <span class="wave-call">${escapeHtml(wave.call)}</span>
+                      <span class="wave-call">${escapeHtml(compactWaveCall(wave.call))}</span>
                     </button>
                   `;
                 }).join("")}

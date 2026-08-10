@@ -2445,7 +2445,7 @@ body.fullscreen .main-content {
 
 .hyjal-wave-view {
   display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
 .wave-toolbar {
@@ -2453,7 +2453,7 @@ body.fullscreen .main-content {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding: 8px 10px;
+  padding: 6px 8px;
   border: 1px solid rgba(138,103,42,.5);
   background:
     linear-gradient(90deg, rgba(255,184,77,.12), transparent 44%),
@@ -2464,7 +2464,7 @@ body.fullscreen .main-content {
 .wave-toolbar strong {
   display: block;
   color: #fff1c8;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 2px 1px #000;
@@ -2472,7 +2472,7 @@ body.fullscreen .main-content {
 
 .wave-toolbar span {
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
   color: #9ba7b4;
   font-size: 11px;
   font-weight: 800;
@@ -2487,8 +2487,8 @@ body.fullscreen .main-content {
 }
 
 .wave-boss-tabs button {
-  min-height: 28px;
-  padding: 4px 8px;
+  min-height: 26px;
+  padding: 3px 7px;
   border: 1px solid #4a3a22;
   border-radius: 2px;
   background: linear-gradient(180deg, #18202a, #0b0f14);
@@ -2508,8 +2508,8 @@ body.fullscreen .main-content {
 
 .wave-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(420px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(235px, 1fr));
+  gap: 7px;
   align-items: start;
 }
 
@@ -2526,15 +2526,15 @@ body.fullscreen .main-content {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  min-height: 32px;
-  padding: 6px 8px;
+  min-height: 26px;
+  padding: 4px 6px;
   border-bottom: 1px solid rgba(138,103,42,.38);
   background: linear-gradient(90deg, rgba(255,184,77,.14), rgba(0,0,0,.22));
 }
 
 .wave-boss-head strong {
   color: #fff1c8;
-  font-size: 17px;
+  font-size: 14px;
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 2px 1px #000;
@@ -2542,25 +2542,26 @@ body.fullscreen .main-content {
 
 .wave-boss-head span {
   color: #9ba7b4;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 900;
   text-transform: uppercase;
 }
 
 .wave-list {
   display: grid;
-  gap: 4px;
-  padding: 5px;
+  gap: 2px;
+  padding: 3px;
 }
 
 .wave-row {
   width: 100%;
-  min-height: 50px;
+  min-height: 39px;
   display: grid;
-  grid-template-columns: 30px minmax(295px, 1.15fr) minmax(245px, .85fr);
+  grid-template-columns: 25px minmax(0, 1fr);
+  grid-template-rows: auto auto;
   align-items: center;
-  gap: 8px;
-  padding: 4px 7px 4px 4px;
+  gap: 2px 5px;
+  padding: 2px 4px 2px 3px;
   border: 1px solid rgba(78,89,102,.78);
   border-left: 5px solid var(--line);
   background:
@@ -2586,19 +2587,20 @@ body.fullscreen .main-content {
   display: grid;
   place-items: center;
   align-self: stretch;
-  min-height: 40px;
+  grid-row: 1 / span 2;
+  min-height: 35px;
   border: 1px solid rgba(255,255,255,.1);
   background: rgba(0,0,0,.45);
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 950;
   text-shadow: 0 2px 0 #000;
 }
 
 .wave-mobs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
-  gap: 4px;
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  gap: 3px;
   min-width: 0;
 }
 
@@ -2607,12 +2609,12 @@ body.fullscreen .main-content {
   align-items: center;
   gap: 4px;
   min-width: 0;
-  min-height: 23px;
-  padding: 1px 5px 1px 1px;
+  min-height: 18px;
+  padding: 1px 4px 1px 1px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.35);
   color: #f1f5f9;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 850;
   text-transform: uppercase;
   overflow: hidden;
@@ -2624,9 +2626,9 @@ body.fullscreen .main-content {
 }
 
 .wave-mob b {
-  min-width: 16px;
+  min-width: 14px;
   color: #ffe083;
-  font-size: 13px;
+  font-size: 11px;
   text-align: right;
 }
 
@@ -2638,8 +2640,8 @@ body.fullscreen .main-content {
 
 .wave-mob-icon {
   flex: 0 0 auto;
-  width: 24px;
-  height: 20px;
+  width: 20px;
+  height: 16px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -2658,10 +2660,10 @@ body.fullscreen .main-content {
 }
 
 .wave-call {
-  align-self: center;
+  align-self: start;
   color: #fff7e8;
-  font-size: 16px;
-  line-height: 1.12;
+  font-size: 11px;
+  line-height: 1.04;
   font-weight: 950;
   text-shadow: 0 2px 1px #000;
 }
@@ -2682,7 +2684,7 @@ body.fullscreen .main-content {
 
 body.compact .wave-grid,
 body.ultra .wave-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
 }
 
 body.ultra .wave-toolbar span,
@@ -2691,18 +2693,32 @@ body.ultra .wave-tags {
 }
 
 body.ultra .wave-row {
-  min-height: 42px;
-  grid-template-columns: 26px minmax(210px, 1.2fr) minmax(160px, 1fr);
+  min-height: 38px;
+  grid-template-columns: 23px minmax(0, 1fr);
 }
 
 body.ultra .wave-call {
-  font-size: 13px;
+  font-size: 11px;
+}
+
+@media (max-width: 1680px) {
+  .wave-grid { grid-template-columns: repeat(4, minmax(205px, 1fr)); }
+  .wave-mobs { grid-template-columns: repeat(auto-fit, minmax(66px, 1fr)); }
+  .wave-call { font-size: 11px; }
+  .wave-boss-head strong { font-size: 13px; }
 }
 
 @media (max-width: 1280px) {
   :root { --sidebar-width: 250px; }
   .topbar.sidebar .actions,
   .topbar.sidebar .filters { grid-template-columns: 1fr; }
+  .wave-row { grid-template-columns: 25px minmax(0, 1fr); }
+}
+
+@media (max-width: 1060px) {
+  .wave-grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+}
+
+@media (max-width: 860px) {
   .wave-grid { grid-template-columns: 1fr; }
-  .wave-row { grid-template-columns: 30px minmax(260px, 1.1fr) minmax(220px, .9fr); }
 }
