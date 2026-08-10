@@ -2596,6 +2596,7 @@ const savedRaids = localStorage.getItem("raids");
 
 const state = {
   raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK", "HYJAL", "BT"] : [savedRaid])),
+  collapsedRaids: new Set(JSON.parse(localStorage.getItem("collapsedRaids") || "[]")),
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
   zoom: localStorage.getItem("zoom") || "1",
@@ -2669,6 +2670,7 @@ function save() {
   localStorage.setItem("dangerOnly", state.dangerOnly);
   localStorage.setItem("auditOnly", state.auditOnly);
   localStorage.setItem("tags", JSON.stringify([...state.tags]));
+  localStorage.setItem("collapsedRaids", JSON.stringify([...state.collapsedRaids]));
 }
 
 function activeRaidMode() {
@@ -3011,6 +3013,7 @@ function renderRaidPlates() {
   raidPlatesEl.innerHTML = raidCatalog.map((raidInfo) => {
     const raid = raidInfo.key;
     const active = state.raids.has(raid);
+    const collapsed = state.collapsedRaids.has(raid);
     const zones = zonesForRaid(raid);
     const visibleZones = zones.length === 1 ? [] : zones;
     const zoneButtons = visibleZones.map(([zone, count]) => {
@@ -3021,8 +3024,11 @@ function renderRaidPlates() {
     const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
     const placeholder = zones.length ? "" : `<div class="zone-placeholder">Coming later</div>`;
     return `
-      <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"}" data-raid-panel="${raid}">
-        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
+      <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"} ${collapsed ? "collapsed" : ""}" data-raid-panel="${raid}">
+        <div class="raid-plate-wrap">
+          <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
+          <button class="raid-collapse" data-raid-collapse="${raid}" type="button" aria-expanded="${collapsed ? "false" : "true"}" title="${collapsed ? "Open paths" : "Close paths"}">${collapsed ? "+" : "-"}</button>
+        </div>
         <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + zoneButtons : placeholder}</div>
       </div>
     `;
@@ -3121,6 +3127,14 @@ filtersEl.addEventListener("click", (event) => {
 });
 
 raidPlatesEl.addEventListener("click", (event) => {
+  const collapseBtn = event.target.closest("[data-raid-collapse]");
+  if (collapseBtn) {
+    const raidName = collapseBtn.dataset.raidCollapse;
+    state.collapsedRaids.has(raidName) ? state.collapsedRaids.delete(raidName) : state.collapsedRaids.add(raidName);
+    save();
+    renderCards();
+    return;
+  }
   const btn = event.target.closest("[data-zone]");
   if (btn) {
     const panel = btn.closest("[data-raid-panel]");
@@ -3171,6 +3185,7 @@ document.addEventListener("click", (event) => {
     state.dangerOnly = false;
     state.auditOnly = false;
     state.tags.clear();
+    state.collapsedRaids.clear();
     state.query = "";
     searchEl.value = "";
     document.body.classList.remove("fullscreen");
