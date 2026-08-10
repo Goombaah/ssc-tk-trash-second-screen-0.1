@@ -18,6 +18,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - TK: 12 cartes
 - Hyjal: 8 cartes
 - Black Temple: 33 cartes
+- Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee, a confirmer hors Wowhead
 - Icones boss BT recuperees depuis le boss overview Wowhead
 - Portraits trash Hyjal: 6 portraits generes + Ghoul/Abomination en screenshots Wowhead/Zamimg
 - Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees
@@ -61,6 +62,7 @@ Aucun CDN ni framework externe n'est requis pour l'utilisation.
 
 - Filtres par raid: SSC, TK, Hyjal, BT
 - Filtres par chemin / pre-boss
+- Vue Hyjal Waves avec filtres boss, recherche, RED/ORANGE et selection de vague
 - Recherche instantanee par mob, spell ou danger
 - Filtres action: Focus, Kick, Sheep, LOS, Fear, MC, Cleave, AoE, Tank danger, Ranged danger
 - Modes: Detailed, Compact, Ultra
@@ -76,6 +78,9 @@ Aucun CDN ni framework externe n'est requis pour l'utilisation.
 - `3`: P3 ALL
 - `4`: Hyjal
 - `5`: BT
+- `H`: vue Hyjal Waves
+- `N`: wave suivante dans la vue Hyjal Waves
+- `B`: wave precedente dans la vue Hyjal Waves
 - `C`: Compact
 - `U`: Ultra
 - `F`: Overlay

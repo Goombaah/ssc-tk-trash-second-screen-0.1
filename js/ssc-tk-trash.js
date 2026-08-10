@@ -133,7 +133,7 @@ const i18n = {
       "dangerOnly": "RED/ORANGE",
       "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Keys: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · A audit · C compact · U ultra · F overlay · R reset · L language",
+      "keys": "Keys: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · H Hyjal waves · N/B wave · A audit · C compact · U ultra · F overlay · R reset · L language",
       "allZones": "All trash",
       "empty": "No visible cards. Reset filters or change search.",
       "visibleCards": "visible cards",
@@ -263,7 +263,7 @@ const i18n = {
       "dangerOnly": "ROUGE/ORANGE",
       "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Touches: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · A audit · C compact · U ultra · F overlay · R reset · L langue",
+      "keys": "Touches: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · H waves Hyjal · N/B wave · A audit · C compact · U ultra · F overlay · R reset · L langue",
       "allZones": "Tous trash",
       "empty": "Aucune carte visible. Reset filtres ou change la recherche.",
       "visibleCards": "cartes visibles",
@@ -2598,6 +2598,10 @@ const state = {
   raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK", "HYJAL", "BT"] : [savedRaid])),
   collapsedRaids: new Set(JSON.parse(localStorage.getItem("collapsedRaids") || "[]")),
   zone: localStorage.getItem("zone") || "ALL",
+  specialView: localStorage.getItem("specialView") || "",
+  hyjalWaveBoss: localStorage.getItem("hyjalWaveBoss") || "ALL",
+  hyjalActiveBoss: localStorage.getItem("hyjalActiveBoss") || "Rage Winterchill",
+  hyjalActiveWave: Number(localStorage.getItem("hyjalActiveWave") || "1"),
   mode: localStorage.getItem("mode") || "detailed",
   zoom: localStorage.getItem("zoom") || "1",
   lang: "en",
@@ -2665,6 +2669,10 @@ function save() {
   localStorage.setItem("raid", raidMode);
   localStorage.setItem("raids", JSON.stringify([...state.raids]));
   localStorage.setItem("zone", state.zone);
+  localStorage.setItem("specialView", state.specialView);
+  localStorage.setItem("hyjalWaveBoss", state.hyjalWaveBoss);
+  localStorage.setItem("hyjalActiveBoss", state.hyjalActiveBoss);
+  localStorage.setItem("hyjalActiveWave", state.hyjalActiveWave);
   localStorage.setItem("mode", state.mode);
   localStorage.setItem("zoom", state.zoom);
   localStorage.setItem("dangerOnly", state.dangerOnly);
@@ -2684,6 +2692,43 @@ function activeRaidMode() {
 function activeRaidList() {
   return raidCatalog.map((raid) => raid.key).filter((raid) => state.raids.has(raid));
 }
+
+const hyjalWaveBosses = ["Rage Winterchill", "Anetheron", "Kaz'rogal", "Azgalor"];
+
+const hyjalWaves = [
+  { boss: "Rage Winterchill", wave: 1, mobs: [["Ghoul", 10]], call: "AoE" },
+  { boss: "Rage Winterchill", wave: 2, mobs: [["Ghoul", 10], ["Crypt Fiend", 2]], call: "AoE + Melee sur Spider une fois dans la melee" },
+  { boss: "Rage Winterchill", wave: 3, mobs: [["Ghoul", 6], ["Crypt Fiend", 6]], call: "AoE + Melee sur Spider une fois dans la melee" },
+  { boss: "Rage Winterchill", wave: 4, mobs: [["Ghoul", 6], ["Crypt Fiend", 4], ["Shadowy Necromancer", 2]], call: "AoE + Kick Droite Shaman + Kick Gauche Mage" },
+  { boss: "Rage Winterchill", wave: 5, mobs: [["Ghoul", 2], ["Crypt Fiend", 6], ["Shadowy Necromancer", 4]], call: "AoE + Kicks + Glebes sur le pop" },
+  { boss: "Rage Winterchill", wave: 6, mobs: [["Ghoul", 6], ["Abomination", 6]], call: "AoE + Totem RN + Focus Abo" },
+  { boss: "Rage Winterchill", wave: 7, mobs: [["Ghoul", 4], ["Shadowy Necromancer", 4], ["Abomination", 4]], call: "AoE + Totem RN + Focus Abo + Glebes sur le pop" },
+  { boss: "Rage Winterchill", wave: 8, mobs: [["Ghoul", 6], ["Crypt Fiend", 4], ["Abomination", 2], ["Shadowy Necromancer", 2]], call: "AoE + Focus Abo" },
+  { boss: "Anetheron", wave: 1, mobs: [["Ghoul", 10]], call: "AoE" },
+  { boss: "Anetheron", wave: 2, mobs: [["Ghoul", 8], ["Abomination", 4]], call: "AoE + Totem RN + Focus Abo" },
+  { boss: "Anetheron", wave: 3, mobs: [["Ghoul", 4], ["Crypt Fiend", 4], ["Shadowy Necromancer", 4]], call: "AoE + Glebes sur le pop + Kicks" },
+  { boss: "Anetheron", wave: 4, mobs: [["Shadowy Necromancer", 4], ["Crypt Fiend", 6], ["Banshee", 2]], call: "AoE + Glebes sur le pop + Kicks + Decurse" },
+  { boss: "Anetheron", wave: 5, mobs: [["Ghoul", 6], ["Shadowy Necromancer", 2], ["Banshee", 4]], call: "AoE + Glebes sur le pop + Kicks + Decurse" },
+  { boss: "Anetheron", wave: 6, mobs: [["Ghoul", 6], ["Abomination", 2], ["Shadowy Necromancer", 4]], call: "AoE + Glebes sur le pop + Kicks + Focus Abo" },
+  { boss: "Anetheron", wave: 7, mobs: [["Crypt Fiend", 4], ["Abomination", 4], ["Banshee", 4], ["Ghoul", 2]], call: "AoE + Focus Abo + Decurse + Glebe sur le pop" },
+  { boss: "Anetheron", wave: 8, mobs: [["Ghoul", 3], ["Abomination", 4], ["Crypt Fiend", 3], ["Banshee", 2], ["Shadowy Necromancer", 2]], call: "AoE + Focus Abo + Decurse + Glebe sur le pop" },
+  { boss: "Kaz'rogal", wave: 1, mobs: [["Ghoul", 4], ["Abomination", 4], ["Banshee", 2], ["Shadowy Necromancer", 2]], call: "AoE + Focus Abo + Decurse + Glebe sur le pop" },
+  { boss: "Kaz'rogal", wave: 2, mobs: [["Ghoul", 4], ["Gargoyle", 10]], call: "Mage + Demo + Hunt + Feral + 1 heal > camp troll" },
+  { boss: "Kaz'rogal", wave: 3, mobs: [["Ghoul", 6], ["Crypt Fiend", 6], ["Shadowy Necromancer", 2]], call: "AoE + Kick Droite Shaman + Kick Gauche Mage" },
+  { boss: "Kaz'rogal", wave: 4, mobs: [["Crypt Fiend", 6], ["Shadowy Necromancer", 2], ["Gargoyle", 6]], call: "Mage + Demo + Hunt + Feral + 1 heal > camp troll" },
+  { boss: "Kaz'rogal", wave: 5, mobs: [["Ghoul", 4], ["Abomination", 6], ["Shadowy Necromancer", 4]], call: "AoE + Focus Abo + Kicks" },
+  { boss: "Kaz'rogal", wave: 6, mobs: [["Gargoyle", 8], ["Frost Wyrm", 1]], call: "Entrer du camp + Focus Wyrm quand targetable (Tank par Feral)" },
+  { boss: "Kaz'rogal", wave: 7, mobs: [["Ghoul", 6], ["Abomination", 4], ["Frost Wyrm", 1]], call: "Entre Troll et entree du camp + Mage + SP" },
+  { boss: "Kaz'rogal", wave: 8, mobs: [["Ghoul", 6], ["Abomination", 4], ["Crypt Fiend", 2], ["Banshee", 2], ["Shadowy Necromancer", 2]], call: "AoE + Focus Abo + Glebe sur le pop" },
+  { boss: "Azgalor", wave: 1, mobs: [["Abomination", 6], ["Shadowy Necromancer", 6]], call: "Glebe sur le pop + AoE" },
+  { boss: "Azgalor", wave: 2, mobs: [["Ghoul", 5], ["Gargoyle", 8], ["Frost Wyrm", 1]], call: "Feral tank Wyrm + Focus Wyrm quand possible + Packing avec Ghoul" },
+  { boss: "Azgalor", wave: 3, mobs: [["Ghoul", 6], ["Giant Infernal", 8]], call: "Melee sur Ghoul + reste sur Infernal" },
+  { boss: "Azgalor", wave: 4, mobs: [["Fel Stalker", 6], ["Giant Infernal", 8]], call: "Melee sur Fel Stalker + reste sur Infernal" },
+  { boss: "Azgalor", wave: 5, mobs: [["Abomination", 4], ["Fel Stalker", 6], ["Shadowy Necromancer", 4]], call: "Glebe sur le pop + AoE + focus Abo" },
+  { boss: "Azgalor", wave: 6, mobs: [["Shadowy Necromancer", 6], ["Banshee", 6]], call: "Glebe sur le pop + Glebe + Glebe + Kick + Decurse" },
+  { boss: "Azgalor", wave: 7, mobs: [["Ghoul", 2], ["Crypt Fiend", 2], ["Fel Stalker", 2], ["Giant Infernal", 8]], call: "Melee sur entree + reste sur Infernal" },
+  { boss: "Azgalor", wave: 8, mobs: [["Abomination", 4], ["Crypt Fiend", 4], ["Banshee", 4], ["Shadowy Necromancer", 2], ["Fel Stalker", 2]], call: "AoE + Focus Abo + Glebe sur le pop + Decurse" }
+].map((wave) => ({ ...wave, source: "guild-strat" }));
 
 function normalized(text) {
   return String(text).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -2851,6 +2896,107 @@ function tagPills(tags) {
   return tags.slice(0, 3).map((tag) => `<span class="tag ${tag}">${tagButtonContent(tag, labels[tag] || tag)}</span>`).join("");
 }
 
+function waveTags(wave) {
+  const text = normalized(`${wave.call} ${wave.mobs.map(([name]) => name).join(" ")}`);
+  const tags = new Set(["aoe"]);
+  if (text.includes("focus")) tags.add("focus");
+  if (text.includes("kick")) tags.add("kick");
+  if (text.includes("glebe") || text.includes("decurse")) tags.add("dispel");
+  if (text.includes("wyrm") || text.includes("infernal") || text.includes("abo")) tags.add("tank");
+  if (text.includes("gargoyle") || text.includes("camp troll")) tags.add("ranged");
+  return [...tags];
+}
+
+function wavePriority(wave) {
+  const text = normalized(`${wave.call} ${wave.mobs.map(([name]) => name).join(" ")}`);
+  if (text.includes("wyrm") || text.includes("giant infernal") || text.includes("fel stalker") || (text.includes("banshee") && text.includes("necromancer"))) return "red";
+  if (text.includes("focus") || text.includes("kick") || text.includes("glebe") || text.includes("abomination") || text.includes("gargoyle")) return "orange";
+  if (text.includes("crypt fiend")) return "yellow";
+  return "green";
+}
+
+function waveMobIcon(name) {
+  const src = trashImages[name];
+  if (!src) {
+    return `<span class="wave-mob-icon no-image" title="${escapeHtml(name)} - a confirmer">${escapeHtml(mobInitials(name))}</span>`;
+  }
+  return `<span class="wave-mob-icon"><img src="${escapeHtml(src)}" alt="" loading="lazy" decoding="async"></span>`;
+}
+
+function waveMatches(wave) {
+  const tags = waveTags(wave);
+  const priority = wavePriority(wave);
+  if (state.dangerOnly && !["red", "orange"].includes(priority)) return false;
+  for (const tag of state.tags) if (!tags.includes(tag)) return false;
+  if (state.hyjalWaveBoss !== "ALL" && wave.boss !== state.hyjalWaveBoss) return false;
+  const q = normalized(state.query);
+  if (!q) return true;
+  const hay = normalized([wave.boss, wave.wave, wave.call, wave.source, priority, tags.join(" "), wave.mobs.map(([name, count]) => `${count} ${name}`).join(" ")].join(" "));
+  return hay.includes(q);
+}
+
+function renderHyjalWaves() {
+  const waves = hyjalWaves.filter(waveMatches);
+  const bosses = state.hyjalWaveBoss === "ALL" ? hyjalWaveBosses : [state.hyjalWaveBoss];
+  const visibleCount = waves.length;
+  countEl.textContent = `${visibleCount}/${hyjalWaves.length} waves`;
+  if (mainCountEl) mainCountEl.textContent = String(visibleCount);
+  if (contentTitleEl) contentTitleEl.textContent = `Hyjal - Waves ${state.hyjalWaveBoss === "ALL" ? "" : "- " + state.hyjalWaveBoss}`;
+
+  if (!waves.length) {
+    cardsEl.innerHTML = `<div class="empty">No visible Hyjal waves. Reset filters or change search.</div>`;
+    return;
+  }
+
+  cardsEl.innerHTML = `
+    <section class="hyjal-wave-view">
+      <div class="wave-toolbar">
+        <div>
+          <strong>Hyjal Waves</strong>
+          <span>source: guild-strat - a confirmer hors donnees Wowhead</span>
+        </div>
+        <div class="wave-boss-tabs">
+          <button data-wave-boss="ALL" class="${state.hyjalWaveBoss === "ALL" ? "active" : ""}">All bosses</button>
+          ${hyjalWaveBosses.map((boss) => `<button data-wave-boss="${escapeHtml(boss)}" class="${state.hyjalWaveBoss === boss ? "active" : ""}">${escapeHtml(boss)}</button>`).join("")}
+        </div>
+      </div>
+      <div class="wave-grid">
+        ${bosses.map((boss) => {
+          const bossWaves = waves.filter((wave) => wave.boss === boss);
+          if (!bossWaves.length) return "";
+          return `
+            <section class="wave-boss-card">
+              <div class="wave-boss-head"><strong>${escapeHtml(boss)}</strong><span>${bossWaves.length}/8 waves</span></div>
+              <div class="wave-list">
+                ${bossWaves.map((wave) => {
+                  const priority = wavePriority(wave);
+                  const tags = waveTags(wave);
+                  return `
+                    <button class="wave-row ${priority} ${state.hyjalActiveBoss === boss && state.hyjalActiveWave === wave.wave ? "active" : ""}" data-wave-row="${escapeHtml(boss)}" data-wave="${wave.wave}" type="button">
+                      <span class="wave-num">${wave.wave}</span>
+                      <span class="wave-mobs">
+                        ${wave.mobs.map(([name, count]) => `
+                          <span class="wave-mob ${trashImages[name] ? "" : "uncertain"}">
+                            ${waveMobIcon(name)}
+                            <b>${count}</b>
+                            <span>${escapeHtml(name === "Crypt Fiend" ? "Crypt Fiend?" : name)}</span>
+                          </span>
+                        `).join("")}
+                      </span>
+                      <span class="wave-call">${richText(wave.call)}</span>
+                      <span class="wave-tags">${tagPills(tags)}</span>
+                    </button>
+                  `;
+                }).join("")}
+              </div>
+            </section>
+          `;
+        }).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function actionTitle(item) {
   const labels = t().tagLabels;
   const order = ["focus", "kick", "stopcc", "sheep", "banish", "los", "tank", "aoe", "ranged", "enemy-mc", "priest-mc", "cleave", "fear"];
@@ -2921,6 +3067,11 @@ function toggleRaidTab(raidName) {
     state.collapsedRaids.add(raidName);
     if (state.zone !== "ALL" && zonesForRaid(raidName).some(([zone]) => zone === state.zone)) {
       state.zone = "ALL";
+    }
+    if (raidName === "HYJAL" && state.specialView === "HYJAL_WAVES") {
+      state.specialView = "";
+      state.hyjalWaveBoss = "ALL";
+      state.hyjalActiveBoss = "Rage Winterchill";
     }
   } else {
     state.raids.add(raidName);
@@ -3031,15 +3182,18 @@ function renderRaidPlates() {
     const visibleZones = zones.length === 1 ? [] : zones;
     const zoneButtons = visibleZones.map(([zone, count]) => {
       const iconSrc = zoneIcons[zone] || "assets/UI-RaidTargetingIcons.png";
-      return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${escapeHtml(zoneLabel(zone))}</span><span class="zone-count">${count}</span></button>`;
+      return `<button data-zone="${escapeHtml(zone)}" class="zone-tile ${!state.specialView && state.zone === zone ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(iconSrc)}" alt=""><span class="zone-label">${escapeHtml(zoneLabel(zone))}</span><span class="zone-count">${count}</span></button>`;
     }).join("");
     const allRaidCount = trashData.filter((item) => item.raid === raid).length;
-    const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
+    const allRaidButton = `<button data-zone="ALL" class="zone-tile zone-tile-all ${!state.specialView && state.zone === "ALL" ? "active" : ""}"><img class="zone-icon" src="${escapeHtml(raidAllIcons[raid])}" alt=""><span class="zone-label">${ui("allZones")}</span><span class="zone-count">${allRaidCount}</span></button>`;
+    const hyjalWaveButton = raid === "HYJAL"
+      ? `<button data-hyjal-waves="ALL" class="zone-tile zone-tile-waves ${state.specialView === "HYJAL_WAVES" ? "active" : ""}"><img class="zone-icon" src="assets/UI-RaidTargetingIcons.png" alt=""><span class="zone-label">Waves</span><span class="zone-count">${hyjalWaves.length}</span></button>`
+      : "";
     const placeholder = zones.length ? "" : `<div class="zone-placeholder">Coming later</div>`;
     return `
       <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"} ${collapsed ? "collapsed" : ""}" data-raid-panel="${raid}">
         <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" type="button" aria-expanded="${collapsed ? "false" : "true"}"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
-        <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + zoneButtons : placeholder}</div>
+        <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + hyjalWaveButton + zoneButtons : placeholder}</div>
       </div>
     `;
   }).join("");
@@ -3047,10 +3201,15 @@ function renderRaidPlates() {
 
 function renderCards() {
   syncStaticText();
+  if (state.specialView === "HYJAL_WAVES") {
+    state.raids.add("HYJAL");
+    state.collapsedRaids.delete("HYJAL");
+  }
   const raidMode = activeRaidMode();
   document.body.classList.toggle("raid-ssc", raidMode === "SSC");
   document.body.classList.toggle("raid-tk", raidMode === "TK");
   document.body.classList.toggle("raid-all", raidMode === "ALL");
+  document.body.classList.toggle("hyjal-waves-active", state.specialView === "HYJAL_WAVES");
   document.body.classList.toggle("compact", state.mode === "compact" || state.mode === "ultra");
   document.body.classList.toggle("ultra", state.mode === "ultra");
   document.body.classList.toggle("audit", state.auditOnly);
@@ -3058,6 +3217,11 @@ function renderCards() {
   document.querySelector(".danger-toggle").classList.toggle("active", state.dangerOnly);
   document.querySelector("#auditOnly").classList.toggle("active", state.auditOnly);
   renderRaidPlates();
+
+  if (state.specialView === "HYJAL_WAVES") {
+    renderHyjalWaves();
+    return;
+  }
 
   const items = visibleItems();
   countEl.textContent = `${items.length}/${trashData.length} mobs`;
@@ -3137,11 +3301,24 @@ filtersEl.addEventListener("click", (event) => {
 });
 
 raidPlatesEl.addEventListener("click", (event) => {
+  const waveBtn = event.target.closest("[data-hyjal-waves]");
+  if (waveBtn) {
+    state.raids.add("HYJAL");
+    state.collapsedRaids.delete("HYJAL");
+    state.specialView = "HYJAL_WAVES";
+    state.hyjalWaveBoss = waveBtn.dataset.hyjalWaves || "ALL";
+    if (state.hyjalWaveBoss !== "ALL") state.hyjalActiveBoss = state.hyjalWaveBoss;
+    state.zone = "ALL";
+    save();
+    renderCards();
+    return;
+  }
   const btn = event.target.closest("[data-zone]");
   if (btn) {
     const panel = btn.closest("[data-raid-panel]");
     if (panel) state.raids.add(panel.dataset.raidPanel);
     state.zone = btn.dataset.zone;
+    state.specialView = "";
     save();
     renderCards();
     return;
@@ -3178,6 +3355,10 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("#reset")) {
     state.raids = new Set(["SSC", "TK", "HYJAL", "BT"]);
     state.zone = "ALL";
+    state.specialView = "";
+    state.hyjalWaveBoss = "ALL";
+    state.hyjalActiveBoss = "Rage Winterchill";
+    state.hyjalActiveWave = 1;
     state.mode = "detailed";
     state.dangerOnly = false;
     state.auditOnly = false;
@@ -3190,6 +3371,26 @@ document.addEventListener("click", (event) => {
   }
   if (event.target.closest("#fullscreen")) {
     document.body.classList.toggle("fullscreen");
+    changed = true;
+  }
+  const waveBoss = event.target.closest("[data-wave-boss]");
+  if (waveBoss) {
+    state.raids.add("HYJAL");
+    state.collapsedRaids.delete("HYJAL");
+    state.specialView = "HYJAL_WAVES";
+    state.hyjalWaveBoss = waveBoss.dataset.waveBoss || "ALL";
+    if (state.hyjalWaveBoss !== "ALL") state.hyjalActiveBoss = state.hyjalWaveBoss;
+    const waveRow = waveBoss.closest("[data-wave]");
+    if (waveRow) state.hyjalActiveWave = Number(waveRow.dataset.wave || state.hyjalActiveWave);
+    changed = true;
+  }
+  const waveRow = event.target.closest("[data-wave-row]");
+  if (waveRow) {
+    state.raids.add("HYJAL");
+    state.collapsedRaids.delete("HYJAL");
+    state.specialView = "HYJAL_WAVES";
+    state.hyjalActiveBoss = waveRow.dataset.waveRow || state.hyjalActiveBoss;
+    state.hyjalActiveWave = Number(waveRow.dataset.wave || state.hyjalActiveWave);
     changed = true;
   }
   if (!changed) return;
@@ -3257,6 +3458,10 @@ document.addEventListener("keydown", (event) => {
   }
   if (key === "r") {
     state.zone = "ALL";
+    state.specialView = "";
+    state.hyjalWaveBoss = "ALL";
+    state.hyjalActiveBoss = "Rage Winterchill";
+    state.hyjalActiveWave = 1;
     state.dangerOnly = false;
     state.auditOnly = false;
     state.tags.clear();
@@ -3266,6 +3471,21 @@ document.addEventListener("keydown", (event) => {
   }
   if (key === "f") {
     document.body.classList.toggle("fullscreen");
+    changed = true;
+  }
+  if (key === "h") {
+    state.raids.add("HYJAL");
+    state.collapsedRaids.delete("HYJAL");
+    state.specialView = state.specialView === "HYJAL_WAVES" ? "" : "HYJAL_WAVES";
+    state.hyjalWaveBoss = "ALL";
+    changed = true;
+  }
+  if (key === "n" && state.specialView === "HYJAL_WAVES") {
+    state.hyjalActiveWave = Math.min(8, state.hyjalActiveWave + 1);
+    changed = true;
+  }
+  if (key === "b" && state.specialView === "HYJAL_WAVES") {
+    state.hyjalActiveWave = Math.max(1, state.hyjalActiveWave - 1);
     changed = true;
   }
   if (!changed) return;
