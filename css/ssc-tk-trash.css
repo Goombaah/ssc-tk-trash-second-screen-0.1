@@ -2483,6 +2483,8 @@ body.fullscreen.hyjal-waves-active .wave-grid {
   height: 100%;
   min-height: 0;
   align-items: stretch;
+  grid-template-columns: repeat(2, minmax(420px, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 body.fullscreen.hyjal-waves-active .wave-boss-card {
@@ -2517,6 +2519,8 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 
 .hyjal-wave-view {
   display: grid;
+  min-height: calc(100vh - 84px);
+  grid-template-rows: auto minmax(0, 1fr);
   gap: 7px;
 }
 
@@ -2580,12 +2584,21 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 
 .wave-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(235px, 1fr));
+  grid-template-columns: repeat(2, minmax(420px, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 7px;
-  align-items: start;
+  align-items: stretch;
+}
+
+.wave-grid-filtered {
+  grid-template-columns: minmax(520px, 1fr);
+  grid-template-rows: minmax(0, 1fr);
 }
 
 .wave-boss-card {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   border: 1px solid rgba(138,103,42,.48);
   background:
     linear-gradient(180deg, rgba(255,255,255,.045), rgba(0,0,0,0)),
@@ -2621,13 +2634,15 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 
 .wave-list {
   display: grid;
+  min-height: 0;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
   gap: 2px;
   padding: 3px;
 }
 
 .wave-row {
   width: 100%;
-  min-height: 39px;
+  min-height: 0;
   display: grid;
   grid-template-columns: 25px minmax(0, 1fr);
   grid-template-rows: auto auto;
@@ -2660,7 +2675,7 @@ body.fullscreen.hyjal-waves-active .wave-mob {
   place-items: center;
   align-self: stretch;
   grid-row: 1 / span 2;
-  min-height: 35px;
+  min-height: 0;
   border: 1px solid rgba(255,255,255,.1);
   background: rgba(0,0,0,.45);
   color: #fff;
@@ -2756,7 +2771,7 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 
 body.compact .wave-grid,
 body.ultra .wave-grid {
-  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, minmax(380px, 1fr));
 }
 
 body.ultra .wave-toolbar span,
@@ -2774,9 +2789,10 @@ body.ultra .wave-call {
 }
 
 @media (max-width: 1680px) {
-  .wave-grid { grid-template-columns: repeat(4, minmax(205px, 1fr)); }
-  .wave-mobs { grid-template-columns: repeat(auto-fit, minmax(66px, 1fr)); }
-  .wave-call { font-size: 11px; }
+  .wave-grid { grid-template-columns: repeat(2, minmax(360px, 1fr)); }
+  .wave-grid-filtered { grid-template-columns: minmax(460px, 1fr); }
+  .wave-mobs { grid-template-columns: repeat(auto-fit, minmax(82px, 1fr)); }
+  .wave-call { font-size: 12px; }
   .wave-boss-head strong { font-size: 13px; }
 }
 
@@ -2788,7 +2804,9 @@ body.ultra .wave-call {
 }
 
 @media (max-width: 1060px) {
-  .wave-grid { grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+  .wave-grid,
+  .wave-grid-filtered { grid-template-columns: 1fr; }
+  .wave-grid { grid-template-rows: none; }
 }
 
 @media (max-width: 860px) {

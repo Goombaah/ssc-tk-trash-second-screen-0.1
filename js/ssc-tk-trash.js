@@ -3014,7 +3014,7 @@ function renderHyjalWaves() {
           ${hyjalWaveBosses.map((boss) => `<button data-wave-boss="${escapeHtml(boss)}" class="${state.hyjalWaveBoss === boss ? "active" : ""}">${escapeHtml(boss)}</button>`).join("")}
         </div>
       </div>
-      <div class="wave-grid">
+      <div class="wave-grid ${state.hyjalWaveBoss === "ALL" ? "wave-grid-all" : "wave-grid-filtered"}">
         ${bosses.map((boss) => {
           const bossWaves = waves.filter((wave) => wave.boss === boss);
           if (!bossWaves.length) return "";
