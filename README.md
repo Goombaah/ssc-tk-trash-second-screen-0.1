@@ -19,6 +19,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - Hyjal: 8 cartes
 - Black Temple: 31 cartes
 - Icones boss BT recuperees depuis le boss overview Wowhead
+- Portraits trash BT: screenshots Wowhead quand disponibles
 - Portraits trash P3: placeholders pour l'instant
 - Tooltips spells actifs
 - Sauvegarde preferences via `localStorage`
@@ -128,6 +129,7 @@ Actuellement inclus:
 - spell icons
 - boss icons SSC/TK
 - boss icons BT
+- screenshots trash BT depuis Wowhead, quand disponibles
 - portraits trash SSC/TK
 - placeholders pour trash P3
 

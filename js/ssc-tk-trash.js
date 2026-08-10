@@ -459,7 +459,29 @@ const trashImages = {
   "Tidewalker Shaman": "assets/Trash2_fast/tidewalker_shaman.webp",
   "Tidewalker Warrior": "assets/Trash2_fast/tidewalker_warrior.webp",
   "Underbog Colossus": "assets/Trash2_fast/underbog_colossus.webp",
-  "Vashj'ir Honor Guard": "assets/Trash2_fast/vashj_ir_honor_guard.webp"
+  "Vashj'ir Honor Guard": "assets/Trash2_fast/vashj_ir_honor_guard.webp",
+  "Leviathan": "assets/TrashBT_wowhead/leviathan.jpg",
+  "Coilskar Wrangler": "assets/TrashBT_wowhead/coilskar_wrangler.jpg",
+  "Dragon Turtle": "assets/TrashBT_wowhead/dragon_turtle.jpg",
+  "Coilskar Harpooner": "assets/TrashBT_wowhead/coilskar_harpooner.jpg",
+  "Coilskar General": "assets/TrashBT_wowhead/coilskar_general.jpg",
+  "Aqueous Lord": "assets/TrashBT_wowhead/aqueous_lord.jpg",
+  "Aqueous Spawn": "assets/TrashBT_wowhead/aqueous_spawn.jpg",
+  "Coilskar Sea-Caller": "assets/TrashBT_wowhead/coilskar_sea_caller.jpg",
+  "Bonechewer Taskmaster": "assets/TrashBT_wowhead/bonechewer_taskmaster.jpg",
+  "Bonechewer Worker": "assets/TrashBT_wowhead/bonechewer_worker.jpg",
+  "Dragonmaw Sky Stalker": "assets/TrashBT_wowhead/dragonmaw_sky_stalker.jpg",
+  "Dragonmaw Wyrmcaller": "assets/TrashBT_wowhead/dragonmaw_wyrmcaller.jpg",
+  "Illidari Fearbringer": "assets/TrashBT_wowhead/illidari_fearbringer.jpg",
+  "Dragonmaw Wind Reaver": "assets/TrashBT_wowhead/dragonmaw_wind_reaver.jpg",
+  "Shadowmoon Blood Mage": "assets/TrashBT_wowhead/shadowmoon_blood_mage.jpg",
+  "Hand of Gorefiend": "assets/TrashBT_wowhead/hand_of_gorefiend.jpg",
+  "Bonechewer Behemoth": "assets/TrashBT_wowhead/bonechewer_behemoth.jpg",
+  "Mistress of Woe": "assets/TrashBT_wowhead/mistress_of_woe.jpg",
+  "Priestess of Torment": "assets/TrashBT_wowhead/priestess_of_torment.jpg",
+  "Mistress of Dementia": "assets/TrashBT_wowhead/mistress_of_dementia.jpg",
+  "Promenade Sentinel": "assets/TrashBT_wowhead/promenade_sentinel.jpg",
+  "Illidari Blood Lord": "assets/TrashBT_wowhead/illidari_blood_lord.jpg"
 };
 
 const trashData = [
