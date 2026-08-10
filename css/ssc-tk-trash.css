@@ -2508,13 +2508,13 @@ body.fullscreen.hyjal-waves-active .wave-num {
 }
 
 body.fullscreen.hyjal-waves-active .wave-call {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.08;
 }
 
 body.fullscreen.hyjal-waves-active .wave-mob {
-  min-height: 19px;
-  font-size: 9px;
+  min-height: 20px;
+  font-size: 10px;
 }
 
 .hyjal-wave-view {
@@ -2644,8 +2644,8 @@ body.fullscreen.hyjal-waves-active .wave-mob {
   width: 100%;
   min-height: 0;
   display: grid;
-  grid-template-columns: 25px minmax(0, 1fr);
-  grid-template-rows: auto auto;
+  grid-template-columns: 25px minmax(250px, 1.05fr) minmax(220px, .95fr);
+  grid-template-rows: minmax(0, 1fr);
   align-items: center;
   gap: 2px 5px;
   padding: 2px 4px 2px 3px;
@@ -2674,7 +2674,6 @@ body.fullscreen.hyjal-waves-active .wave-mob {
   display: grid;
   place-items: center;
   align-self: stretch;
-  grid-row: 1 / span 2;
   min-height: 0;
   border: 1px solid rgba(255,255,255,.1);
   background: rgba(0,0,0,.45);
@@ -2685,8 +2684,9 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 }
 
 .wave-mobs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
   gap: 3px;
   min-width: 0;
 }
@@ -2695,13 +2695,15 @@ body.fullscreen.hyjal-waves-active .wave-mob {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  flex: 0 0 auto;
   min-width: 0;
   min-height: 18px;
-  padding: 1px 4px 1px 1px;
+  max-width: 148px;
+  padding: 1px 6px 1px 1px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.35);
   color: #f1f5f9;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 850;
   text-transform: uppercase;
   overflow: hidden;
@@ -2713,9 +2715,9 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 }
 
 .wave-mob b {
-  min-width: 14px;
+  min-width: 16px;
   color: #ffe083;
-  font-size: 11px;
+  font-size: 12px;
   text-align: right;
 }
 
@@ -2747,12 +2749,25 @@ body.fullscreen.hyjal-waves-active .wave-mob {
 }
 
 .wave-call {
-  align-self: start;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  align-self: center;
+  min-width: 0;
   color: #fff7e8;
-  font-size: 11px;
-  line-height: 1.04;
+  font-size: 12px;
+  line-height: 1.08;
   font-weight: 950;
   text-shadow: 0 2px 1px #000;
+}
+
+.wave-call-label {
+  flex: 0 0 auto;
+  color: #9fd1ff;
+  font-size: 9px;
+  font-weight: 950;
+  text-transform: uppercase;
+  opacity: .82;
 }
 
 .wave-tags {
@@ -2781,7 +2796,7 @@ body.ultra .wave-tags {
 
 body.ultra .wave-row {
   min-height: 38px;
-  grid-template-columns: 23px minmax(0, 1fr);
+  grid-template-columns: 23px minmax(220px, 1.1fr) minmax(180px, .9fr);
 }
 
 body.ultra .wave-call {
@@ -2791,7 +2806,6 @@ body.ultra .wave-call {
 @media (max-width: 1680px) {
   .wave-grid { grid-template-columns: repeat(2, minmax(360px, 1fr)); }
   .wave-grid-filtered { grid-template-columns: minmax(460px, 1fr); }
-  .wave-mobs { grid-template-columns: repeat(auto-fit, minmax(82px, 1fr)); }
   .wave-call { font-size: 12px; }
   .wave-boss-head strong { font-size: 13px; }
 }
@@ -2800,7 +2814,12 @@ body.ultra .wave-call {
   :root { --sidebar-width: 250px; }
   .topbar.sidebar .actions,
   .topbar.sidebar .filters { grid-template-columns: 1fr; }
-  .wave-row { grid-template-columns: 25px minmax(0, 1fr); }
+  .wave-row {
+    grid-template-columns: 25px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .wave-num { grid-row: 1 / span 2; }
+  .wave-call { align-self: start; }
 }
 
 @media (max-width: 1060px) {

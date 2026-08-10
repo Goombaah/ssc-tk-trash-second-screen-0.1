@@ -2944,34 +2944,34 @@ function waveMobIcon(name) {
 }
 
 const waveMobLabels = {
-  "Shadowy Necromancer": "Necro",
-  "Abomination": "Abo",
-  "Crypt Fiend": "Fiend",
-  "Giant Infernal": "Inf",
+  "Shadowy Necromancer": "Necromancer",
+  "Abomination": "Abom",
+  "Crypt Fiend": "Crypt",
+  "Giant Infernal": "Infernal",
   "Fel Stalker": "Stalker",
   "Frost Wyrm": "Wyrm",
-  "Gargoyle": "Garg",
-  "Banshee": "Bansh",
+  "Gargoyle": "Gargoyle",
+  "Banshee": "Banshee",
   "Ghoul": "Ghoul"
 };
 
 function compactWaveCall(call) {
   return String(call)
-    .replace(/Melee sur Spider une fois dans la melee/g, "Melee spider")
+    .replace(/Melee sur Spider une fois dans la melee/g, "Melee spiders")
     .replace(/Glebes sur le pop/g, "Glebe pop")
     .replace(/Glebe sur le pop/g, "Glebe pop")
     .replace(/Focus Abo/g, "Focus Abo")
-    .replace(/Kick Droite Shaman \+ Kick Gauche Mage/g, "Kick R sham + L mage")
+    .replace(/Kick Droite Shaman \+ Kick Gauche Mage/g, "Kick R Shaman + L Mage")
     .replace(/Feral tank Wyrm/g, "Feral tank Wyrm")
     .replace(/Focus Wyrm quand targetable/g, "Focus Wyrm targetable")
     .replace(/Focus Wyrm quand possible/g, "Focus Wyrm asap")
     .replace(/Packing avec Ghoul/g, "pack Ghoul")
-    .replace(/Mage \+ Demo \+ Hunt \+ Feral \+ 1 heal > camp troll/g, "Mage/Demo/Hunt/Feral + heal > troll")
+    .replace(/Mage \+ Demo \+ Hunt \+ Feral \+ 1 heal > camp troll/g, "Ranged team > troll camp")
     .replace(/Entrer du camp/g, "Entree camp")
     .replace(/Entre Troll et entree du camp/g, "Troll -> entree camp")
-    .replace(/Melee sur Ghoul \+ reste sur Infernal/g, "Melee Ghoul / reste Infernal")
-    .replace(/Melee sur Fel Stalker \+ reste sur Infernal/g, "Melee Stalker / reste Infernal")
-    .replace(/Melee sur entree \+ reste sur Infernal/g, "Melee entree / reste Infernal")
+    .replace(/Melee sur Ghoul \+ reste sur Infernal/g, "Melee Ghouls / rest Infernals")
+    .replace(/Melee sur Fel Stalker \+ reste sur Infernal/g, "Melee Stalkers / rest Infernals")
+    .replace(/Melee sur entree \+ reste sur Infernal/g, "Melee entrance / rest Infernals")
     .replace(/Glebe \+ Glebe \+ Kick/g, "Glebe x2 + Kick")
     .replace(/\s+\+\s+/g, " + ")
     .trim();
@@ -3037,7 +3037,7 @@ function renderHyjalWaves() {
                           </span>
                         `).join("")}
                       </span>
-                      <span class="wave-call">${escapeHtml(compactWaveCall(wave.call))}</span>
+                      <span class="wave-call"><span class="wave-call-label">Call</span>${escapeHtml(compactWaveCall(wave.call))}</span>
                     </button>
                   `;
                 }).join("")}
