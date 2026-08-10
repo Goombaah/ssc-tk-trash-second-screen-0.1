@@ -3146,7 +3146,9 @@ raidPlatesEl.addEventListener("click", (event) => {
     renderCards();
     return;
   }
-  const panel = event.target.closest("[data-raid-panel]");
+  const raidPlate = event.target.closest(".raid-plate");
+  if (!raidPlate) return;
+  const panel = raidPlate.closest("[data-raid-panel]");
   if (!panel) return;
   toggleRaidTab(panel.dataset.raidPanel);
   save();
