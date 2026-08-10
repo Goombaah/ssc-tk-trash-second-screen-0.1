@@ -2943,6 +2943,18 @@ function waveMobIcon(name) {
   return `<span class="wave-mob-icon"><img src="${escapeHtml(src)}" alt="" loading="lazy" decoding="async"></span>`;
 }
 
+const waveMobLabels = {
+  "Shadowy Necromancer": "Necro",
+  "Abomination": "Abo",
+  "Crypt Fiend": "Fiend",
+  "Giant Infernal": "Infernal",
+  "Fel Stalker": "Stalker",
+  "Frost Wyrm": "Wyrm",
+  "Gargoyle": "Gargoyle",
+  "Banshee": "Banshee",
+  "Ghoul": "Ghoul"
+};
+
 function waveMatches(wave) {
   const tags = waveTags(wave);
   const priority = wavePriority(wave);
@@ -2992,19 +3004,18 @@ function renderHyjalWaves() {
                   const priority = wavePriority(wave);
                   const tags = waveTags(wave);
                   return `
-                    <button class="wave-row ${priority} ${state.hyjalActiveBoss === boss && state.hyjalActiveWave === wave.wave ? "active" : ""}" data-wave-row="${escapeHtml(boss)}" data-wave="${wave.wave}" type="button">
+                    <button class="wave-row ${priority} ${state.hyjalActiveBoss === boss && state.hyjalActiveWave === wave.wave ? "active" : ""}" data-wave-row="${escapeHtml(boss)}" data-wave="${wave.wave}" type="button" title="${escapeHtml(tags.join(" / "))}">
                       <span class="wave-num">${wave.wave}</span>
                       <span class="wave-mobs">
                         ${wave.mobs.map(([name, count]) => `
-                          <span class="wave-mob ${trashImages[name] ? "" : "uncertain"}">
+                          <span class="wave-mob ${trashImages[name] ? "" : "uncertain"}" title="${escapeHtml(name)}">
                             ${waveMobIcon(name)}
                             <b>${count}</b>
-                            <span>${escapeHtml(name)}</span>
+                            <span>${escapeHtml(waveMobLabels[name] || name)}</span>
                           </span>
                         `).join("")}
                       </span>
-                      <span class="wave-call">${richText(wave.call)}</span>
-                      <span class="wave-tags">${tagPills(tags)}</span>
+                      <span class="wave-call">${escapeHtml(wave.call)}</span>
                     </button>
                   `;
                 }).join("")}

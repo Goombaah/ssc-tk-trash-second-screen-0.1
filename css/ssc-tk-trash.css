@@ -2509,7 +2509,7 @@ body.fullscreen .main-content {
 .wave-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(420px, 1fr));
-  gap: 10px;
+  gap: 12px;
   align-items: start;
 }
 
@@ -2555,12 +2555,12 @@ body.fullscreen .main-content {
 
 .wave-row {
   width: 100%;
-  min-height: 58px;
+  min-height: 50px;
   display: grid;
-  grid-template-columns: 30px minmax(220px, 1.2fr) minmax(220px, 1fr) auto;
-  align-items: stretch;
-  gap: 6px;
-  padding: 4px 6px 4px 4px;
+  grid-template-columns: 30px minmax(295px, 1.15fr) minmax(245px, .85fr);
+  align-items: center;
+  gap: 8px;
+  padding: 4px 7px 4px 4px;
   border: 1px solid rgba(78,89,102,.78);
   border-left: 5px solid var(--line);
   background:
@@ -2585,7 +2585,8 @@ body.fullscreen .main-content {
 .wave-num {
   display: grid;
   place-items: center;
-  min-height: 48px;
+  align-self: stretch;
+  min-height: 40px;
   border: 1px solid rgba(255,255,255,.1);
   background: rgba(0,0,0,.45);
   color: #fff;
@@ -2595,9 +2596,8 @@ body.fullscreen .main-content {
 }
 
 .wave-mobs {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
   gap: 4px;
   min-width: 0;
 }
@@ -2606,13 +2606,13 @@ body.fullscreen .main-content {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  min-height: 22px;
-  max-width: 180px;
+  min-width: 0;
+  min-height: 23px;
   padding: 1px 5px 1px 1px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(0,0,0,.35);
   color: #f1f5f9;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 850;
   text-transform: uppercase;
   overflow: hidden;
@@ -2624,9 +2624,10 @@ body.fullscreen .main-content {
 }
 
 .wave-mob b {
-  min-width: 15px;
+  min-width: 16px;
   color: #ffe083;
-  font-size: 12px;
+  font-size: 13px;
+  text-align: right;
 }
 
 .wave-mob span:last-child {
@@ -2659,19 +2660,14 @@ body.fullscreen .main-content {
 .wave-call {
   align-self: center;
   color: #fff7e8;
-  font-size: 15px;
-  line-height: 1.16;
+  font-size: 16px;
+  line-height: 1.12;
   font-weight: 950;
   text-shadow: 0 2px 1px #000;
 }
 
 .wave-tags {
-  align-self: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 3px;
-  min-width: 95px;
+  display: none;
 }
 
 .wave-tags .tag {
@@ -2696,7 +2692,7 @@ body.ultra .wave-tags {
 
 body.ultra .wave-row {
   min-height: 42px;
-  grid-template-columns: 26px minmax(150px, 1.2fr) minmax(150px, 1fr);
+  grid-template-columns: 26px minmax(210px, 1.2fr) minmax(160px, 1fr);
 }
 
 body.ultra .wave-call {
@@ -2708,8 +2704,5 @@ body.ultra .wave-call {
   .topbar.sidebar .actions,
   .topbar.sidebar .filters { grid-template-columns: 1fr; }
   .wave-grid { grid-template-columns: 1fr; }
-  .wave-row { grid-template-columns: 30px minmax(190px, 1fr); }
-  .wave-call,
-  .wave-tags { grid-column: 2; }
-  .wave-tags { justify-content: flex-start; }
+  .wave-row { grid-template-columns: 30px minmax(260px, 1.1fr) minmax(220px, .9fr); }
 }
