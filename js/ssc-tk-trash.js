@@ -474,6 +474,7 @@ const trashImages = {
   "Dragonmaw Wyrmcaller": "assets/TrashBT_wowhead/dragonmaw_wyrmcaller.jpg",
   "Illidari Fearbringer": "assets/TrashBT_wowhead/illidari_fearbringer.jpg",
   "Dragonmaw Wind Reaver": "assets/TrashBT_wowhead/dragonmaw_wind_reaver.jpg",
+  "Ashtongue Channeler": "assets/TrashBT_wowhead/ashtongue_channeler.webp",
   "Shadowmoon Blood Mage": "assets/TrashBT_wowhead/shadowmoon_blood_mage.jpg",
   "Hand of Gorefiend": "assets/TrashBT_wowhead/hand_of_gorefiend.jpg",
   "Bonechewer Behemoth": "assets/TrashBT_wowhead/bonechewer_behemoth.jpg",
