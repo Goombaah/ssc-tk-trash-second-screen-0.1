@@ -2611,27 +2611,30 @@ trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
   callShort: item.call
 }));
 
-const savedRaid = localStorage.getItem("raid") || "ALL";
-const savedRaids = localStorage.getItem("raids");
+const urlParams = new URLSearchParams(window.location.search);
+const cleanPreset = urlParams.get("preset") === "clean" || urlParams.has("clean");
+const cleanCollapsedRaids = ["SSC", "TK", "HYJAL", "BT", "SUNWELL"];
+const savedRaid = cleanPreset ? "NONE" : (localStorage.getItem("raid") || "ALL");
+const savedRaids = cleanPreset ? "" : localStorage.getItem("raids");
 
 const state = {
-  raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK", "HYJAL", "BT"] : [savedRaid])),
-  collapsedRaids: new Set(JSON.parse(localStorage.getItem("collapsedRaids") || "[]")),
-  zone: localStorage.getItem("zone") || "ALL",
-  specialView: localStorage.getItem("specialView") || "",
-  hyjalWaveBoss: localStorage.getItem("hyjalWaveBoss") || "ALL",
-  hyjalActiveBoss: localStorage.getItem("hyjalActiveBoss") || "Rage Winterchill",
-  hyjalActiveWave: Number(localStorage.getItem("hyjalActiveWave") || "1"),
-  mode: localStorage.getItem("mode") || "detailed",
-  zoom: localStorage.getItem("zoom") || "1",
+  raids: new Set(cleanPreset ? [] : (savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK", "HYJAL", "BT"] : [savedRaid]))),
+  collapsedRaids: new Set(cleanPreset ? cleanCollapsedRaids : JSON.parse(localStorage.getItem("collapsedRaids") || "[]")),
+  zone: cleanPreset ? "ALL" : (localStorage.getItem("zone") || "ALL"),
+  specialView: cleanPreset ? "" : (localStorage.getItem("specialView") || ""),
+  hyjalWaveBoss: cleanPreset ? "ALL" : (localStorage.getItem("hyjalWaveBoss") || "ALL"),
+  hyjalActiveBoss: cleanPreset ? "Rage Winterchill" : (localStorage.getItem("hyjalActiveBoss") || "Rage Winterchill"),
+  hyjalActiveWave: cleanPreset ? 1 : Number(localStorage.getItem("hyjalActiveWave") || "1"),
+  mode: cleanPreset ? "detailed" : (localStorage.getItem("mode") || "detailed"),
+  zoom: cleanPreset ? "1" : (localStorage.getItem("zoom") || "1"),
   lang: "en",
-  dangerOnly: localStorage.getItem("dangerOnly") === "true",
-  auditOnly: localStorage.getItem("auditOnly") === "true",
-  tags: new Set(JSON.parse(localStorage.getItem("tags") || "[]")),
+  dangerOnly: cleanPreset ? false : localStorage.getItem("dangerOnly") === "true",
+  auditOnly: cleanPreset ? false : localStorage.getItem("auditOnly") === "true",
+  tags: new Set(cleanPreset ? [] : JSON.parse(localStorage.getItem("tags") || "[]")),
   query: ""
 };
 
-if (localStorage.getItem("phase3Enabled") !== "true") {
+if (!cleanPreset && localStorage.getItem("phase3Enabled") !== "true") {
   state.raids.add("HYJAL");
   state.raids.add("BT");
   localStorage.setItem("phase3Enabled", "true");

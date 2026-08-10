@@ -7,6 +7,7 @@ Version actuelle: v0.2 - P3 preview active
 - Phase 2: SSC + TK
 - Phase 3: Hyjal + Black Temple
 - Page publique: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
+- Lien public propre v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260810-v02-clean
 - Fichier offline principal: `SSC_TK_TRASH_SECOND_SCREEN.html`
 
 Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un mix WeakAura / MDT / raid notes / overlay stream.
@@ -33,6 +34,12 @@ Ouvre la page publique:
 
 ```text
 https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
+```
+
+Lien propre pour Discord, sans raid ouvert, en anglais, Detailed, zoom 100%:
+
+```text
+https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260810-v02-clean
 ```
 
 Sur second ecran:
