@@ -2,7 +2,7 @@
 
 Assistant HTML offline pour raid lead / tank / off-tank sur les trashs TBC Anniversary.
 
-Version actuelle: P3 preview active
+Version actuelle: v0.2 - P3 preview active
 
 - Phase 2: SSC + TK
 - Phase 3: Hyjal + Black Temple

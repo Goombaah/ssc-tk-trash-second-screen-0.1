@@ -128,7 +128,7 @@ const i18n = {
       "Web": "Hyjal Crypt Fiend ability: immobilizes a player for 10 sec."
     },
     "ui": {
-      "subtitle": "TBC Anniversary Phase 3 · trash raid lead overlay · offline",
+      "subtitle": "v0.2 - TBC Anniversary Phase 3 - trash raid lead overlay - offline",
       "searchPlaceholder": "Search mob / spell / danger   /",
       "detailed": "Detailed",
       "dangerOnly": "RED/ORANGE",
@@ -259,7 +259,7 @@ const i18n = {
       "Web": "Capacite du Crypt Fiend Hyjal: immobilise un joueur pendant 10 sec."
     },
     "ui": {
-      "subtitle": "TBC Anniversary Phase 3 · outil trash raid lead · offline",
+      "subtitle": "v0.2 - TBC Anniversary Phase 3 - outil trash raid lead - offline",
       "searchPlaceholder": "Chercher mob / sort / danger   /",
       "detailed": "Détaillé",
       "dangerOnly": "ROUGE/ORANGE",
