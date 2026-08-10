@@ -2443,6 +2443,78 @@ body.fullscreen .main-content {
   padding-left: var(--stage-pad);
 }
 
+body.fullscreen.hyjal-waves-active .main-content {
+  padding: 8px 10px;
+  overflow: hidden;
+}
+
+body.fullscreen.hyjal-waves-active .app {
+  grid-template-columns: 1fr;
+}
+
+body.fullscreen.hyjal-waves-active .topbar.sidebar {
+  display: none;
+}
+
+body.fullscreen.hyjal-waves-active .content-head {
+  min-height: 50px;
+  margin: -8px -10px 6px;
+  padding: 7px 10px;
+}
+
+body.fullscreen.hyjal-waves-active .board {
+  height: calc(100vh - 56px);
+  padding: 0;
+  overflow: hidden;
+}
+
+body.fullscreen.hyjal-waves-active .hyjal-wave-view {
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+}
+
+body.fullscreen.hyjal-waves-active .wave-toolbar {
+  min-height: 38px;
+  padding: 5px 8px;
+}
+
+body.fullscreen.hyjal-waves-active .wave-grid {
+  height: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+body.fullscreen.hyjal-waves-active .wave-boss-card {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+body.fullscreen.hyjal-waves-active .wave-list {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+}
+
+body.fullscreen.hyjal-waves-active .wave-row {
+  min-height: 0;
+}
+
+body.fullscreen.hyjal-waves-active .wave-num {
+  min-height: 0;
+}
+
+body.fullscreen.hyjal-waves-active .wave-call {
+  font-size: 12px;
+  line-height: 1.08;
+}
+
+body.fullscreen.hyjal-waves-active .wave-mob {
+  min-height: 19px;
+  font-size: 9px;
+}
+
 .hyjal-wave-view {
   display: grid;
   gap: 7px;
