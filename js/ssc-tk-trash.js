@@ -3038,10 +3038,7 @@ function renderRaidPlates() {
     const placeholder = zones.length ? "" : `<div class="zone-placeholder">Coming later</div>`;
     return `
       <div class="raid-panel raid-panel-${raid.toLowerCase()} raid-status-${raidInfo.status} ${active ? "active" : "inactive"} ${collapsed ? "collapsed" : ""}" data-raid-panel="${raid}">
-        <div class="raid-plate-wrap">
-          <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
-          <button class="raid-collapse" data-raid-collapse="${raid}" type="button" aria-expanded="${collapsed ? "false" : "true"}" title="${collapsed ? "Open paths" : "Close paths"}">${collapsed ? "+" : "-"}</button>
-        </div>
+        <button class="raid-plate raid-plate-${raid.toLowerCase()} ${active ? "active" : ""}" data-raid-toggle="${raid}" type="button" aria-expanded="${collapsed ? "false" : "true"}"><span>${escapeHtml(raidInfo.short)}</span><small>${escapeHtml(raidInfo.label)}</small></button>
         <div class="zone-rail zone-rail-${raid.toLowerCase()}">${zones.length ? allRaidButton + zoneButtons : placeholder}</div>
       </div>
     `;
@@ -3140,13 +3137,6 @@ filtersEl.addEventListener("click", (event) => {
 });
 
 raidPlatesEl.addEventListener("click", (event) => {
-  const collapseBtn = event.target.closest("[data-raid-collapse]");
-  if (collapseBtn) {
-    toggleRaidTab(collapseBtn.dataset.raidCollapse);
-    save();
-    renderCards();
-    return;
-  }
   const btn = event.target.closest("[data-zone]");
   if (btn) {
     const panel = btn.closest("[data-raid-panel]");

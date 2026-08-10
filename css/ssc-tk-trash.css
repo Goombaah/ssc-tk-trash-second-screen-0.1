@@ -2210,40 +2210,6 @@ body {
   border-width: 0 0 1px;
 }
 
-.raid-plate-wrap {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px;
-  align-items: stretch;
-}
-
-.raid-plate-wrap .raid-plate {
-  min-width: 0;
-}
-
-.raid-collapse {
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-left: 1px solid rgba(138,103,42,.35);
-  border-bottom: 1px solid rgba(138,103,42,.35);
-  background:
-    linear-gradient(180deg, rgba(255,220,130,.11), rgba(0,0,0,.08)),
-    rgba(4,7,9,.86);
-  color: #ffd36b;
-  font-size: 15px;
-  font-weight: 950;
-  line-height: 1;
-  cursor: pointer;
-  text-shadow: 0 1px 0 #000;
-}
-
-.raid-collapse:hover {
-  color: #fff4c2;
-  background:
-    linear-gradient(180deg, rgba(255,220,130,.18), rgba(0,0,0,.08)),
-    rgba(9,11,13,.95);
-}
-
 .raid-panel.collapsed .zone-rail {
   display: none;
 }
