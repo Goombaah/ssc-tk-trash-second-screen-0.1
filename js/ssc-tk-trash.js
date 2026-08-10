@@ -110,13 +110,13 @@ const i18n = {
       "Wing Buffet": "Knockback from Phoenix-Hawk Hatchling."
     },
     "ui": {
-      "subtitle": "TBC Anniversary Phase 2 · trash raid lead overlay · offline",
+      "subtitle": "TBC Anniversary Phase 3 · trash raid lead overlay · offline",
       "searchPlaceholder": "Search mob / spell / danger   /",
       "detailed": "Detailed",
       "dangerOnly": "RED/ORANGE",
       "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Keys: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L language",
+      "keys": "Keys: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · A audit · C compact · U ultra · F overlay · R reset · L language",
       "allZones": "All trash",
       "empty": "No visible cards. Reset filters or change search.",
       "visibleCards": "visible cards",
@@ -240,13 +240,13 @@ const i18n = {
       "Wing Buffet": "Knockback du Phoenix-Hawk Hatchling."
     },
     "ui": {
-      "subtitle": "TBC Anniversary Phase 2 · outil trash raid lead · offline",
+      "subtitle": "TBC Anniversary Phase 3 · outil trash raid lead · offline",
       "searchPlaceholder": "Chercher mob / sort / danger   /",
       "detailed": "Détaillé",
       "dangerOnly": "ROUGE/ORANGE",
       "auditOnly": "Audit ?",
       "reset": "Reset",
-      "keys": "Touches: 1 SSC · 2 TK · 3 ALL · A audit · C compact · U ultra · F overlay · R reset · L langue",
+      "keys": "Touches: 1 SSC · 2 TK · 3 P3 ALL · 4 Hyjal · 5 BT · A audit · C compact · U ultra · F overlay · R reset · L langue",
       "allZones": "Tous trash",
       "empty": "Aucune carte visible. Reset filtres ou change la recherche.",
       "visibleCards": "cartes visibles",
@@ -338,6 +338,56 @@ const guideSpellIcons = {
   "Starfall": "assets/spell_arcane_starfire.jpg",
   "Toxic Pool": "assets/ability_creature_poison_06.jpg",
   "Trample": "assets/spell_nature_natureswrath.jpg",
+  "Abomination": "assets/ability_creature_disease_02.jpg",
+  "Anti-Magic Shell": "assets/spell_nature_elementalshields.jpg",
+  "Banshee Curse": "assets/spell_shadow_cripple.jpg",
+  "Banshee Wail": "assets/spell_shadow_shadowbolt.jpg",
+  "Behemoth Charge": "assets/ability_warrior_charge.jpg",
+  "Bloodbolt": "assets/spell_shadow_shadowbolt.jpg",
+  "Booming Voice": "assets/spell_nature_bloodlust.jpg",
+  "Cloud of Disease": "assets/ability_creature_disease_02.jpg",
+  "Crashing Wave": "assets/spell_frost_glacier.jpg",
+  "Debilitating Spray": "assets/spell_nature_abolishmagic.jpg",
+  "Dementia": "assets/spell_shadow_possession.jpg",
+  "Disease Cloud": "assets/ability_creature_disease_02.jpg",
+  "Divine Shield": "assets/ability_warrior_shieldwall.jpg",
+  "Fel Stomp": "assets/spell_fire_felhellfire.jpg",
+  "Fiery Comet": "assets/spell_fire_meteorstorm.jpg",
+  "Flamestrike": "assets/spell_fire_selfdestruct.jpg",
+  "Free Friend": "assets/spell_holy_dispelmagic.jpg",
+  "Frost Breath": "assets/spell_frost_frostbolt02.jpg",
+  "Gargoyle Strike": "assets/spell_nature_natureswrath.jpg",
+  "Harpooner's Mark": "assets/ability_marksmanship.jpg",
+  "Hooked Net": "assets/ability_gouge.jpg",
+  "Image of Dementia": "assets/spell_shadow_shadowworddominate.jpg",
+  "Immolation": "assets/spell_fire_felhellfire.jpg",
+  "Intervene": "assets/ability_warrior_charge.jpg",
+  "Judgement of Command": "assets/spell_holy_sealofmight.jpg",
+  "Knockdown": "assets/ability_warrior_charge.jpg",
+  "L1 Arcane Charge": "assets/spell_arcane_arcanepotency.jpg",
+  "L5 Arcane Charge": "assets/spell_arcane_blast.jpg",
+  "Lash of Pain": "assets/spell_shadow_shadowbolt.jpg",
+  "Lightning Prod": "assets/spell_nature_chainlightning.jpg",
+  "Meteor": "assets/spell_fire_meteorstorm.jpg",
+  "Mind Soothe": "assets/spell_holy_holysmite.jpg",
+  "Painful Rage": "assets/spell_shadow_unholyfrenzy.jpg",
+  "Paralyzing Poison": "assets/ability_creature_poison_06.jpg",
+  "Poison Spit": "assets/spell_nature_corrosivebreath.jpg",
+  "Power Word: Shield": "assets/ability_warrior_shieldwall.jpg",
+  "Prophecy of Blood": "assets/spell_shadow_deathpact.jpg",
+  "Riposte": "assets/ability_warrior_disarm.jpg",
+  "Shared Bonds": "assets/spell_shadow_deathpact.jpg",
+  "Shadow Word: Pain": "assets/spell_shadow_shadowbolt.jpg",
+  "Shell Shield": "assets/ability_warrior_shieldwall.jpg",
+  "Shield Bash": "assets/ability_kick.jpg",
+  "Shield Wall": "assets/ability_warrior_shieldwall.jpg",
+  "Spear Throw": "assets/ability_marksmanship.jpg",
+  "Tail Sweep": "assets/ability_hunter_pet_windserpent.jpg",
+  "Throw Shield": "assets/spell_holy_devotionaura.jpg",
+  "Unholy Frenzy": "assets/spell_shadow_unholyfrenzy.jpg",
+  "Vanish": "assets/spell_shadow_impphaseshift.jpg",
+  "Vile Slime": "assets/spell_nature_corrosivebreath.jpg",
+  "Water Spit": "assets/spell_frost_frostbolt02.jpg",
   "Uppercut": "assets/inv_gauntlets_05.jpg",
   "Virulent Poison": "assets/spell_nature_corrosivebreath.jpg",
   "Water Elemental Totem": "assets/spell_fire_sealoffire.jpg",
@@ -1382,6 +1432,381 @@ const trashData = [
         "note": "spam sheep/gouge"
       }
     ]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Ghoul",
+    "priority": "green",
+    "markers": ["triangle"],
+    "tags": ["aoe"],
+    "danger": "Basic undead wave mob. Frenzy temporarily increases attack speed.",
+    "call": "Free AoE; tank stack.",
+    "tank": "One tank can collect many Ghouls and hold them in AoE.",
+    "spells": [["Frenzy", "assets/spell_shadow_unholyfrenzy.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Shadowy Necromancer",
+    "priority": "red",
+    "markers": ["skull", "cross"],
+    "tags": ["focus", "kick", "stun", "ranged"],
+    "danger": "Ranged caster. Shadow Bolt hits raid; Unholy Frenzy doubles another trash mob's attack speed for 20 sec.",
+    "call": "FOCUS / STUN / KICK Necromancers.",
+    "tank": "Use LOS or ranged pickups; do not let them freecast behind the wave.",
+    "spells": [["Shadow Bolt", "assets/spell_shadow_shadowbolt.jpg"], ["Unholy Frenzy", "assets/spell_shadow_unholyfrenzy.jpg"]],
+    "spellGroups": [
+      { "label": "STOP", "spells": ["Shadow Bolt", "Unholy Frenzy"], "note": "stun/kick fast" }
+    ]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Abomination",
+    "priority": "orange",
+    "markers": ["square"],
+    "tags": ["tank", "stun", "aoe"],
+    "danger": "Disease Cloud pulses Nature damage within 5 yd; Knockdown stuns and hits the primary threat target.",
+    "call": "KITE / CONTROL Aboms; melee watch cloud.",
+    "tank": "Kite with slows/stuns/roots if normal tanking gets scary.",
+    "spells": [["Disease Cloud", "assets/ability_creature_disease_02.jpg"], ["Knockdown", "assets/ability_warrior_charge.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Banshee",
+    "priority": "orange",
+    "markers": ["moon"],
+    "tags": ["focus", "dispel", "ranged"],
+    "danger": "Banshee Curse reduces physical hit chance by 66% for 5 min; Anti-Magic Shell absorbs huge magic damage.",
+    "call": "DECURE physicals; physical DPS focus Banshees.",
+    "tank": "Bring into kill zone; call curse dispels quickly.",
+    "spells": [["Banshee Wail", "assets/spell_shadow_shadowbolt.jpg"], ["Banshee Curse", "assets/spell_shadow_cripple.jpg"], ["Anti-Magic Shell", "assets/spell_nature_elementalshields.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Gargoyle",
+    "priority": "yellow",
+    "markers": ["star"],
+    "tags": ["ranged"],
+    "danger": "Starts airborne and attacks at long range; often spawns behind/inside camp and hits NPCs.",
+    "call": "Ranged tag Gargoyles; pull them down.",
+    "tank": "If a ranged player gets threat and moves away, Gargoyle descends and can be tanked.",
+    "spells": [["Gargoyle Strike", "assets/spell_nature_natureswrath.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Frost Wyrm",
+    "priority": "orange",
+    "markers": ["diamond"],
+    "tags": ["focus", "ranged", "aoe"],
+    "danger": "Frost Breath damages/slows the target and players within 8 yd.",
+    "call": "FOCUS Wyrm; spread 8.",
+    "tank": "Keep raid spread around breath targets; bring it down quickly.",
+    "spells": [["Frost Breath", "assets/spell_frost_frostbolt02.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Giant Infernal",
+    "priority": "orange",
+    "markers": ["square"],
+    "tags": ["tank", "aoe"],
+    "danger": "Spawn in groups of 8. Immolation burns enemies within 8 yd every 3 sec.",
+    "call": "FR tank / split Infernals; melee watch Immolation.",
+    "tank": "Fire resist tank useful; separate if stacked Immolation is melting melee/tank.",
+    "spells": [["Immolation", "assets/spell_fire_felhellfire.jpg"]]
+  },
+  {
+    "raid": "HYJAL",
+    "zone": "Wave trash",
+    "mob": "Fel Stalker",
+    "priority": "orange",
+    "markers": ["cross"],
+    "tags": ["focus", "sheep", "ranged"],
+    "danger": "Mana Burn at 30 yd burns roughly 1140 mana per cast.",
+    "call": "FOCUS / CC Fel Stalkers before mana burns.",
+    "tank": "Pick up fast; keep them away from healer/caster mana if possible.",
+    "spells": [["Mana Burn", "assets/spell_shadow_manaburn.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Leviathan",
+    "priority": "orange",
+    "markers": ["square"],
+    "tags": ["tank", "ranged", "dispel"],
+    "danger": "Poison Spit splashes within 8 yd; Debilitating Spray reduces damage/healing by 50%; Tail Sweep rear knockback.",
+    "call": "SPREAD 8; melee side only.",
+    "tank": "Face away; raid avoids front/rear cones and stacks loosely.",
+    "spells": [["Poison Spit", "assets/spell_nature_corrosivebreath.jpg"], ["Tail Sweep", "assets/ability_hunter_pet_windserpent.jpg"], ["Debilitating Spray", "assets/spell_nature_abolishmagic.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Coilskar Wrangler",
+    "priority": "orange",
+    "markers": ["cross"],
+    "tags": ["cleave", "ranged", "tank"],
+    "danger": "Lightning Prod chains to nearby players; frontal Cleave.",
+    "call": "SPREAD; face Wrangler away.",
+    "tank": "Turn frontal away and keep raid spread to reduce chain hits.",
+    "spells": [["Lightning Prod", "assets/spell_nature_chainlightning.jpg"], ["Cleave", "assets/ability_warrior_cleave.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Dragon Turtle",
+    "priority": "yellow",
+    "markers": ["moon"],
+    "tags": ["sheep", "tank", "ranged"],
+    "danger": "Shell Shield reflects 50% magic damage and slows attack/cast speed; can be crowd controlled with Hibernate.",
+    "call": "HIBERNATE Turtle or stop magic into Shell Shield.",
+    "tank": "Do not fight active Turtle with Harpooner's Mark chaos if CC is available.",
+    "spells": [["Water Spit", "assets/spell_frost_frostbolt02.jpg"], ["Shell Shield", "assets/ability_warrior_shieldwall.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Coilskar Harpooner",
+    "priority": "orange",
+    "markers": ["moon"],
+    "tags": ["sheep", "ranged", "focus"],
+    "danger": "Spear Throw hits up to 10 players; Harpooner's Mark forces Dragon Turtles onto marked target; Hooked Net roots and damages.",
+    "call": "SHEEP Harpooner or Turtle; stop Mark combo.",
+    "tank": "Separate/CC Harpooner and Turtle so both are not active together.",
+    "spells": [["Spear Throw", "assets/ability_marksmanship.jpg"], ["Harpooner's Mark", "assets/ability_marksmanship.jpg"], ["Hooked Net", "assets/ability_gouge.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Coilskar General",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "los", "tank"],
+    "danger": "Free Friend removes CC from allies; Booming Voice buffs attack/cast speed for 30 sec.",
+    "call": "LOS / KILL General before CC breaks.",
+    "tank": "Pull General out of LOS of other mobs to stop Free Friend.",
+    "spells": [["Free Friend", "assets/spell_holy_dispelmagic.jpg"], ["Booming Voice", "assets/spell_nature_bloodlust.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Naj'entus",
+    "mob": "Aqueous Lord",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "tank", "ranged", "dispel"],
+    "danger": "Vile Slime reduces damage/healing by 50%; Crashing Wave is a 40 yd frontal cone.",
+    "call": "FOCUS Lord; dispel/handle Vile Slime; avoid frontal.",
+    "tank": "Face Crashing Wave away from raid; watch frontal range.",
+    "spells": [["Vile Slime", "assets/spell_nature_corrosivebreath.jpg"], ["Crashing Wave", "assets/spell_frost_glacier.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Akama / Sanctuary",
+    "mob": "Ashtongue Channeler",
+    "priority": "red",
+    "markers": ["skull", "cross"],
+    "tags": ["focus", "kick", "priest-mc"],
+    "danger": "Heals and caster support around Shade of Akama area; exact P3 Anniversary tuning à confirmer.",
+    "call": "FOCUS / KICK Channelers.",
+    "tank": "Assign interrupts; keep casters grouped for cleave where possible.",
+    "spells": [["Healing Touch", "assets/spell_nature_healingtouch.jpg"], ["Mind Control", "assets/spell_shadow_shadowworddominate.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Teron path",
+    "mob": "Shadowmoon Blood Mage",
+    "priority": "yellow",
+    "markers": ["moon"],
+    "tags": ["sheep", "los", "ranged"],
+    "danger": "Wowhead notes many can be skipped by hugging left and Mind Soothe on the last Blood Mages.",
+    "call": "SKIP route if possible; Mind Soothe last pack.",
+    "tank": "If pulled, LOS casters and clean up; details à confirmer.",
+    "spells": [["Mind Soothe", "assets/spell_holy_holysmite.jpg"], ["Fireball", "assets/spell_fire_flamebolt.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Teron path",
+    "mob": "Hand of Gorefiend",
+    "priority": "green",
+    "markers": ["triangle"],
+    "tags": ["tank"],
+    "danger": "Wowhead describes them as large melee mobs without remarkable mechanics.",
+    "call": "Tank and burn.",
+    "tank": "Treat as beefy melee; keep controlled.",
+    "spells": [["Cleave", "assets/ability_warrior_cleave.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Gurtogg",
+    "mob": "Bonechewer Behemoth",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "tank", "stun", "ranged"],
+    "danger": "Charge stun, 15 yd Fel Stomp stun, Enrage, Fiery Comet splash, Meteor split damage.",
+    "call": "SOLO pull Behemoth; spread/stack Meteor as called.",
+    "tank": "Pull alone where possible; manage Enrage and stomp range.",
+    "spells": [["Behemoth Charge", "assets/ability_warrior_charge.jpg"], ["Fel Stomp", "assets/spell_fire_felhellfire.jpg"], ["Enrage", "assets/spell_shadow_unholyfrenzy.jpg"], ["Meteor", "assets/spell_fire_meteorstorm.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Gurtogg",
+    "mob": "Bonechewer Blade Fury",
+    "priority": "red",
+    "markers": ["moon"],
+    "tags": ["sheep", "focus", "stun", "cleave"],
+    "danger": "Whirlwind buff triggers Whirlwind every second for 8 sec, hitting nearby players hard.",
+    "call": "SHEEP Blade Fury; STUN/KILL after pack.",
+    "tank": "Keep controlled until rest of pack is dead; melee out during Whirlwind.",
+    "spells": [["Whirlwind", "assets/ability_whirlwind.jpg"], ["Polymorph", "assets/spell_nature_polymorph.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Gurtogg",
+    "mob": "Bonechewer Blood Prophet",
+    "priority": "orange",
+    "markers": ["cross"],
+    "tags": ["focus", "stopcc", "ranged"],
+    "danger": "Prophecy of Blood increases target damage taken by 50%; Bloodbolt slows. Source notes casts require incapacitate effects to stop.",
+    "call": "FOCUS Blood Prophet; incap casts.",
+    "tank": "Cannot be stunned per source note; use incapacitate stops and kill early.",
+    "spells": [["Prophecy of Blood", "assets/spell_shadow_deathpact.jpg"], ["Bloodbolt", "assets/spell_shadow_shadowbolt.jpg"], ["Gouge", "assets/ability_gouge.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Gurtogg",
+    "mob": "Bonechewer Shield Disciple",
+    "priority": "orange",
+    "markers": ["square"],
+    "tags": ["tank", "stun", "ranged"],
+    "danger": "Shield Bash/Throw Shield stun targets; Shield Wall reduces damage by 75%; Intervene protects allies.",
+    "call": "Swap off Shield Wall; control Disciple stuns.",
+    "tank": "Expect chaotic stun/repositioning; swap targets during Shield Wall.",
+    "spells": [["Shield Bash", "assets/ability_kick.jpg"], ["Throw Shield", "assets/spell_holy_devotionaura.jpg"], ["Shield Wall", "assets/ability_warrior_shieldwall.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Gurtogg",
+    "mob": "Mutant War Hound",
+    "priority": "yellow",
+    "markers": ["diamond"],
+    "tags": ["tank", "aoe"],
+    "danger": "Persistent Cloud of Disease pulses Nature damage within 5 yd and lingers after death.",
+    "call": "Melee watch disease aura; move after death.",
+    "tank": "Keep away from stacked melee if aura damage spikes.",
+    "spells": [["Cloud of Disease", "assets/ability_creature_disease_02.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Reliquary approach",
+    "mob": "Reliquary Ghosts",
+    "priority": "yellow",
+    "markers": ["triangle"],
+    "tags": ["aoe", "tank"],
+    "danger": "Many small ghosts respawn quickly. Wowhead suggests running through to the ramp then AoEing them down.",
+    "call": "RUN to ramp; AoE ghosts together.",
+    "tank": "Collect on the move; stabilize at ramp.",
+    "spells": [["Shadow Bolt", "assets/spell_shadow_shadowbolt.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Mother Shahraz",
+    "mob": "Mistress of Woe",
+    "priority": "orange",
+    "markers": ["cross"],
+    "tags": ["focus", "aoe", "dispel"],
+    "danger": "Shared Bonds splits damage with partner; Holy Nova damages nearby enemies and heals nearby allies.",
+    "call": "Cleave paired Mistresses; watch Holy Nova.",
+    "tank": "Keep pair controlled; interrupt/stop healing pressure à confirmer.",
+    "spells": [["Shared Bonds", "assets/spell_shadow_deathpact.jpg"], ["Holy Nova", "assets/spell_holy_holynova.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Mother Shahraz",
+    "mob": "Priestess of Torment",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "dispel", "tank"],
+    "danger": "Painful Rage stacks attack speed/damage; Shadow Word: Pain is dispellable; Lash of Pain hits tank.",
+    "call": "FOCUS Torment; dispel SW:P.",
+    "tank": "Watch stacking Painful Rage and Lash spikes.",
+    "spells": [["Painful Rage", "assets/spell_shadow_unholyfrenzy.jpg"], ["Shadow Word: Pain", "assets/spell_shadow_shadowbolt.jpg"], ["Lash of Pain", "assets/spell_shadow_shadowbolt.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Mother Shahraz",
+    "mob": "Mistress of Dementia",
+    "priority": "orange",
+    "markers": ["moon"],
+    "tags": ["focus", "cleave"],
+    "danger": "Dementia randomly increases/decreases player damage; on death spawns Image of Dementia that spams Whirlwind briefly.",
+    "call": "Kill Dementia; melee out for death image.",
+    "tank": "Prepare for Whirlwind image on death.",
+    "spells": [["Dementia", "assets/spell_shadow_possession.jpg"], ["Image of Dementia", "assets/spell_shadow_shadowworddominate.jpg"], ["Whirlwind", "assets/ability_whirlwind.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Council",
+    "mob": "Promenade Sentinel",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "ranged", "tank"],
+    "danger": "L5 Arcane Charge deals Arcane damage equal to 100% max health to random raider; lethal without full HP + absorb.",
+    "call": "FULL HP + shields for L5 Arcane Charge.",
+    "tank": "Healers pre-top random targets; assign shields/absorbs.",
+    "spells": [["L1 Arcane Charge", "assets/spell_arcane_arcanepotency.jpg"], ["L5 Arcane Charge", "assets/spell_arcane_blast.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Council",
+    "mob": "Illidari Archon",
+    "priority": "yellow",
+    "markers": ["cross"],
+    "tags": ["dispel", "ranged"],
+    "danger": "Holy Smite hits single target; Power Word: Shield absorbs 5000 and can be dispelled.",
+    "call": "Dispel shields; kill caster pack.",
+    "tank": "Group with blood elf pack; dispel shield so damage sticks.",
+    "spells": [["Holy Smite", "assets/spell_holy_holysmite.jpg"], ["Power Word: Shield", "assets/ability_warrior_shieldwall.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Council",
+    "mob": "Illidari Assassin",
+    "priority": "orange",
+    "markers": ["diamond"],
+    "tags": ["dispel", "tank", "ranged"],
+    "danger": "Paralyzing Poison stuns 8 sec and is poison-dispellable; Riposte disarms; Vanish into Ambush hits random target.",
+    "call": "POISON dispel stun; watch Vanish Ambush.",
+    "tank": "Expect target swaps after Vanish; cleanse poison fast.",
+    "spells": [["Paralyzing Poison", "assets/ability_creature_poison_06.jpg"], ["Riposte", "assets/ability_warrior_disarm.jpg"], ["Vanish", "assets/spell_shadow_impphaseshift.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Council",
+    "mob": "Illidari Battle-mage",
+    "priority": "red",
+    "markers": ["moon"],
+    "tags": ["sheep", "stopcc", "aoe", "ranged"],
+    "danger": "Fireball/Frostbolt plus Blizzard mana drain/slow and Flamestrike ground damage. Blizzard can be stopped with incapacitate effects.",
+    "call": "ROGUE/Gouge Battle-mage; move Blizzard/Flamestrike.",
+    "tank": "Keep caster controlled; do not let AoE sit under raid.",
+    "spells": [["Fireball", "assets/spell_fire_flamebolt.jpg"], ["Frostbolt", "assets/spell_frost_frostbolt02.jpg"], ["Blizzard", "assets/spell_frost_icestorm.jpg"], ["Flamestrike", "assets/spell_fire_selfdestruct.jpg"]]
+  },
+  {
+    "raid": "BT",
+    "zone": "Before Council",
+    "mob": "Illidari Blood Lord",
+    "priority": "red",
+    "markers": ["skull"],
+    "tags": ["focus", "dispel", "tank", "stun"],
+    "danger": "Hammer of Justice stun is dispellable; Divine Shield lasts 15 sec and can be Mass Dispelled.",
+    "call": "MASS DISPEL Divine Shield; dispel HoJ.",
+    "tank": "Watch Command burst and HoJ on primary threat.",
+    "spells": [["Judgement of Command", "assets/spell_holy_sealofmight.jpg"], ["Hammer of Justice", "assets/spell_holy_searinglight.jpg"], ["Divine Shield", "assets/ability_warrior_shieldwall.jpg"]]
   }
 ];
 
@@ -1683,7 +2108,9 @@ const sourceUrls = {
   ssc: "https://www.wowhead.com/tbc/guide/trash-mobs-serpentshrine-cavern-ssc-strategy-burning-crusade-classic",
   sscFr: "https://www.wowhead.com/tbc/fr/guide/trash-mobs-serpentshrine-cavern-ssc-strategy-burning-crusade-classic",
   tk: "https://www.wowhead.com/tbc/guide/trash-mobs-the-eye-tempest-keep-strategy-burning-crusade-classic",
-  tkFr: "https://www.wowhead.com/tbc/fr/guide/trash-mobs-the-eye-tempest-keep-strategy-burning-crusade-classic"
+  tkFr: "https://www.wowhead.com/tbc/fr/guide/trash-mobs-the-eye-tempest-keep-strategy-burning-crusade-classic",
+  hyjal: "https://www.wowhead.com/tbc/guide/trash-mobs-hyjal-summit-strategy-burning-crusade-classic",
+  bt: "https://www.wowhead.com/tbc/guide/trash-mobs-black-temple-strategy-burning-crusade-classic"
 };
 
 const auditData = {
@@ -1960,7 +2387,7 @@ const auditData = {
 };
 
 trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
-  sourceUrl: item.raid === "SSC" ? sourceUrls.ssc : sourceUrls.tk,
+  sourceUrl: { SSC: sourceUrls.ssc, TK: sourceUrls.tk, HYJAL: sourceUrls.hyjal, BT: sourceUrls.bt }[item.raid] || sourceUrls.tk,
   sourceNote: "Audit metadata missing for this mob.",
   confidence: "to_confirm",
   focusRank: null,
@@ -1973,7 +2400,7 @@ const savedRaid = localStorage.getItem("raid") || "ALL";
 const savedRaids = localStorage.getItem("raids");
 
 const state = {
-  raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK"] : [savedRaid])),
+  raids: new Set(savedRaids ? JSON.parse(savedRaids) : (savedRaid === "ALL" ? ["SSC", "TK", "HYJAL", "BT"] : [savedRaid])),
   zone: localStorage.getItem("zone") || "ALL",
   mode: localStorage.getItem("mode") || "detailed",
   zoom: localStorage.getItem("zoom") || "1",
@@ -1983,6 +2410,12 @@ const state = {
   tags: new Set(JSON.parse(localStorage.getItem("tags") || "[]")),
   query: ""
 };
+
+if (localStorage.getItem("phase3Enabled") !== "true") {
+  state.raids.add("HYJAL");
+  state.raids.add("BT");
+  localStorage.setItem("phase3Enabled", "true");
+}
 
 const cardsEl = document.querySelector("#cards");
 const filtersEl = document.querySelector("#filters");
@@ -2293,7 +2726,15 @@ const zoneIcons = {
   "Entrance / Solarian path": "assets/ui-ej-boss-high-astromancer-solarian.png",
   "Al'ar room": "assets/ui-ej-boss-alar.png",
   "Void Reaver path": "assets/ui-ej-boss-void-reaver.png",
-  "Kael corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png"
+  "Kael corridor": "assets/ui-ej-boss-kaelthas-sunstrider.png",
+  "Wave trash": "assets/UI-RaidTargetingIcons.png",
+  "Before Naj'entus": "assets/UI-RaidTargetingIcons.png",
+  "Akama / Sanctuary": "assets/UI-RaidTargetingIcons.png",
+  "Teron path": "assets/UI-RaidTargetingIcons.png",
+  "Before Gurtogg": "assets/UI-RaidTargetingIcons.png",
+  "Reliquary approach": "assets/UI-RaidTargetingIcons.png",
+  "Before Mother Shahraz": "assets/UI-RaidTargetingIcons.png",
+  "Before Council": "assets/UI-RaidTargetingIcons.png"
 };
 
 const zoneLabels = {
@@ -2305,7 +2746,15 @@ const zoneLabels = {
     "Entrance / Solarian path": "Entrance / Solarian Path",
     "Al'ar room": "Al'ar Room",
     "Void Reaver path": "Void Reaver Path",
-    "Kael corridor": "Kael Corridor"
+    "Kael corridor": "Kael Corridor",
+    "Wave trash": "Wave Trash",
+    "Before Naj'entus": "Before Naj'entus",
+    "Akama / Sanctuary": "Akama / Sanctuary",
+    "Teron path": "Teron Path",
+    "Before Gurtogg": "Before Gurtogg",
+    "Reliquary approach": "Reliquary Approach",
+    "Before Mother Shahraz": "Before Mother Shahraz",
+    "Before Council": "Before Council"
   },
   fr: {
     "Pre Hydross": "Chemin Hydross",
@@ -2315,7 +2764,15 @@ const zoneLabels = {
     "Entrance / Solarian path": "Entrée / chemin Solarian",
     "Al'ar room": "Salle Al'ar",
     "Void Reaver path": "Chemin Void Reaver",
-    "Kael corridor": "Couloir Kael"
+    "Kael corridor": "Couloir Kael",
+    "Wave trash": "Vagues trash",
+    "Before Naj'entus": "Avant Naj'entus",
+    "Akama / Sanctuary": "Akama / Sanctuaire",
+    "Teron path": "Chemin Teron",
+    "Before Gurtogg": "Avant Gurtogg",
+    "Reliquary approach": "Approche Reliquary",
+    "Before Mother Shahraz": "Avant Mother Shahraz",
+    "Before Council": "Avant Conseil"
   }
 };
 
@@ -2326,16 +2783,16 @@ function zoneLabel(zone) {
 const raidAllIcons = {
   SSC: "assets/ui-ej-boss-lady-vashj.png",
   TK: "assets/ui-ej-boss-kaelthas-sunstrider.png",
-  HYJAL: "assets/inv_misc_questionmark.jpg",
-  BT: "assets/inv_misc_questionmark.jpg",
-  SUNWELL: "assets/inv_misc_questionmark.jpg"
+  HYJAL: "assets/UI-RaidTargetingIcons.png",
+  BT: "assets/UI-RaidTargetingIcons.png",
+  SUNWELL: "assets/UI-RaidTargetingIcons.png"
 };
 
 const raidCatalog = [
   { key: "SSC", label: "Serpentshrine Cavern", short: "SSC", status: "live" },
   { key: "TK", label: "Tempest Keep", short: "TK", status: "live" },
-  { key: "HYJAL", label: "Mount Hyjal", short: "Hyjal", status: "later" },
-  { key: "BT", label: "Black Temple", short: "BT", status: "later" },
+  { key: "HYJAL", label: "Mount Hyjal", short: "Hyjal", status: "live" },
+  { key: "BT", label: "Black Temple", short: "BT", status: "live" },
   { key: "SUNWELL", label: "Sunwell Plateau", short: "Sunwell", status: "later" }
 ];
 
@@ -2400,7 +2857,7 @@ function renderCards() {
   }
 
   if (!items.length) {
-    const hasFutureRaid = activeRaidList().some((raid) => !["SSC", "TK"].includes(raid));
+    const hasFutureRaid = activeRaidList().some((raid) => raidCatalog.find((entry) => entry.key === raid)?.status === "later");
     cardsEl.innerHTML = `<div class="empty ${hasFutureRaid ? "coming-later" : ""}">${hasFutureRaid ? "Coming later - raid placeholder ready for future trash data." : ui("empty")}</div>`;
     return;
   }
@@ -2441,7 +2898,7 @@ function renderCards() {
                 <div class="spell-row">${renderSpellBlock(item)}</div>
               </div>
               ${auditPanel(item)}
-              <div class="tagbar">${tagPills(item.tags)} <button class="mini-copy" data-single="${escapeHtml(item.call)}">${ui("copy")}</button></div>
+              <div class="tagbar">${tagPills(item.tags)}</div>
             </div>
           </article>
         `).join("")}
@@ -2452,17 +2909,6 @@ function renderCards() {
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c]));
-}
-
-function copyText(text) {
-  navigator.clipboard?.writeText(text).catch(() => {
-    const input = document.createElement("textarea");
-    input.value = text;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand("copy");
-    input.remove();
-  });
 }
 
 filtersEl.addEventListener("click", (event) => {
@@ -2496,7 +2942,6 @@ raidPlatesEl.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
   const raid = event.target.closest("[data-raid-toggle]");
   const mode = event.target.closest("[data-mode]");
-  const single = event.target.closest("[data-single]");
   const langChoice = event.target.closest("[data-lang-choice]");
   let changed = false;
   if (raid && !raidPlatesEl.contains(raid)) {
@@ -2521,7 +2966,7 @@ document.addEventListener("click", (event) => {
     changed = true;
   }
   if (event.target.closest("#reset")) {
-    state.raids = new Set(["SSC", "TK"]);
+    state.raids = new Set(["SSC", "TK", "HYJAL", "BT"]);
     state.zone = "ALL";
     state.mode = "detailed";
     state.dangerOnly = false;
@@ -2535,10 +2980,6 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("#fullscreen")) {
     document.body.classList.toggle("fullscreen");
     changed = true;
-  }
-  if (single) {
-    copyText(single.dataset.single);
-    return;
   }
   if (!changed) return;
   save();
@@ -2576,7 +3017,15 @@ document.addEventListener("keydown", (event) => {
     changed = true;
   }
   if (key === "3") {
-    state.raids = new Set(["SSC", "TK"]);
+    state.raids = new Set(["SSC", "TK", "HYJAL", "BT"]);
+    changed = true;
+  }
+  if (key === "4") {
+    state.raids.has("HYJAL") ? state.raids.delete("HYJAL") : state.raids.add("HYJAL");
+    changed = true;
+  }
+  if (key === "5") {
+    state.raids.has("BT") ? state.raids.delete("BT") : state.raids.add("BT");
     changed = true;
   }
   if (key === "c") {

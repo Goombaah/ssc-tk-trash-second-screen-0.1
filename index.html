@@ -1,54 +1,84 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <base href="/ssc-tk-trash-second-screen-0.1/">
   <title>SSC_TK_TRASH_SECOND_SCREEN</title>
-  <link rel="stylesheet" href="css/ssc-tk-trash.css">
+  <link rel="stylesheet" href="css/ssc-tk-trash.css?v=20260810-p3">
 </head>
 <body>
   <div class="app">
-    <header class="topbar">
+    <aside class="topbar sidebar">
       <div class="brand">
-        <div class="sigil">T5</div>
         <div>
-          <h1>SSC_TK_TRASH_SECOND_SCREEN</h1>
-          <small>TBC Anniversary Phase 2 · trash raid lead overlay · offline</small>
+          <h1>TBC Trash Cheatsheet</h1>
+          <small data-i18n="subtitle">TBC Anniversary Phase 3 - trash raid lead overlay - offline</small>
         </div>
       </div>
 
-      <nav class="tabs" aria-label="Raid filter">
-        <button data-raid="SSC">SSC</button>
-        <button data-raid="TK">TK</button>
-        <button data-raid="ALL">ALL</button>
-      </nav>
-
-      <div class="actions">
+      <section class="sidebar-section sidebar-search">
+        <div class="sidebar-label">Search</div>
         <label class="search">
           <input id="search" type="search" autocomplete="off" placeholder="Search mob / spell / danger   /">
         </label>
-        <button data-mode="compact">Compact</button>
-        <button data-mode="detailed">Detailed</button>
-        <button data-mode="ultra">Ultra</button>
-        <button id="dangerOnly" class="danger-toggle">RED/ORANGE</button>
-        <button id="fullscreen">Overlay</button>
-        <button id="reset">Reset</button>
-      </div>
-    </header>
+      </section>
 
-    <div class="subbar">
-      <div id="filters" class="filters" aria-label="Action filters"></div>
-      <div id="zoneFilters" class="zone-filters" aria-label="Zone filters"></div>
+      <section class="sidebar-section">
+        <div class="sidebar-label">Raids / Paths</div>
+        <div id="raidPlates" class="raid-plates" aria-label="Raid filter"></div>
+      </section>
+
+      <section class="sidebar-section">
+        <div class="sidebar-label">Filters</div>
+        <div id="filters" class="filters" aria-label="Action filters"></div>
+      </section>
+
+      <section class="sidebar-section">
+        <div class="sidebar-label">Options</div>
+        <div class="actions">
+          <button data-mode="compact">Compact</button>
+          <button data-mode="detailed">Detailed</button>
+          <button data-mode="ultra">Ultra</button>
+          <button id="dangerOnly" class="danger-toggle">RED/ORANGE</button>
+          <button id="auditOnly">Audit ?</button>
+          <div id="languageSwitch" class="lang-switch" aria-label="Language switch">
+            <button data-lang-choice="en" type="button">EN</button>
+            <button data-lang-choice="fr" type="button">FR</button>
+          </div>
+          <button id="fullscreen">Overlay</button>
+          <button id="reset">Reset</button>
+        </div>
+        <label class="zoom-control">
+          <span>Zoom</span>
+          <select id="zoomSelect" aria-label="Zoom">
+            <option value="0.80">80%</option>
+            <option value="0.90">90%</option>
+            <option value="1">100%</option>
+            <option value="1.10">110%</option>
+            <option value="1.20">120%</option>
+          </select>
+        </label>
+      </section>
+
       <div class="statusline">
         <strong id="count">0 mobs</strong>
-        <span>Keys: 1 SSC · 2 TK · 3 ALL · C compact · U ultra · F overlay · R reset</span>
+        <span data-i18n="keys">Keys: 1 SSC - 2 TK - 3 P3 ALL - 4 Hyjal - 5 BT - C compact - U ultra - F overlay - R reset - L language</span>
       </div>
-    </div>
+    </aside>
 
-    <main id="cards" class="board"></main>
+    <main class="main-content">
+      <div class="content-head">
+        <div>
+          <div class="content-kicker">TBC Expansion</div>
+          <h2 id="contentTitle">Trash Companion</h2>
+        </div>
+        <div class="content-count"><strong id="mainCount">0</strong><span>visible</span></div>
+      </div>
+      <div id="cards" class="board"></div>
+    </main>
   </div>
 
-  <script src="js/ssc-tk-trash.js"></script>
+  <script src="js/ssc-tk-trash.js?v=20260810-p3"></script>
 </body>
 </html>
