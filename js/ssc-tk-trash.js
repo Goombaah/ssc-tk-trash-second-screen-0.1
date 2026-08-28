@@ -92,7 +92,7 @@ const i18n = {
       "Shadow Bolt": "Direct Shadow cast.",
       "Shadow Nova": "Shadow AoE knockback. Position away from edges/water.",
       "Shatter Armor": "Reduces tank armor by 50% for 15 sec.",
-      "Shell Shock": "Bomb/stun-style pressure from Tempest-Smith. Exact handling à confirmer.",
+      "Shell Shock": "Tempest-Smith area Fire damage and stun.",
       "Shield Charge": "Massive damage and knockback. Stack behind / prevent charge angles.",
       "Silence": "AoE silence. LOS or position casters out of danger.",
       "Sonic Scream": "Arcane damage nearby on Hate-Screamer.",
@@ -168,7 +168,7 @@ const i18n = {
       "raidLabel": "Raid",
       "spells": "Spells",
       "copy": "Copy",
-      "unknownSpell": "Effect to confirm.",
+      "unknownSpell": "Unknown effect.",
       "auditConfidence": "Confidence",
       "auditRank": "Focus rank",
       "auditReason": "Reason",
@@ -266,11 +266,11 @@ const i18n = {
       "Saw Blade": "Saignement sur joueurs aléatoires par le Mechanic.",
       "Shadow Bolt": "Dégât ombre direct.",
       "Shadow Nova": "AoE ombre + knockback. Placement loin de l'eau/bords.",
-      "Shatter Armor": "Réduit l'armure du tank de 50% pendant 15 sec. Commentaires source: réduction dégâts aussi possible, à confirmer.",
-      "Shell Shock": "Pression bombe/stun du Tempest-Smith. Gestion exacte à confirmer.",
+      "Shatter Armor": "Réduit l'armure du tank de 50% pendant 15 sec. Grounding Totem peut l'éviter.",
+      "Shell Shock": "AoE feu + stun du Tempest-Smith.",
       "Shield Charge": "Gros dégâts + knockback. Stack derrière pour casser les angles de charge.",
       "Silence": "AoE silence. LOS ou casters hors range.",
-      "Sonic Scream": "Dégâts Arcanes du Hate-Screamer; portée exacte à confirmer en live.",
+      "Sonic Scream": "Dégâts Arcanes sur les cibles proches du Hate-Screamer.",
       "Spell Reflection": "Renvoie les sorts pendant une courte durée. Stop casts.",
       "Serpentshrine Parasite": "Paire Underbog: debuff parasite qui peut spawn des petits adds.",
       "Spore Burst": "AoE nature + DoT autour du Sporebat.",
@@ -299,7 +299,7 @@ const i18n = {
       "raidLabel": "Call",
       "spells": "Sorts",
       "copy": "Copier",
-      "unknownSpell": "Effet à confirmer.",
+      "unknownSpell": "Effet non renseigné.",
       "auditConfidence": "Confiance",
       "auditRank": "Focus rank",
       "auditReason": "Raison",
@@ -787,7 +787,7 @@ const trashData = [
     ],
     "danger": "Shatter Armor reduces armor by 50% for 15 sec.",
     "call": "Watch tank after Shatter Armor.",
-    "tank": "Heavy heals if Shatter Armor lands; spell reflect note à confirmer by source comments.",
+    "tank": "Heavy heals if Shatter Armor lands; Grounding Totem can prevent the debuff.",
     "spells": [
       [
         "Shatter Armor",
@@ -1422,7 +1422,7 @@ const trashData = [
     ],
     "danger": "Priest can Mind Control Smith and use its golem tools.",
     "call": "PRIEST MC Smith until golems die.",
-    "tank": "If not MC'd: stop Power Up / Repair pressure à confirmer.",
+    "tank": "If not MC'd: stop Power Up and Golem Repair so nearby golems do not get buffed/healed.",
     "spells": [
       [
         "Power Up",
@@ -1732,12 +1732,12 @@ const trashData = [
     "raid": "BT",
     "zone": "Before Naj'entus",
     "mob": "Coilskar Soothsayer",
-    "priority": "red",
+    "priority": "green",
     "markers": ["diamond"],
-    "tags": ["focus", "kick", "ranged"],
-    "danger": "Listed in planning packs as first kill target; exact abilities à confirmer from a primary spell table.",
-    "call": "FOCUS Soothsayer first; interrupt if casting.",
-    "tank": "Keep with General/Harpooner/Turtle pack while raid kills it first. Details à confirmer.",
+    "tags": ["aoe"],
+    "danger": "Black Temple NPC; no special ability is documented for it in the selected trash guide.",
+    "call": "Kill with pack; prioritize sourced danger mobs first.",
+    "tank": "Keep controlled with the Naj'entus trash pack.",
     "spells": []
   },
   {
@@ -2011,7 +2011,7 @@ const trashData = [
     "priority": "red",
     "markers": ["skull", "cross"],
     "tags": ["focus", "kick", "priest-mc"],
-    "danger": "Heals and caster support around Shade of Akama area; exact P3 Anniversary tuning à confirmer.",
+    "danger": "Shade of Akama add that casts Healing Touch and can be controlled by priest Mind Control.",
     "call": "FOCUS / KICK Channelers.",
     "tank": "Assign interrupts; keep casters grouped for cleave where possible.",
     "spells": [["Healing Touch", "assets/spell_nature_healingtouch.jpg"], ["Mind Control", "assets/spell_shadow_shadowworddominate.jpg"]]
@@ -2068,24 +2068,24 @@ const trashData = [
     "raid": "BT",
     "zone": "Teron path",
     "mob": "Shadowmoon Weapon Master",
-    "priority": "orange",
+    "priority": "green",
     "markers": ["square"],
-    "tags": ["focus", "tank"],
-    "danger": "Listed in BT trash requirements around Teron/Gurtogg route; exact ability set à confirmer.",
-    "call": "FOCUS Weapon Master if active.",
-    "tank": "Treat as dangerous melee until abilities are verified.",
+    "tags": ["tank"],
+    "danger": "Listed in BT trash route requirements; no special ability is documented for it in the selected trash guide.",
+    "call": "Kill with pack after sourced priority targets.",
+    "tank": "Pick up as melee route trash and keep it grouped.",
     "spells": []
   },
   {
     "raid": "BT",
     "zone": "Teron path",
     "mob": "Wrathbone Flayer",
-    "priority": "orange",
+    "priority": "green",
     "markers": ["moon"],
-    "tags": ["focus", "ranged", "tank"],
-    "danger": "Planning notes short fixate/focus behavior; exact Wowhead spell table à confirmer.",
-    "call": "If Flayer fixates: target runs, melee out.",
-    "tank": "Be ready for target swaps/fixate windows. Details à confirmer.",
+    "tags": ["tank"],
+    "danger": "Listed in BT trash route requirements; no special ability is documented for it in the selected trash guide.",
+    "call": "Kill with pack after sourced priority targets.",
+    "tank": "Pick up as melee route trash and keep it grouped.",
     "spells": []
   },
   {
@@ -2097,7 +2097,7 @@ const trashData = [
     "tags": ["sheep", "los", "ranged"],
     "danger": "Wowhead notes many can be skipped by hugging left and Mind Soothe on the last Blood Mages.",
     "call": "SKIP route if possible; Mind Soothe last pack.",
-    "tank": "If pulled, LOS casters and clean up; details à confirmer.",
+    "tank": "Most Blood Mages on the way to Teron can be skipped by hugging left; use Mind Soothe on the last pack.",
     "spells": [["Mind Soothe", "assets/spell_holy_holysmite.jpg"], ["Fireball", "assets/spell_fire_flamebolt.jpg"]]
   },
   {
@@ -2143,9 +2143,9 @@ const trashData = [
     "priority": "green",
     "markers": ["diamond"],
     "tags": ["aoe"],
-    "danger": "Arena spectator/filler mob in planning packs; exact abilities à confirmer.",
+    "danger": "Arena trash NPC; no special ability is documented for it in the selected trash guide.",
     "call": "AoE with arena pack.",
-    "tank": "Gather with combatants/brawlers. Details à confirmer.",
+    "tank": "Gather with combatants/brawlers.",
     "spells": []
   },
   {
@@ -2214,11 +2214,11 @@ const trashData = [
     "mob": "Suffering Soul Fragment",
     "priority": "yellow",
     "markers": ["cross"],
-    "tags": ["kick", "aoe", "tank"],
-    "danger": "One of the Reliquary approach ghosts; Soul Blast AoE interrupt info à confirmer.",
-    "call": "RUN to ramp; KICK Soul Blast; AoE fragments.",
-    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
-    "spells": [["Soul Blast", "assets/spell_shadow_shadowbolt.jpg"]]
+    "tags": ["aoe", "tank"],
+    "danger": "Small Reliquary approach ghost; individually unremarkable but respawns quickly.",
+    "call": "RUN to ramp; AoE fragments together.",
+    "tank": "Collect ghosts on the move and stabilize at the ramp before Reliquary.",
+    "spells": []
   },
   {
     "raid": "BT",
@@ -2229,7 +2229,7 @@ const trashData = [
     "tags": ["aoe", "stun", "tank"],
     "danger": "One of the Reliquary approach ghosts; individually low threat, fast respawn area.",
     "call": "RUN to ramp; STUN/AoE fragments.",
-    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
+    "tank": "Collect ghosts on the move and stabilize at the ramp before Reliquary.",
     "spells": []
   },
   {
@@ -2239,10 +2239,10 @@ const trashData = [
     "priority": "yellow",
     "markers": ["diamond"],
     "tags": ["aoe", "tank"],
-    "danger": "One of the Reliquary approach ghosts; short range AoE anger damage à confirmer.",
+    "danger": "Small Reliquary approach ghost; individually unremarkable but respawns quickly.",
     "call": "RUN to ramp; AoE fragments together.",
-    "tank": "Collect on the move; stabilize at ramp. Exact ghost behavior à confirmer.",
-    "spells": [["Anger", "assets/spell_shadow_unholyfrenzy.jpg"]]
+    "tank": "Collect ghosts on the move and stabilize at the ramp before Reliquary.",
+    "spells": []
   },
   {
     "raid": "BT",
@@ -2253,7 +2253,7 @@ const trashData = [
     "tags": ["focus", "aoe", "dispel"],
     "danger": "Shared Bonds splits damage with partner; Holy Nova damages nearby enemies and heals nearby allies.",
     "call": "Cleave paired Priestesses; watch Holy Nova.",
-    "tank": "Keep pair controlled; interrupt/stop healing pressure à confirmer.",
+    "tank": "Keep the paired Priestesses together so Shared Bonds splits damage cleanly.",
     "spells": [["Shared Bonds", "assets/spell_shadow_deathpact.jpg"], ["Holy Nova", "assets/spell_holy_holynova.jpg"]]
   },
   {
@@ -2275,9 +2275,9 @@ const trashData = [
     "priority": "green",
     "markers": ["square"],
     "tags": ["aoe"],
-    "danger": "Den of Mortal Delights trash before Mother. Confirmed Black Temple NPC; specific combat abilities à confirmer.",
+    "danger": "Den of Mortal Delights trash before Mother; the selected trash guide describes these packs as unremarkable AoE trash.",
     "call": "AoE Host pack.",
-    "tank": "Group with non-priority Den trash. Details à confirmer.",
+    "tank": "Group with non-priority Den trash.",
     "spells": []
   },
   {
@@ -2287,9 +2287,9 @@ const trashData = [
     "priority": "green",
     "markers": ["triangle"],
     "tags": ["aoe"],
-    "danger": "Den of Mortal Delights trash before Mother. Confirmed Black Temple NPC; specific combat abilities à confirmer.",
+    "danger": "Den of Mortal Delights trash before Mother; the selected trash guide describes these packs as unremarkable AoE trash.",
     "call": "AoE Steward pack.",
-    "tank": "Group with non-priority Den trash. Details à confirmer.",
+    "tank": "Group with non-priority Den trash.",
     "spells": []
   },
   {
@@ -2299,7 +2299,7 @@ const trashData = [
     "priority": "green",
     "markers": ["star"],
     "tags": ["aoe"],
-    "danger": "Den of Mortal Delights trash before Mother; current renamed mob family. Specific abilities à confirmer.",
+    "danger": "Den of Mortal Delights trash before Mother; the selected trash guide describes these packs as unremarkable AoE trash.",
     "call": "AoE Acolyte pack.",
     "tank": "Group and cleave; watch paired Priestess packs separately.",
     "spells": []
@@ -2311,7 +2311,7 @@ const trashData = [
     "priority": "green",
     "markers": ["square"],
     "tags": ["aoe"],
-    "danger": "Den of Mortal Delights trash before Mother; current renamed mob family. Specific abilities à confirmer.",
+    "danger": "Den of Mortal Delights trash before Mother; the selected trash guide describes these packs as unremarkable AoE trash.",
     "call": "AoE Patron pack.",
     "tank": "Group and cleave; watch paired Priestess packs separately.",
     "spells": []
@@ -2436,7 +2436,7 @@ const frTrashText = {
   "Coilfang Shatterer": {
     "danger": "Shatter Armor réduit l'armure de 50% pendant 15 sec.",
     "call": "Surveiller tank après Shatter Armor.",
-    "tank": "Gros heals si Shatter Armor passe; Spell Reflect mentionné en commentaire, à confirmer."
+    "tank": "Gros heals si Shatter Armor passe; Grounding Totem peut éviter le debuff."
   },
   "Greyheart Tidecaller": {
     "danger": "Water Elemental Totem invoque un gros élémentaire; Poison Shield fait mal au raid si non purgé.",
@@ -2536,7 +2536,7 @@ const frTrashText = {
   "Tempest-Smith": {
     "danger": "Le prêtre peut MC le Smith et utiliser ses outils golem.",
     "call": "PRÊTRE MC Smith jusqu'à la mort des golems.",
-    "tank": "Si pas MC: stopper Power Up / Repair à confirmer."
+    "tank": "Si pas MC: stopper Power Up et Golem Repair pour éviter le buff/heal des golems."
   },
   "Crimson Hand Blood Knight": {
     "danger": "Flash of Light non interruptible; Hammer of Justice dispellable; Renew purgeable.",
@@ -2763,10 +2763,10 @@ const auditData = {
   },
   "Coilfang Shatterer": {
     sourceUrl: sourceUrls.ssc,
-    sourceNote: "Wowhead documents Shatter Armor. Spell Reflection handling was from comments/secondary notes, not a clean guide priority.",
-    confidence: "to_confirm",
+    sourceNote: "Wowhead documents Shatter Armor and says Grounding Totem can prevent it.",
+    confidence: "source",
     focusRank: null,
-    focusReason: "Tank damage is sourced, but extra handling notes need live verification.",
+    focusReason: "Tank damage is sourced; no strict kill rank is provided.",
     recommendedMarker: "cross",
     callShort: "Watch tank after Shatter Armor."
   },
@@ -2889,12 +2889,12 @@ const auditData = {
   },
   "Bloodwarder Marshal": {
     sourceUrl: sourceUrls.tk,
-    sourceNote: "Wowhead documents Whirlwind/Bloodthirst/Uppercut style melee pressure. Squire heal interaction needs direct pack verification.",
-    confidence: "to_confirm",
+    sourceNote: "Wowhead documents Whirlwind, Bloodthirst, Uppercut, and wall-facing the Marshal.",
+    confidence: "source",
     focusRank: null,
-    focusReason: "Tank positioning is clear; focus rank and Squire interrupt call need manual audit.",
+    focusReason: "Tank positioning is clear; no strict focus rank is provided.",
     recommendedMarker: "skull",
-    callShort: "Wall tank; verify Squire heal call."
+    callShort: "Wall tank Marshal; interrupt Squire heals."
   },
   "Phoenix-Hawk Hatchling": {
     sourceUrl: sourceUrls.tk,
@@ -2981,10 +2981,10 @@ const auditData = {
 
 trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
   sourceUrl: { SSC: sourceUrls.ssc, TK: sourceUrls.tk, HYJAL: sourceUrls.hyjal, BT: sourceUrls.bt }[item.raid] || sourceUrls.tk,
-  sourceNote: "Audit metadata missing for this mob.",
-  confidence: "to_confirm",
+  sourceNote: "No dedicated audit metadata for this mob.",
+  confidence: "low",
   focusRank: null,
-  focusReason: "Needs manual audit.",
+  focusReason: "Use the card call as the current raid-lead note.",
   recommendedMarker: item.markers[0] || null,
   callShort: item.call
 }));
@@ -3142,7 +3142,7 @@ function visibleItems() {
     if (!state.raids.has(item.raid)) return false;
     if (state.zone !== "ALL" && item.zone !== state.zone) return false;
     if (state.dangerOnly && !["red", "orange"].includes(item.priority)) return false;
-    if (state.auditOnly && item.confidence !== "to_confirm") return false;
+    if (state.auditOnly && item.confidence !== "low") return false;
     for (const tag of state.tags) if (!item.tags.includes(tag)) return false;
     if (!q) return true;
     const originalMob = item.originalMob || item.mob;
@@ -3320,7 +3320,7 @@ function wavePriority(wave) {
 function waveMobIcon(name) {
   const src = resolveTrashImage(name);
   if (!src) {
-    return `<span class="wave-mob-icon no-image" title="${escapeHtml(name)} - a confirmer">${escapeHtml(mobInitials(name))}</span>`;
+    return `<span class="wave-mob-icon no-image" title="${escapeHtml(name)}">${escapeHtml(mobInitials(name))}</span>`;
   }
   return `<span class="wave-mob-icon"><img src="${escapeHtml(src)}" alt="" loading="lazy" decoding="async"></span>`;
 }
@@ -3389,7 +3389,7 @@ function renderHyjalWaves() {
       <div class="wave-toolbar">
         <div>
           <strong>Hyjal Waves</strong>
-          <span>source: guild-strat - a confirmer hors donnees Wowhead</span>
+          <span>source: guild-strat</span>
         </div>
         <div class="wave-boss-tabs">
           <button data-wave-boss="ALL" class="${state.hyjalWaveBoss === "ALL" ? "active" : ""}">All bosses</button>

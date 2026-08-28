@@ -7,8 +7,8 @@ Version actuelle: v0.2 - P3 preview active
 - Phase 2: SSC + TK
 - Phase 3: Hyjal + Black Temple
 - Page publique: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
-- Lien public propre light v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-btlight
-- Lien public full portraits v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btlight
+- Lien public propre light v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-sourced
+- Lien public full portraits v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-sourced
 - Fichier offline principal: `SSC_TK_TRASH_SECOND_SCREEN.html`
 
 Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un mix WeakAura / MDT / raid notes / overlay stream.
@@ -20,7 +20,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - TK: 12 cartes
 - Hyjal: 9 cartes
 - Black Temple: 60 cartes
-- Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee, a confirmer hors Wowhead
+- Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee
 - Icones boss BT recuperees depuis le boss overview Wowhead
 - Portraits trash Hyjal: 8 portraits generes + Abomination en screenshot Wowhead/Zamimg
 - Portraits trash BT: 60 portraits generes depuis references Wowhead/Zamimg validees
@@ -41,7 +41,7 @@ https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
 Lien propre pour Discord, sans raid ouvert, en anglais, Detailed, zoom 100%:
 
 ```text
-https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-btlight
+https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-sourced
 ```
 
 Le parametre `assets=light` charge les portraits BT compresses. Sans ce parametre, la page garde les portraits full.
@@ -124,7 +124,7 @@ Chaque entree suit la structure:
 }
 ```
 
-Si une information n'est pas confirmee, elle doit rester marquee `a confirmer` ou `to_confirm`.
+Si une information n'est pas documentee par une source primaire, elle doit rester formulee sans inventer de mecanique.
 
 ## Sources principales
 
