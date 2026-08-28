@@ -2991,6 +2991,7 @@ trashData.forEach((item) => Object.assign(item, auditData[item.mob] || {
 
 const urlParams = new URLSearchParams(window.location.search);
 const cleanPreset = urlParams.get("preset") === "clean" || urlParams.has("clean");
+const useLightAssets = urlParams.get("assets") === "light" || urlParams.has("light");
 const cleanCollapsedRaids = ["SSC", "TK", "HYJAL", "BT", "SUNWELL"];
 const savedRaid = cleanPreset ? "NONE" : (localStorage.getItem("raid") || "ALL");
 const savedRaids = cleanPreset ? "" : localStorage.getItem("raids");
@@ -3317,7 +3318,7 @@ function wavePriority(wave) {
 }
 
 function waveMobIcon(name) {
-  const src = trashImages[name];
+  const src = resolveTrashImage(name);
   if (!src) {
     return `<span class="wave-mob-icon no-image" title="${escapeHtml(name)} - a confirmer">${escapeHtml(mobInitials(name))}</span>`;
   }
@@ -3411,7 +3412,7 @@ function renderHyjalWaves() {
                       <span class="wave-num">${wave.wave}</span>
                       <span class="wave-mobs">
                         ${wave.mobs.map(([name, count]) => `
-                          <span class="wave-mob ${trashImages[name] ? "" : "uncertain"}" title="${escapeHtml(name)}">
+                          <span class="wave-mob ${resolveTrashImage(name) ? "" : "uncertain"}" title="${escapeHtml(name)}">
                             ${waveMobIcon(name)}
                             <b>${count}</b>
                             <span>${escapeHtml(waveMobLabels[name] || name)}</span>
@@ -3445,9 +3446,18 @@ function mobInitials(mob) {
   return mob.split(/[^A-Za-z0-9]+/).filter(Boolean).slice(0, 2).map((part) => part[0]).join("").toUpperCase();
 }
 
+function resolveTrashImage(name) {
+  const src = trashImages[name];
+  if (!src) return "";
+  if (useLightAssets && src.startsWith("assets/TrashBT_generated/")) {
+    return src.replace("assets/TrashBT_generated/", "assets/TrashBT_light/").replace(/\.png$/, ".jpg");
+  }
+  return src;
+}
+
 function trashPortrait(item) {
   const originalMob = item.originalMob || item.mob;
-  const src = trashImages[originalMob];
+  const src = resolveTrashImage(originalMob);
   const raidClass = item.raid.toLowerCase();
   if (!src) {
     return `<div class="mob-portrait portrait-${raidClass} no-image"><div class="portrait-initials">${escapeHtml(mobInitials(originalMob))}</div><small>no image</small></div>`;

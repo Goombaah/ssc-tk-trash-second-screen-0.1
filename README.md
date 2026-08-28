@@ -7,7 +7,8 @@ Version actuelle: v0.2 - P3 preview active
 - Phase 2: SSC + TK
 - Phase 3: Hyjal + Black Temple
 - Page publique: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
-- Lien public propre v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btportraits
+- Lien public propre light v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-btlight
+- Lien public full portraits v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btlight
 - Fichier offline principal: `SSC_TK_TRASH_SECOND_SCREEN.html`
 
 Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un mix WeakAura / MDT / raid notes / overlay stream.
@@ -23,6 +24,7 @@ Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un 
 - Icones boss BT recuperees depuis le boss overview Wowhead
 - Portraits trash Hyjal: 8 portraits generes + Abomination en screenshot Wowhead/Zamimg
 - Portraits trash BT: 60 portraits generes depuis references Wowhead/Zamimg validees
+- Portraits trash BT light: 60 copies JPEG reduites pour lien public rapide
 - Portraits trash P3 restants: placeholders uniquement quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs
 - Sauvegarde preferences via `localStorage`
@@ -39,8 +41,10 @@ https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
 Lien propre pour Discord, sans raid ouvert, en anglais, Detailed, zoom 100%:
 
 ```text
-https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btportraits
+https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&assets=light&v=20260828-btlight
 ```
+
+Le parametre `assets=light` charge les portraits BT compresses. Sans ce parametre, la page garde les portraits full.
 
 Sur second ecran:
 
@@ -159,5 +163,7 @@ Le fichier genere est:
 ```text
 netlify_single_file/index.html
 ```
+
+Attention: avec les portraits BT full, le standalone peut depasser 100 MB. Pour le partage public, preferer la page avec assets separes et `assets=light`.
 
 Les archives `.zip` sont ignorees par Git, car elles peuvent etre regenerees depuis les fichiers source.
