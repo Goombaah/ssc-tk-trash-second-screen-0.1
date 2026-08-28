@@ -7,22 +7,22 @@ Version actuelle: v0.2 - P3 preview active
 - Phase 2: SSC + TK
 - Phase 3: Hyjal + Black Temple
 - Page publique: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
-- Lien public propre v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260810-v02-clean
+- Lien public propre v0.2: https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btfull
 - Fichier offline principal: `SSC_TK_TRASH_SECOND_SCREEN.html`
 
 Ce n'est pas un site web classique: c'est un second ecran dense, pense comme un mix WeakAura / MDT / raid notes / overlay stream.
 
 ## Etat actuel
 
-- 71 cartes trash au total
+- 99 cartes trash au total
 - SSC: 18 cartes
 - TK: 12 cartes
 - Hyjal: 9 cartes
-- Black Temple: 33 cartes
+- Black Temple: 60 cartes
 - Hyjal Waves: 32 vagues de strat guilde integrees en vue dediee, a confirmer hors Wowhead
 - Icones boss BT recuperees depuis le boss overview Wowhead
 - Portraits trash Hyjal: 8 portraits generes + Abomination en screenshot Wowhead/Zamimg
-- Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees
+- Portraits trash BT: 33 portraits generes depuis references Wowhead/Zamimg validees, placeholders pour les trashs BT ajoutes sans asset fiable
 - Portraits trash P3 restants: placeholders uniquement quand aucun asset fiable n'est encore mappe
 - Tooltips spells actifs
 - Sauvegarde preferences via `localStorage`
@@ -39,7 +39,7 @@ https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/
 Lien propre pour Discord, sans raid ouvert, en anglais, Detailed, zoom 100%:
 
 ```text
-https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260810-v02-clean
+https://goombaah.github.io/ssc-tk-trash-second-screen-0.1/?preset=clean&v=20260828-btfull
 ```
 
 Sur second ecran:
